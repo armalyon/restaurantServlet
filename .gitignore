@@ -1,7 +1,16 @@
-# Default ignored files
+
 /workspace.xml
 .idea
 *.iws
 *.iml
 *.ipr
-/target/
+
+*.class
+
+.idea
+*.iml
+
+.classpath
+.project
+.settings/
+target/
