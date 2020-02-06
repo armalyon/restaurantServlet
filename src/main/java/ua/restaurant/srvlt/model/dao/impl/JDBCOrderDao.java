@@ -33,7 +33,7 @@ public class JDBCOrderDao implements OrderDao {
             st.setDate(4, Date.valueOf(order.getDate()));
             st.setTime(5, Time.valueOf(order.getTime()));
             st.setString(6, order.getOrderStatement().name());
-            st.setLong(7, order.getUserId());
+            st.setLong(7, order.getUser().getId());
             st.execute();
             connection.close();
             st.close();

@@ -53,53 +53,50 @@
                     <div>
                         <span class="header"><fmt:message key="string.admin.orders.waiting"/> </span>
                     </div>
-                   <%-- <span class="error" th:if="${#httpServletRequest.getParameter('notenough') != null}"
-                          th:text="#{string.admin.error.quantity}"></span>
-                    <span class="error" th:if="${#httpServletRequest.getParameter('error') != null}"
-                          th:text="#{string.item.not.found}"></span>--%>
+                        <%-- <span class="error" th:if="${#httpServletRequest.getParameter('notenough') != null}"
+                               th:text="#{string.admin.error.quantity}"></span>
+                         <span class="error" th:if="${#httpServletRequest.getParameter('error') != null}"
+                               th:text="#{string.item.not.found}"></span>--%>
 
                     <table class="table">
                         <tr>
-                            <td><fmt:message key="string.admin.orders.username"/> </td>
-                            <td> <fmt:message key="string.admin.orders.name"/> </td>
-                            <td><fmt:message key="string.admin.orders.dish"/> </td>
-                            <td> <fmt:message key="string.admin.orders.quantity"/> </td>
-                            <td> <fmt:message key="string.admin.orders.action"/> </td>
+                            <td><fmt:message key="string.admin.orders.username"/></td>
+                            <td><fmt:message key="string.admin.orders.name"/></td>
+                            <td><fmt:message key="string.admin.orders.dish"/></td>
+                            <td><fmt:message key="string.admin.orders.quantity"/></td>
+                            <td><fmt:message key="string.admin.orders.action"/></td>
                         </tr>
-                        <c:forEach items="${page.records}" var="order">
-                        <tr>
-                            <td th:text="${ordered.user.username}"></td>
-                            <td th:text="${ordered.user.name}"></td>
-                            <td th:if="${#httpServletRequest.getParameter('lang') == null} or
-             ${#httpServletRequest.getParameter('lang') == 'en'}" th:text="${ordered.menuItem.name}"></td>
-                            <td th:if="${#httpServletRequest.getParameter('lang') == 'ua'}"
-                                th:text="${ordered.menuItem.nameUA}"></td>
-                            <td th:text="${ordered.quantity}"></td>
-                            <td>
-                                <form th:action="@{/admin/confirmation/confirmorder}" method="post" style="float: left">
-                                    <input type="hidden" name="id" th:value="${ordered.id}">
-                                    <input type="hidden" name="quantity" th:value="${ordered.quantity}">
-                                    <input type="submit" class="button"
-                                           th:value="#{string.admin.orders.action.confirm}">
-                                </form>
-                                <form th:action="@{/admin/confirmation/rejectorder}" method="post" style="float: left">
-                                    <input type="hidden" name="id" th:value="${ordered.id}">
-                                    <input type="submit" class="button"
-                                           th:value="#{string.admin.orders.action.reject}">
-                                </form>
-                            </td>
-                        </tr>
+                        <c:forEach items="${page.records}" var="ordered">
+                            <tr>
+                                <td>${ordered.user.username}</td>
+                                <td>${ordered.user.name}</td>
+                                <td>
+                                    <c:if test="${lang != 'ua'}">
+                                        ${ordered.orderStatement.getMessage()}
+                                    </c:if>
+                                    <c:if test="${lang == 'ua'}">
+                                        ${ordered.orderStatement.getMessageUA()}
+                                    </c:if>
+                                </td>
+                                <td>${ordered.quantity}</td>
+                                <td>
+                                    <form action="${pageContext.request.contextPath}/admin_confirmorder}" method="post"
+                                          style="float: left">
+                                        <input type="hidden" name="id" value="${ordered.id}">
+                                        <input type="hidden" name="quantity" value="${ordered.quantity}">
+                                        <input type="submit" class="button"
+                                               value='<fmt:message key="string.admin.orders.action.confirm"/>'>
+                                    </form>
+                                    <form action="${pageContext.request.contextPath}/admin_rejectorder}" method="post"
+                                          style="float: left">
+                                        <input type="hidden" name="id" value="${ordered.id}">
+                                        <input type="submit" class="button"
+                                               value='<fmt:message key="string.admin.orders.action.reject"/> '>
+                                    </form>
+                                </td>
+                            </tr>
                         </c:forEach>
                     </table>
-                    <nav th:if="${waiting.totalPages > 1}">
-                        <th:block th:each="i: ${#numbers.sequence(0, waiting.totalPages - 1)}">
-                            <div th:if="${waiting.number == i}" class="page-item"><span
-                                    class="page-link">[[${i}+1]] </span></div>
-                            <div th:unless="${waiting.number == i}" class="page-item">
-                                <a th:href="@{/admin/stats(page=${i})}" class="page-link">[[${i}+1]]</a>
-                            </div>
-                        </th:block>
-                    </nav>
 
                 </div>
             </c:if>

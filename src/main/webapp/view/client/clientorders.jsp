@@ -80,7 +80,6 @@
                     <c:if test="${lang == 'ua'}">
                         ${order.orderStatement.getMessageUA()}
                     </c:if>
-
                 </td>
             </tr>
             </c:forEach>

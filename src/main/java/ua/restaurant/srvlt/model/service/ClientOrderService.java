@@ -7,8 +7,8 @@ import ua.restaurant.srvlt.model.dao.OrderDao;
 import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.entity.MenuItem;
 import ua.restaurant.srvlt.model.entity.Order;
+import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.entity.types.OrderStatement;
-import ua.restaurant.srvlt.exceptions.ItemNotFoundException;
 import ua.restaurant.srvlt.exceptions.NotEnoughItemsException;
 
 import java.time.LocalDate;
@@ -23,25 +23,26 @@ public class ClientOrderService {
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
 
     public void saveNewOrder(String username, long menuItemId, long quantity) throws NotEnoughItemsException {
-        MenuItem item = menuItemDao.findById(menuItemId);
-        LOGGER.debug(item);
-        if (!isItemsEnough(quantity, item.getStorageQuantity())) {
-            throw new NotEnoughItemsException("Not enough items");
-        }
-        long userId = userDao.findUserByUsername(username).getId();
-        long totalPrice = getTotalPrice(quantity, item.getPrice());
-        Order order = createOrder(menuItemId, quantity, userId, totalPrice);
+        Order order = createOrderEntity(menuItemId, quantity, username);
         orderDao.create(order);
     }
 
-    private Order createOrder(long menuItemId, long quantity, long userId, long totalPrice) {
+
+    private Order createOrderEntity(long menuItemId, long quantity, String username) throws NotEnoughItemsException {
+        MenuItem item = menuItemDao.findById(menuItemId);
+        if (!isItemsEnough(quantity, item.getStorageQuantity())) {
+            throw new NotEnoughItemsException("Not enough items");
+        }
+        User user = userDao.findUserByUsername(username);
+        long totalPrice = getTotalPrice(quantity, item.getPrice());
+
         return new Order.Builder()
                 .menuItem(new MenuItem.Builder().id(menuItemId).build())
                 .quantity(quantity)
                 .totalPrice(totalPrice)
                 .date(LocalDate.now())
                 .time(LocalTime.now())
-                .userId(userId)
+                .user(user)
                 .orderStatement(OrderStatement.WAITING)
                 .build();
     }
