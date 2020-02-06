@@ -19,11 +19,6 @@ import static ua.restaurant.srvlt.constants.DBConstants.FIND_MENU_ITEM_BY_ID;
 
 public class JDBCMenuItemDao implements MenuItemDao {
     private static final Logger LOGGER = Logger.getLogger(JDBCMenuItemDao.class);
-    private Connection connection;
-
-    JDBCMenuItemDao(Connection connection) {
-        this.connection = connection;
-    }
 
     @Override
     public void create(MenuItem entity) {
@@ -33,7 +28,8 @@ public class JDBCMenuItemDao implements MenuItemDao {
     @Override
     public MenuItem findById(long id) {
         MenuItem item = null;
-        try (PreparedStatement st = connection.prepareStatement(
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+                PreparedStatement st = connection.prepareStatement(
                 bundle.getString(FIND_MENU_ITEM_BY_ID))
         ) {
             st.setLong(1, id);
@@ -62,19 +58,12 @@ public class JDBCMenuItemDao implements MenuItemDao {
 
     }
 
-    @Override
-    public void close() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            LOGGER.warn(e.getMessage());
-        }
-    }
 
     @Override
     public List<MenuItem> findAllByStorageQuantityGreaterThan(long quantity) {
         Map<Long, MenuItem> items = new HashMap<>();
-        try (PreparedStatement st = connection.prepareStatement(
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+                PreparedStatement st = connection.prepareStatement(
                 bundle.getString(FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN)
         )) {
             st.setLong(1, quantity);

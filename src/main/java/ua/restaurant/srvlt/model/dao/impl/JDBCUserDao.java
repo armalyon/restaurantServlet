@@ -18,15 +18,11 @@ import static ua.restaurant.srvlt.constants.DBConstants.*;
 public class JDBCUserDao implements UserDao {
 
     private static final Logger LOGGER = Logger.getLogger(JDBCUserDao.class);
-    private Connection connection;
-
-    JDBCUserDao(Connection connection) {
-        this.connection = connection;
-    }
 
     public User findUserByUsername(String username) {
         User user = null;
-        try (PreparedStatement st =
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st =
                      connection.prepareStatement(
                              bundle.getString(FIND_USER_BY_USERNAME_PREPARED_STATEMENT)
                      )) {
@@ -46,7 +42,8 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void createNewUser(User user) throws UserExistsException {
-        try (PreparedStatement st =
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st =
                      connection.prepareStatement(bundle.getString(SAVE_USER_INTO_TABLE))
         ) {
             st.setString(1, user.getUsername());
@@ -57,11 +54,9 @@ public class JDBCUserDao implements UserDao {
             st.setTimestamp(6, Timestamp.valueOf(user.getRegistrationDate()));
             st.setLong(7, user.getFunds());
             st.execute();
-        }
-        catch (SQLIntegrityConstraintViolationException e ){
+        } catch (SQLIntegrityConstraintViolationException e) {
             throw new UserExistsException("User already exists ", user.getUsername());
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             LOGGER.debug(e.getMessage());
             e.printStackTrace();
         }
@@ -86,9 +81,10 @@ public class JDBCUserDao implements UserDao {
     @Override
     public List<User> findAllByRole(Role role) {
         Map<Long, User> users = new HashMap<>();
-        try (PreparedStatement st = connection.prepareStatement(
-                bundle.getString(FIND__ALL_USERS_BY_ROLE_PREPARED_STATEMENT)
-        )) {
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st = connection.prepareStatement(
+                     bundle.getString(FIND__ALL_USERS_BY_ROLE_PREPARED_STATEMENT)
+             )) {
             st.setString(1, role.name());
             ResultSet rs = st.executeQuery();
             UserMapper mapper = new UserMapper();
@@ -112,15 +108,6 @@ public class JDBCUserDao implements UserDao {
 
     @Override
     public void delete(int id) {
-
     }
 
-    @Override
-    public void close() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }

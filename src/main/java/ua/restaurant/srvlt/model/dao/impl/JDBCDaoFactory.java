@@ -12,32 +12,21 @@ import java.sql.SQLException;
 
 public class JDBCDaoFactory extends DaoFactory {
 
-    private DataSource dataSource = ConnectionPoolHolder.getDataSource();
     private static final Logger LOGGER = Logger.getLogger(JDBCDaoFactory.class);
-
 
     @Override
     public JDBCUserDao createUserDao() {
-        return new JDBCUserDao(getConnection());
+        return new JDBCUserDao();
     }
 
     @Override
     public MenuItemDao createMenuItemDao() {
-        return new JDBCMenuItemDao(getConnection());
+        return new JDBCMenuItemDao();
     }
 
     @Override
     public JDBCOrderDao createOrderDao() {
-        return new JDBCOrderDao(getConnection());
-    }
-
-    private Connection getConnection() {
-        try {
-            return dataSource.getConnection();
-        } catch (SQLException e) {
-            LOGGER.warn("connction error" + e.getMessage());
-            throw new RuntimeException(e);
-        }
+        return new JDBCOrderDao();
     }
 
 

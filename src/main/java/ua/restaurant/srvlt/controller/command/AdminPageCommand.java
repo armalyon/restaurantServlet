@@ -12,13 +12,13 @@ import static ua.restaurant.srvlt.constants.TextConstants.*;
 public class AdminPageCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(AdminPageCommand.class);
 
-  //  private MenuService menuService = new MenuService();
+    private MenuService menuService = new MenuService();
 
 
     @Override
     public String execute(HttpServletRequest request) {
-     //   MenuDTO menuDTO = menuService.getMenu();
-       // request.setAttribute(MENU_DTO_ATTRIBUTE, menuDTO);
+        MenuDTO menuDTO = menuService.getMenu();
+       request.setAttribute(MENU_DTO_ATTRIBUTE, menuDTO);
         return ADMIN_MAIN_PAGE;
     }
 }

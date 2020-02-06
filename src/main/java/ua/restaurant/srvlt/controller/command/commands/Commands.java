@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.controller.command.commands_enum;
+package ua.restaurant.srvlt.controller.command.commands;
 
 import ua.restaurant.srvlt.controller.command.*;
 

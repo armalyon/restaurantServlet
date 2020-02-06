@@ -3,7 +3,8 @@ package ua.restaurant.srvlt.model.dao.impl;
 import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
-
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static ua.restaurant.srvlt.constants.DBConstants.*;
@@ -11,9 +12,13 @@ import static ua.restaurant.srvlt.constants.DBConstants.*;
 public class ConnectionPoolHolder {
     private static ResourceBundle bundle = ResourceBundle.getBundle("dbsettings");
     private static volatile DataSource dataSource;
-    static DataSource getDataSource(){
 
-        if (dataSource == null){
+    public static Connection getConnection() throws SQLException {
+        return getDataSource().getConnection();
+    }
+
+    private static DataSource getDataSource() {
+        if (dataSource == null) {
             synchronized (ConnectionPoolHolder.class) {
                 if (dataSource == null) {
                     BasicDataSource ds = new BasicDataSource();
@@ -28,8 +33,6 @@ public class ConnectionPoolHolder {
             }
         }
         return dataSource;
-
     }
-
 
 }

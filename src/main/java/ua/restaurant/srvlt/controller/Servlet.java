@@ -2,7 +2,7 @@ package ua.restaurant.srvlt.controller;
 
 import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.controller.command.Command;
-import ua.restaurant.srvlt.controller.command.commands_enum.Commands;
+import ua.restaurant.srvlt.controller.command.commands.Commands;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

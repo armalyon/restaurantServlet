@@ -19,26 +19,14 @@ import static ua.restaurant.srvlt.constants.DBConstants.*;
 
 public class JDBCOrderDao implements OrderDao {
     private static final Logger LOGGER = Logger.getLogger(JDBCOrderDao.class);
-    private Connection connection;
-
-    private long menuItemId;
-    private long quantity;
-    private long totalPrice;
-    private LocalDate date;
-    private LocalTime time;
-    private OrderStatement orderStatement;
-    private long userId;
-
-
-    public JDBCOrderDao(Connection connection) {
-        this.connection = connection;
-    }
 
     @Override
     public void create(Order order) {
-        try (PreparedStatement st =
-                     connection.prepareStatement(bundle.getString(SAVE_ORDER_INTO_TABLE))
-        ) {
+
+        try {
+            Connection connection = ConnectionPoolHolder.getConnection();
+            PreparedStatement st =
+                    connection.prepareStatement(bundle.getString(SAVE_ORDER_INTO_TABLE));
             st.setLong(1, order.getMenuItem().getId());
             st.setLong(2, order.getQuantity());
             st.setLong(3, order.getTotalPrice());
@@ -47,16 +35,19 @@ public class JDBCOrderDao implements OrderDao {
             st.setString(6, order.getOrderStatement().name());
             st.setLong(7, order.getUserId());
             st.execute();
+            connection.close();
+            st.close();
         } catch (SQLException e) {
             LOGGER.warn(e.getMessage());
-            e.printStackTrace();
         }
+
     }
 
     @Override
     public List<Order> findAllByUsernameAndDate(String username, LocalDate date) {
         Map<Long, Order> orderDTOs = new HashMap<>();
-        try (PreparedStatement st = connection.prepareStatement(
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+                PreparedStatement st = connection.prepareStatement(
                 bundle.getString(FIND_ORDERS_BY_USERNAME_AND_DATE)
         )) {
             st.setString(1, username);
@@ -79,7 +70,8 @@ public class JDBCOrderDao implements OrderDao {
     public Page<Order> findAllByUsernamePagable(String username, int currentPage, int pageSize) {
 
         int ordersByUser = 0;
-        try (PreparedStatement st = connection.prepareStatement(
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+                PreparedStatement st = connection.prepareStatement(
                 bundle.getString(COUNT_ORDERS_BY_USERNAME))
         ) {
             st.setString(1, username);
@@ -93,7 +85,8 @@ public class JDBCOrderDao implements OrderDao {
 
         int offset = pageSize * currentPage;
         Map<Long, Order> orders = new HashMap<>();
-        try (PreparedStatement st = connection.prepareStatement(
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+                PreparedStatement st = connection.prepareStatement(
                 bundle.getString(FIND_ORDERS_BY_USERNAME_PAGEABLE))
         ) {
             LOGGER.debug("offset=" + offset + " pageSize=" + pageSize);
@@ -138,9 +131,5 @@ public class JDBCOrderDao implements OrderDao {
 
     }
 
-    @Override
-    public void close() {
-
-    }
 
 }
