@@ -7,7 +7,7 @@ import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.dto.AccountDTO;
 import ua.restaurant.srvlt.model.entity.types.Role;
-import ua.restaurant.srvlt.model.exceptions.UserExistsException;
+import ua.restaurant.srvlt.exceptions.UserExistsException;
 
 import java.time.LocalDateTime;
 

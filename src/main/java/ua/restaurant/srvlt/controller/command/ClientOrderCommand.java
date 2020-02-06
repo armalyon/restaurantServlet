@@ -1,7 +1,7 @@
 package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.model.exceptions.NotEnoughItemsException;
+import ua.restaurant.srvlt.exceptions.NotEnoughItemsException;
 import ua.restaurant.srvlt.model.service.ClientOrderService;
 
 import javax.servlet.http.HttpServletRequest;

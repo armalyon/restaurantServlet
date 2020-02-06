@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.controller.command.commands;
+package ua.restaurant.srvlt.controller.command.types;
 
 import ua.restaurant.srvlt.controller.command.*;
 
@@ -12,7 +12,8 @@ public enum Commands {
     REGISTRATION(new RegistrationPageCommand()),
     REGISTER(new RegisterCommand()),
     CLIENT_ORDER( new ClientOrderCommand()),
-    CLIENT_ORDERS( new ClientOrdersPageCommand());
+    CLIENT_ORDERS( new ClientOrdersPageCommand()),
+    ADMIN_CONFIRMATION(new AdminConfirmationPageCommand());
 
     private Command command;
 

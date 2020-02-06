@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.model.exceptions;
+package ua.restaurant.srvlt.exceptions;
 
 
 public class RegexMismatchException extends Exception {

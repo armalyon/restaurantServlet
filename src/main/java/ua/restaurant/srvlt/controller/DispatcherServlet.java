@@ -2,7 +2,7 @@ package ua.restaurant.srvlt.controller;
 
 import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.controller.command.Command;
-import ua.restaurant.srvlt.controller.command.commands.Commands;
+import ua.restaurant.srvlt.controller.command.types.Commands;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,9 +18,9 @@ import java.util.Map;
 import static ua.restaurant.srvlt.constants.TextConstants.INDEX_PAGE;
 import static ua.restaurant.srvlt.constants.TextConstants.LOGGED_USERS_ATTRIBUTE;
 
-public class Servlet extends HttpServlet {
+public class DispatcherServlet extends HttpServlet {
     private Map<String, Command> commands = new HashMap<>();
-    private static final Logger LOGGER = Logger.getLogger(Servlet.class);
+    private static final Logger LOGGER = Logger.getLogger(DispatcherServlet.class);
 
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()

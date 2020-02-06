@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.model.exceptions;
+package ua.restaurant.srvlt.exceptions;
 
 public class ConfirmationDoesNotMatchException extends Exception {
     private String message;

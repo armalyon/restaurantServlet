@@ -63,12 +63,12 @@
                 </form>
             </td>
             <td>
-                <form action="${pageContext.request.contextPath}/admin_stats}" method="get">
+                <form action="${pageContext.request.contextPath}/admin_stats" method="get">
                     <input type="submit" class="button" value='<fmt:message key="string.admin.button.stats"/> '>
                 </form>
             </td>
             <td>
-                <form action="${pageContext.request.contextPath}/logout}" method="post">
+                <form action="${pageContext.request.contextPath}/logout" method="post">
                     <input class="button" type="submit" value='<fmt:message key="string.common.logout"/>'/>
                 </form>
             </td>
