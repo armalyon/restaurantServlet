@@ -24,8 +24,6 @@ public class ClientOrdersPageCommand implements Command {
         else pageNumber = Integer.parseInt(pageNumberString) - 1;
         Page<Order> page = ordersDTOService.getOrdersByName(username, pageNumber, PAGE_SIZE);
         request.setAttribute(PAGE_ATTRIBUTE, page);
-        LOGGER.debug(page);
-        LOGGER.debug("RECORDS: " + page.getTotalRecords());
         return CLIENT_ORDERS_PAGE;
     }
 }

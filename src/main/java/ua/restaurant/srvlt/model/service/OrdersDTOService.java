@@ -22,7 +22,7 @@ public class OrdersDTOService {
 
     public OrdersDTO getTodayOrdersByUserame(String username) {
 
-        return new OrdersDTO(orderDao
+        return new OrdersDTO (orderDao
                 .findAllByUsernameAndDate(username, LocalDate.now())
         );
     }

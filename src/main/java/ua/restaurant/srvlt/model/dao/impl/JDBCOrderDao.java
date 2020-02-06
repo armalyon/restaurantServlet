@@ -110,6 +110,48 @@ public class JDBCOrderDao implements OrderDao {
         }
     }
 
+    @Override
+    public Page<Order> findAllByOrderStatementOrderByDate(OrderStatement statement,
+                                                          int currentPage,
+                                                          int pageSize) {
+        int ordersByUser = 0;
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+              PreparedStatement st = connection.prepareStatement(
+                      bundle.getString(COUNT_ORDERS_BY_STATEMENT))
+        ) {
+            st.setString(1, statement.name());
+            ResultSet rs = st.executeQuery();
+            if (rs.first()) {
+                ordersByUser = rs.getInt("total");
+            }
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
+        int offset = pageSize * currentPage;
+        Map<Long, Order> orders = new HashMap<>();
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+              PreparedStatement st = connection.prepareStatement(
+                      bundle.getString(FIND_ORDERS_BY_STATEMENT_PAGEABLE))
+        ) {
+            st.setString(1, statement.name());
+            st.setInt(2, offset);
+            st.setInt(3, pageSize);
+            ResultSet rs = st.executeQuery();
+            OrderMapper mapper = new OrderMapper();
+            while (rs.next()) {
+                Order order = mapper.extractFromResultSet(rs);
+                order= mapper.makeUnique(orders, order);
+            }
+            List<Order> ordersList = new ArrayList<>(orders.values());
+            return new Page(ordersByUser, currentPage, pageSize, ordersList, pageSize);
+        } catch (
+                SQLException e) {
+            //TODO handling
+            LOGGER.warn(e.getMessage());
+            return null;
+        }
+    }
+
 
     @Override
     public Order findById(long id) {

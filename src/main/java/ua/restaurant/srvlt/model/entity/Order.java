@@ -13,13 +13,20 @@ public class Order {
     private LocalDate date;
     private LocalTime time;
     private OrderStatement orderStatement;
-    private long userId;
+    private User user;
 
 
     public long getId() {
         return id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public MenuItem getMenuItem() {
         return menuItem;
@@ -69,13 +76,6 @@ public class Order {
         this.orderStatement = orderStatement;
     }
 
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
 
     public static class Builder {
         private Order newOrder;
@@ -119,8 +119,8 @@ public class Order {
             return this;
         }
 
-        public Builder userId(long userId) {
-            newOrder.userId = userId;
+        public Builder user(User user) {
+            newOrder.user = user;
             return this;
         }
 

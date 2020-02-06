@@ -14,7 +14,9 @@ public interface DBConstants {
     String SAVE_ORDER_INTO_TABLE = "query.insert.order.into.orders.table";
     String FIND_ORDERS_BY_USERNAME_AND_DATE = "query.find.orders.by.username.date";
     String FIND_ORDERS_BY_USERNAME_PAGEABLE = "query.find.orders.by.username.pagable";
+    String FIND_ORDERS_BY_STATEMENT_PAGEABLE = "query.find.orders.by.statement.pagable";
     String COUNT_ORDERS_BY_USERNAME = "query.count.orders.by.username";
+    String COUNT_ORDERS_BY_STATEMENT = "query.count.orders.by.statement";
 
 
 }
