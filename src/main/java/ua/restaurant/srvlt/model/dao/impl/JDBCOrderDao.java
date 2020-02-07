@@ -9,7 +9,6 @@ import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,10 +45,10 @@ public class JDBCOrderDao implements OrderDao {
     @Override
     public List<Order> findAllByUsernameAndDate(String username, LocalDate date) {
         Map<Long, Order> orderDTOs = new HashMap<>();
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-                PreparedStatement st = connection.prepareStatement(
-                bundle.getString(FIND_ORDERS_BY_USERNAME_AND_DATE)
-        )) {
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st = connection.prepareStatement(
+                     bundle.getString(FIND_ORDERS_BY_USERNAME_AND_DATE)
+             )) {
             st.setString(1, username);
             st.setDate(2, Date.valueOf(date));
             ResultSet rs = st.executeQuery();
@@ -70,38 +69,32 @@ public class JDBCOrderDao implements OrderDao {
     public Page<Order> findAllByUsernamePagable(String username, int currentPage, int pageSize) {
 
         int ordersByUser = 0;
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-                PreparedStatement st = connection.prepareStatement(
-                bundle.getString(COUNT_ORDERS_BY_USERNAME))
-        ) {
-            st.setString(1, username);
-            ResultSet rs = st.executeQuery();
-            if (rs.first()) {
-                ordersByUser = rs.getInt("total");
-            }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
 
         int offset = pageSize * currentPage;
         Map<Long, Order> orders = new HashMap<>();
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-                PreparedStatement st = connection.prepareStatement(
-                bundle.getString(FIND_ORDERS_BY_USERNAME_PAGEABLE))
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st1 = connection.prepareStatement(
+                     bundle.getString(COUNT_ORDERS_BY_USERNAME));
+             PreparedStatement st2 = connection.prepareStatement(
+                     bundle.getString(FIND_ORDERS_BY_USERNAME_PAGEABLE))
         ) {
-            LOGGER.debug("offset=" + offset + " pageSize=" + pageSize);
-            st.setString(1, username);
-            st.setInt(2, offset);
-            st.setInt(3, pageSize);
-            ResultSet rs = st.executeQuery();
+            st1.setString(1, username);
+            ResultSet rs = st1.executeQuery();
+            if (rs.first()) {
+                ordersByUser = rs.getInt("total");
+            }
+
+            st2.setString(1, username);
+            st2.setInt(2, offset);
+            st2.setInt(3, pageSize);
+            rs = st2.executeQuery();
             OrderMapper mapper = new OrderMapper();
             while (rs.next()) {
                 Order order = mapper.extractFromResultSet(rs);
-                order= mapper.makeUnique(orders, order);
-                LOGGER.debug("orderDTO!!" + order);
+                order = mapper.makeUnique(orders, order);
             }
             List<Order> ordersList = new ArrayList<>(orders.values());
-            return new Page(ordersByUser, currentPage, pageSize, ordersList, pageSize);
+            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList, pageSize);
         } catch (
                 SQLException e) {
             //TODO handling
@@ -115,35 +108,32 @@ public class JDBCOrderDao implements OrderDao {
                                                           int currentPage,
                                                           int pageSize) {
         int ordersByUser = 0;
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-              PreparedStatement st = connection.prepareStatement(
-                      bundle.getString(COUNT_ORDERS_BY_STATEMENT))
+        int offset = pageSize * currentPage;
+        Map<Long, Order> orders = new HashMap<>();
+
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st1 = connection.prepareStatement(
+                     bundle.getString(COUNT_ORDERS_BY_STATEMENT));
+             PreparedStatement st2 = connection.prepareStatement(
+                     bundle.getString(FIND_ORDERS_BY_STATEMENT_PAGEABLE))
         ) {
-            st.setString(1, statement.name());
-            ResultSet rs = st.executeQuery();
+            st1.setString(1, statement.name());
+            ResultSet rs = st1.executeQuery();
             if (rs.first()) {
                 ordersByUser = rs.getInt("total");
             }
-        } catch (SQLException exception) {
-            exception.printStackTrace();
-        }
-        int offset = pageSize * currentPage;
-        Map<Long, Order> orders = new HashMap<>();
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-              PreparedStatement st = connection.prepareStatement(
-                      bundle.getString(FIND_ORDERS_BY_STATEMENT_PAGEABLE))
-        ) {
-            st.setString(1, statement.name());
-            st.setInt(2, offset);
-            st.setInt(3, pageSize);
-            ResultSet rs = st.executeQuery();
+
+            st2.setString(1, statement.name());
+            st2.setInt(2, offset);
+            st2.setInt(3, pageSize);
+            rs = st2.executeQuery();
             OrderMapper mapper = new OrderMapper();
             while (rs.next()) {
                 Order order = mapper.extractFromResultSet(rs);
-                order= mapper.makeUnique(orders, order);
+                order = mapper.makeUnique(orders, order);
             }
             List<Order> ordersList = new ArrayList<>(orders.values());
-            return new Page(ordersByUser, currentPage, pageSize, ordersList, pageSize);
+            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList, pageSize);
         } catch (
                 SQLException e) {
             //TODO handling

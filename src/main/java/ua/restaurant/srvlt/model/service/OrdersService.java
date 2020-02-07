@@ -10,8 +10,8 @@ import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.time.LocalDate;
 
-public class OrdersDTOService {
-    private static final Logger LOGGER = Logger.getLogger(OrdersDTOService.class);
+public class OrdersService {
+    private static final Logger LOGGER = Logger.getLogger(OrdersService.class);
 
     private OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
 

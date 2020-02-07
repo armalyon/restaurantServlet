@@ -3,7 +3,7 @@ package ua.restaurant.srvlt.controller.command;
 import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.model.entity.Order;
 import ua.restaurant.srvlt.model.pagination.Page;
-import ua.restaurant.srvlt.model.service.OrdersDTOService;
+import ua.restaurant.srvlt.model.service.OrdersService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,7 +13,7 @@ public class ClientOrdersPageCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(ClientOrdersPageCommand.class);
     private static final int PAGE_SIZE = 5;
 
-    private OrdersDTOService ordersDTOService = new OrdersDTOService();
+    private OrdersService ordersService = new OrdersService();
 
     @Override
     public String execute(HttpServletRequest request) {
@@ -22,7 +22,7 @@ public class ClientOrdersPageCommand implements Command {
         int pageNumber;
         if (pageNumberString == null) pageNumber = 0;
         else pageNumber = Integer.parseInt(pageNumberString) - 1;
-        Page<Order> page = ordersDTOService.getOrdersByName(username, pageNumber, PAGE_SIZE);
+        Page<Order> page = ordersService.getOrdersByName(username, pageNumber, PAGE_SIZE);
         request.setAttribute(PAGE_ATTRIBUTE, page);
         return CLIENT_ORDERS_PAGE;
     }

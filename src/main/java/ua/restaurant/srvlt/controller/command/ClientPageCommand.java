@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.model.dto.MenuDTO;
 import ua.restaurant.srvlt.model.dto.OrdersDTO;
 import ua.restaurant.srvlt.model.service.MenuService;
-import ua.restaurant.srvlt.model.service.OrdersDTOService;
+import ua.restaurant.srvlt.model.service.OrdersService;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,7 +15,7 @@ public class ClientPageCommand implements Command {
 
 
     private MenuService menuService = new MenuService();
-    private OrdersDTOService ordersDTOService = new OrdersDTOService();
+    private OrdersService ordersService = new OrdersService();
 
 
     @Override
@@ -25,7 +25,7 @@ public class ClientPageCommand implements Command {
         MenuDTO menuDTO = menuService.getMenu();
         request.setAttribute(MENU_DTO_ATTRIBUTE, menuDTO);
 
-        OrdersDTO ordersDTO = ordersDTOService.getTodayOrdersByUserame(username);
+        OrdersDTO ordersDTO = ordersService.getTodayOrdersByUserame(username);
         request.setAttribute(ORDERS_DTO_ATTRIBUTE, ordersDTO);
 
         return CLIENT_MAIN_PAGE;

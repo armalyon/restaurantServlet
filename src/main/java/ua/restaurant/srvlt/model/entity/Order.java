@@ -76,6 +76,19 @@ public class Order {
         this.orderStatement = orderStatement;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", menuItem=" + menuItem +
+                ", quantity=" + quantity +
+                ", totalPrice=" + totalPrice +
+                ", date=" + date +
+                ", time=" + time +
+                ", orderStatement=" + orderStatement +
+                ", user=" + user +
+                '}';
+    }
 
     public static class Builder {
         private Order newOrder;

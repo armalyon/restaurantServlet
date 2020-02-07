@@ -34,6 +34,7 @@ public class ClientOrderService {
             throw new NotEnoughItemsException("Not enough items");
         }
         User user = userDao.findUserByUsername(username);
+        LOGGER.debug("!!!!!" + user);
         long totalPrice = getTotalPrice(quantity, item.getPrice());
 
         return new Order.Builder()
