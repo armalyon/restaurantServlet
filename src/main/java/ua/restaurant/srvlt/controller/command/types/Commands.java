@@ -13,7 +13,8 @@ public enum Commands {
     REGISTER(new RegisterCommand()),
     CLIENT_ORDER( new ClientOrderCommand()),
     CLIENT_ORDERS( new ClientOrdersPageCommand()),
-    ADMIN_CONFIRMATION(new AdminConfirmationPageCommand());
+    ADMIN_CONFIRMATION(new AdminConfirmationPageCommand()),
+    ADMIN_REJECTORDER(new AdminRejectOrderCommand());
 
     private Command command;
 

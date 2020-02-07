@@ -13,4 +13,6 @@ public interface OrderDao extends GenericDao<Order> {
     Page<Order> findAllByUsernamePagable(String username, int currentPage, int pageSize);
 
     Page<Order> findAllByOrderStatementOrderByDate(OrderStatement statement, int currentPage, int pageSize);
+
+    void updateOrderStatementById(OrderStatement statement, long orderId);
 }

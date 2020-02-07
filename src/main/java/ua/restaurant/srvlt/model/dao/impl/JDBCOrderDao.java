@@ -142,6 +142,20 @@ public class JDBCOrderDao implements OrderDao {
         }
     }
 
+    @Override
+    public void updateOrderStatementById(OrderStatement statement, long orderId) {
+        try(PreparedStatement st =
+                    ConnectionPoolHolder.getConnection()
+                            .prepareStatement(bundle.getString(UPDATE_ORDER_STATEMENT_BY_ID))) {
+            st.setString(1, statement.name());
+            st.setLong(2, orderId);
+            st.executeUpdate();
+        } catch (SQLException e){
+            LOGGER.warn(e.getMessage());
+        }
+
+    }
+
 
     @Override
     public Order findById(long id) {

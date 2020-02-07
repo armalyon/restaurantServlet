@@ -17,6 +17,7 @@ public interface DBConstants {
     String FIND_ORDERS_BY_STATEMENT_PAGEABLE = "query.find.orders.by.statement.pagable";
     String COUNT_ORDERS_BY_USERNAME = "query.count.orders.by.username";
     String COUNT_ORDERS_BY_STATEMENT = "query.count.orders.by.statement";
+    String UPDATE_ORDER_STATEMENT_BY_ID = "query.update.order.statement.by.id";
 
 
 }

@@ -15,6 +15,7 @@ public interface TextConstants {
     String MENU_DTO_ATTRIBUTE = "menuDTO";
     String ORDERS_DTO_ATTRIBUTE = "ordersDTO";
     String PAGE_ATTRIBUTE = "page";
+    String ID_ATTRIBUTE = "id";
 
 
     String REGISTRATION = "registration";
@@ -48,6 +49,7 @@ public interface TextConstants {
     String LOGIN_REDIRECT = "redirect:/login";
     String ADMIN_MAIN_REDIRECT = "redirect:/admin";
     String CLIENT_MAIN_REDIRECT = "redirect:/client";
+    String ADMIN_CONFIRMATION_REDIRECT = "redirect:/admin_confirmation";
 
     //Params
     String CREDENTIALS_ERROR_PARAM = "?error=credentials";

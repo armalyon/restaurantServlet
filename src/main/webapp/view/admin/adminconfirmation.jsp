@@ -80,14 +80,14 @@
                                 </td>
                                 <td>${ordered.quantity}</td>
                                 <td>
-                                    <form action="${pageContext.request.contextPath}/admin_confirmorder}" method="post"
+                                    <form action="${pageContext.request.contextPath}/admin_confirmorder" method="post"
                                           style="float: left">
                                         <input type="hidden" name="id" value="${ordered.id}">
                                         <input type="hidden" name="quantity" value="${ordered.quantity}">
                                         <input type="submit" class="button"
                                                value='<fmt:message key="string.admin.orders.action.confirm"/>'>
                                     </form>
-                                    <form action="${pageContext.request.contextPath}/admin_rejectorder}" method="post"
+                                    <form action="${pageContext.request.contextPath}/admin_rejectorder" method="post"
                                           style="float: left">
                                         <input type="hidden" name="id" value="${ordered.id}">
                                         <input type="submit" class="button"
