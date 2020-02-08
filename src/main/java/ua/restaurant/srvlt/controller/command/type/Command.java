@@ -1,8 +1,8 @@
-package ua.restaurant.srvlt.controller.command.types;
+package ua.restaurant.srvlt.controller.command.type;
 
 import ua.restaurant.srvlt.controller.command.*;
 
-public enum Commands {
+public enum Command {
     ADMIN(new AdminPageCommand()),
     CLIENT( new ClientPageCommand()),
     DENIED(new DeniedCommand()),
@@ -15,15 +15,17 @@ public enum Commands {
     CLIENT_ORDERS( new ClientOrdersPageCommand()),
     ADMIN_CONFIRMATION(new AdminConfirmationPageCommand()),
     ADMIN_REJECTORDER(new AdminRejectOrderCommand()),
-    ADMIN_CONFIRMORDER(new AdminConfirmOrderCommand());
+    ADMIN_CONFIRMORDER(new AdminConfirmOrderCommand()),
+    ADMIN_CONFIRMED(new AdminConfirmedOrdersPageCommand()),
+    ADMIN_BILL(new AdminBillCommand());
 
-    private Command command;
+    private ua.restaurant.srvlt.controller.command.Command command;
 
-    Commands(Command command) {
+    Command(ua.restaurant.srvlt.controller.command.Command command) {
         this.command = command;
     }
 
-    public Command getCommand() {
+    public ua.restaurant.srvlt.controller.command.Command getCommand() {
         return command;
     }
 }

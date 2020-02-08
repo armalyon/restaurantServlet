@@ -10,6 +10,7 @@ public abstract class DaoFactory {
     public abstract UserDao createUserDao();
     public abstract MenuItemDao createMenuItemDao();
     public abstract OrderDao createOrderDao();
+    public abstract BillDao createBillDao();
 
 
     public static DaoFactory getInstance(){

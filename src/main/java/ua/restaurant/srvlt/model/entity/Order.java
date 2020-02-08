@@ -1,6 +1,6 @@
 package ua.restaurant.srvlt.model.entity;
 
-import ua.restaurant.srvlt.model.entity.types.OrderStatement;
+import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

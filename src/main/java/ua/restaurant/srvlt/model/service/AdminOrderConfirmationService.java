@@ -4,11 +4,10 @@ import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
 import ua.restaurant.srvlt.exceptions.NotEnoughItemsException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
-import ua.restaurant.srvlt.model.dao.MenuItemDao;
 import ua.restaurant.srvlt.model.dao.OrderDao;
 import ua.restaurant.srvlt.model.entity.Order;
 
-import static ua.restaurant.srvlt.model.entity.types.OrderStatement.CONFIRMED;
+import static ua.restaurant.srvlt.model.entity.type.OrderStatement.CONFIRMED;
 
 public class AdminOrderConfirmationService {
     private static final Logger LOGGER = Logger.getLogger(AdminOrderConfirmationService.class);

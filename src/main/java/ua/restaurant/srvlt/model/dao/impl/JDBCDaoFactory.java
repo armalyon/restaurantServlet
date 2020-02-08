@@ -2,13 +2,9 @@ package ua.restaurant.srvlt.model.dao.impl;
 
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.model.dao.BillDao;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.MenuItemDao;
-import ua.restaurant.srvlt.model.dao.OrderDao;
-
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.SQLException;
 
 public class JDBCDaoFactory extends DaoFactory {
 
@@ -27,6 +23,11 @@ public class JDBCDaoFactory extends DaoFactory {
     @Override
     public JDBCOrderDao createOrderDao() {
         return new JDBCOrderDao();
+    }
+
+    @Override
+    public BillDao createBillDao() {
+        return new JDBCBillDao();
     }
 
 

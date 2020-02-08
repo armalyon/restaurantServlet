@@ -1,7 +1,7 @@
 package ua.restaurant.srvlt.model.dao;
 
 import ua.restaurant.srvlt.model.entity.User;
-import ua.restaurant.srvlt.model.entity.types.Role;
+import ua.restaurant.srvlt.model.entity.type.Role;
 import ua.restaurant.srvlt.exceptions.UserExistsException;
 
 import java.util.List;

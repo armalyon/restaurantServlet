@@ -1,10 +1,7 @@
 package ua.restaurant.srvlt.model.dao.mapper;
 
-import org.apache.log4j.Logger;
-import org.mindrot.jbcrypt.BCrypt;
-import ua.restaurant.srvlt.model.dao.impl.JDBCUserDao;
 import ua.restaurant.srvlt.model.entity.User;
-import ua.restaurant.srvlt.model.entity.types.Role;
+import ua.restaurant.srvlt.model.entity.type.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

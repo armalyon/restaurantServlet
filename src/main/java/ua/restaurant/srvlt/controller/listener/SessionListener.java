@@ -1,8 +1,6 @@
 package ua.restaurant.srvlt.controller.listener;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.controller.filter.AuthFilter;
-import ua.restaurant.srvlt.model.entity.types.Role;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionEvent;

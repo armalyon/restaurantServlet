@@ -1,8 +1,7 @@
 package ua.restaurant.srvlt.controller;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.controller.command.Command;
-import ua.restaurant.srvlt.controller.command.types.Commands;
+import ua.restaurant.srvlt.controller.command.type.Command;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -19,14 +18,14 @@ import static ua.restaurant.srvlt.constants.TextConstants.INDEX_PAGE;
 import static ua.restaurant.srvlt.constants.TextConstants.LOGGED_USERS_ATTRIBUTE;
 
 public class DispatcherServlet extends HttpServlet {
-    private Map<String, Command> commands = new HashMap<>();
+    private Map<String, ua.restaurant.srvlt.controller.command.Command> commands = new HashMap<>();
     private static final Logger LOGGER = Logger.getLogger(DispatcherServlet.class);
 
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()
                 .setAttribute(LOGGED_USERS_ATTRIBUTE, new HashSet<String>());
 
-        Arrays.stream(Commands.values())
+        Arrays.stream(Command.values())
                 .forEach(
                         c -> commands.put(
                                 c.name().toLowerCase(), c.getCommand())
@@ -50,7 +49,7 @@ public class DispatcherServlet extends HttpServlet {
         String path = request.getRequestURI();
         path = path.replaceAll(".*/", "");
         LOGGER.debug(path);
-        Command command = commands.getOrDefault(path,
+        ua.restaurant.srvlt.controller.command.Command command = commands.getOrDefault(path,
                 (req) -> INDEX_PAGE);
         String page = command.execute(request);
         if (page.contains("redirect:")){

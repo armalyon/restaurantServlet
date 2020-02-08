@@ -41,6 +41,7 @@ public interface TextConstants {
     String INDEX_PAGE = "/view/index.jsp";
     String REGISTRATION_PAGE = "/view/registration.jsp";
     String ADMIN_CONFIRMATION_PAGE = "/view/admin/adminconfirmation.jsp";
+    String ADMIN_CONFIRMED_PAGE = "/view/admin/adminconfirmed.jsp";
 
     //Redirects
 
@@ -50,6 +51,7 @@ public interface TextConstants {
     String ADMIN_MAIN_REDIRECT = "redirect:/admin";
     String CLIENT_MAIN_REDIRECT = "redirect:/client";
     String ADMIN_CONFIRMATION_REDIRECT = "redirect:/admin_confirmation";
+    String ADMIN_CONFIRMED_REDIRECT = "redirect:/admin_confirmed";
 
     //Params
     String CREDENTIALS_ERROR_PARAM = "?error=credentials";

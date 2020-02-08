@@ -8,7 +8,7 @@ import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.entity.MenuItem;
 import ua.restaurant.srvlt.model.entity.Order;
 import ua.restaurant.srvlt.model.entity.User;
-import ua.restaurant.srvlt.model.entity.types.OrderStatement;
+import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 import ua.restaurant.srvlt.exceptions.NotEnoughItemsException;
 
 import java.time.LocalDate;

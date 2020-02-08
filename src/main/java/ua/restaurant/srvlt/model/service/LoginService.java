@@ -5,7 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.entity.User;
-import ua.restaurant.srvlt.model.entity.types.Role;
+import ua.restaurant.srvlt.model.entity.type.Role;
 
 public class LoginService {
     private static final Logger LOGGER = Logger.getLogger(LoginService.class);

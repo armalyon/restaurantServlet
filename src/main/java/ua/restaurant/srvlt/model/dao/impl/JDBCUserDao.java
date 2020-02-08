@@ -4,7 +4,7 @@ import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.dao.mapper.UserMapper;
 import ua.restaurant.srvlt.model.entity.User;
-import ua.restaurant.srvlt.model.entity.types.Role;
+import ua.restaurant.srvlt.model.entity.type.Role;
 import ua.restaurant.srvlt.exceptions.UserExistsException;
 
 import java.sql.*;

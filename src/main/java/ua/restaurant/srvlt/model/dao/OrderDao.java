@@ -1,7 +1,7 @@
 package ua.restaurant.srvlt.model.dao;
 
 import ua.restaurant.srvlt.model.entity.Order;
-import ua.restaurant.srvlt.model.entity.types.OrderStatement;
+import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.model.entity.types;
+package ua.restaurant.srvlt.model.entity.type;
 
 public enum Role {
     CLIENT,

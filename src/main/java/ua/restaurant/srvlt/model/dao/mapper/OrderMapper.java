@@ -3,7 +3,7 @@ package ua.restaurant.srvlt.model.dao.mapper;
 import ua.restaurant.srvlt.model.entity.MenuItem;
 import ua.restaurant.srvlt.model.entity.Order;
 import ua.restaurant.srvlt.model.entity.User;
-import ua.restaurant.srvlt.model.entity.types.OrderStatement;
+import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

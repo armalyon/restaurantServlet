@@ -1,7 +1,7 @@
 package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.model.entity.types.OrderStatement;
+import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 import ua.restaurant.srvlt.model.service.OrderStatementService;
 
 import javax.servlet.http.HttpServletRequest;

@@ -14,6 +14,7 @@
 <style>
     <%@ include file="/view/css/userpanel.css" %>
 </style>
+<html>
 <head>
     <title><fmt:message key="string.admin.panel"/></title>
 </head>
@@ -72,10 +73,10 @@
                                 <td>${ordered.user.name}</td>
                                 <td>
                                     <c:if test="${lang != 'ua'}">
-                                        ${ordered.orderStatement.getMessage()}
+                                        ${ordered.menuItem.name}
                                     </c:if>
                                     <c:if test="${lang == 'ua'}">
-                                        ${ordered.orderStatement.getMessageUA()}
+                                        ${ordered.menuItem.nameUA}
                                     </c:if>
                                 </td>
                                 <td>${ordered.quantity}</td>
