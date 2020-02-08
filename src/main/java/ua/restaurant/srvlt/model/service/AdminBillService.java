@@ -18,7 +18,7 @@ public class AdminBillService {
     private OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
     private BillDao billDao = DaoFactory.getInstance().createBillDao();
 
-    public boolean saveNewBill(Long orderId) throws IdNotFoundExeption {
+    public boolean saveNewBill(Long orderId)  {
         Order order = orderDao
                 .findById(orderId);
         if (order.getOrderStatement()

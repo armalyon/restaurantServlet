@@ -188,8 +188,6 @@ public class JDBCOrderDao implements OrderDao {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
-
-
     }
 
 
