@@ -15,4 +15,9 @@ public interface OrderDao extends GenericDao<Order> {
     Page<Order> findAllByOrderStatementOrderByDate(OrderStatement statement, int currentPage, int pageSize);
 
     void updateOrderStatementById(OrderStatement statement, long orderId);
+
+    void updateOrderStatementByIdDecreaseStorageQuantity(OrderStatement statementToSet,
+                                                         long menuItemId,
+                                                         long orderId,
+                                                         long requestedQuantity);
 }

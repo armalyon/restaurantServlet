@@ -11,6 +11,7 @@ public interface DBConstants {
 
     String FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN = "query.select.menuitems.st.quantity.greater.than";
     String FIND_MENU_ITEM_BY_ID = "query.find.menu.item.by.id";
+    String FIND_ORDER_BY_ID = "query.find.order.by.id";
     String SAVE_ORDER_INTO_TABLE = "query.insert.order.into.orders.table";
     String FIND_ORDERS_BY_USERNAME_AND_DATE = "query.find.orders.by.username.date";
     String FIND_ORDERS_BY_USERNAME_PAGEABLE = "query.find.orders.by.username.pagable";
@@ -18,6 +19,7 @@ public interface DBConstants {
     String COUNT_ORDERS_BY_USERNAME = "query.count.orders.by.username";
     String COUNT_ORDERS_BY_STATEMENT = "query.count.orders.by.statement";
     String UPDATE_ORDER_STATEMENT_BY_ID = "query.update.order.statement.by.id";
+    String DECREASE_ITEM_STORAGE_QUANTITY_BY_VALUE_ADN_ID = "query.decrease.menu.item.storage.quantity.by.value";
 
 
 }

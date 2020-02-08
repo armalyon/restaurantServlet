@@ -14,37 +14,9 @@ public class OrderStatementService {
 
     OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
 
-
-
-
-
     public boolean updateOrderStatement(OrderStatement statement, Long orderId) {
        orderDao.updateOrderStatementById(statement, orderId);
         return true;
     }
-
-/*
-
-    public void confirmOrder(Long orderId, Long quantity) throws IdNotFoundExeption {
-        menuItemRepository.decreaseStorageQuantityById(
-                getOrederById(orderId).getMenuItem().getId(), quantity);
-        orderRepository.updateOrderStatementById(CONFIRMED, orderId);
-
-    }
-
-    public boolean isCanBeConfirmed(Long orderId) throws IdNotFoundExeption, NotEnoughItemsException {
-        Order order = getOrederById(orderId);
-        if (order.getMenuItem()
-                .getStorageQuantity()
-                <= order.getQuantity()) throw new NotEnoughItemsException("Not enough goods");
-
-        return !order.getOrderStatement().equals(CONFIRMED);
-    }
-
-    private Order getOrederById(Long id) throws IdNotFoundExeption {
-        return orderRepository
-                .findById(id)
-                .orElseThrow(() -> new IdNotFoundExeption("order not found", id));
-    }*/
 
 }

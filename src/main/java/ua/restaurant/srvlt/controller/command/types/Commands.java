@@ -14,7 +14,8 @@ public enum Commands {
     CLIENT_ORDER( new ClientOrderCommand()),
     CLIENT_ORDERS( new ClientOrdersPageCommand()),
     ADMIN_CONFIRMATION(new AdminConfirmationPageCommand()),
-    ADMIN_REJECTORDER(new AdminRejectOrderCommand());
+    ADMIN_REJECTORDER(new AdminRejectOrderCommand()),
+    ADMIN_CONFIRMORDER(new AdminConfirmOrderCommand());
 
     private Command command;
 

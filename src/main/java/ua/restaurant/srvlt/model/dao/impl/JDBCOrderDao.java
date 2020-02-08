@@ -144,22 +144,71 @@ public class JDBCOrderDao implements OrderDao {
 
     @Override
     public void updateOrderStatementById(OrderStatement statement, long orderId) {
-        try(PreparedStatement st =
-                    ConnectionPoolHolder.getConnection()
-                            .prepareStatement(bundle.getString(UPDATE_ORDER_STATEMENT_BY_ID))) {
+        try (PreparedStatement st =
+                     ConnectionPoolHolder.getConnection()
+                             .prepareStatement(bundle.getString(UPDATE_ORDER_STATEMENT_BY_ID))) {
             st.setString(1, statement.name());
             st.setLong(2, orderId);
             st.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             LOGGER.warn(e.getMessage());
         }
+
+    }
+
+    @Override
+    public void updateOrderStatementByIdDecreaseStorageQuantity(OrderStatement statementToSet,
+                                                                long menuItemId,
+                                                                long orderId,
+                                                                long requestedQuantity) {
+        try(Connection connection = ConnectionPoolHolder.getConnection()){
+            connection.setAutoCommit(false);
+            try  (PreparedStatement decreaseItemsStatement =
+                    connection.prepareStatement(bundle.getString(DECREASE_ITEM_STORAGE_QUANTITY_BY_VALUE_ADN_ID));
+            PreparedStatement updateOrderStatement =
+                    connection.prepareStatement(bundle.getString(UPDATE_ORDER_STATEMENT_BY_ID))) {
+
+                decreaseItemsStatement.setLong(1, requestedQuantity);
+                decreaseItemsStatement.setLong(2, menuItemId);
+
+                updateOrderStatement.setString(1, statementToSet.name());
+                updateOrderStatement.setLong(2, orderId);
+
+                decreaseItemsStatement.executeUpdate();
+                updateOrderStatement.executeUpdate();
+                connection.commit();
+                connection.setAutoCommit(true);
+
+            } catch (SQLException e) {
+                connection.rollback();
+                connection.setAutoCommit(true);
+                LOGGER.error(e.getMessage());
+                }
+
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+
 
     }
 
 
     @Override
     public Order findById(long id) {
-        return null;
+        Order order = null;
+        try ( Connection connection = ConnectionPoolHolder.getConnection();
+              PreparedStatement st = connection.prepareStatement(
+                      bundle.getString(FIND_ORDER_BY_ID))
+        ) {
+            st.setLong(1, id);
+            ResultSet rs = st.executeQuery();
+            if (rs.first()) {
+                order = new OrderMapper().extractFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+        return order;
     }
 
     @Override

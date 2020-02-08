@@ -16,7 +16,6 @@ public class AdminRejectOrderCommand implements Command {
     public String execute(HttpServletRequest request) {
 
         long id = Long.parseLong(request.getParameter(ID_ATTRIBUTE));
-        LOGGER.debug("ID=" + id);
         orderStatementService.updateOrderStatement(OrderStatement.REJECTED, id);
         return ADMIN_CONFIRMATION_REDIRECT;
     }

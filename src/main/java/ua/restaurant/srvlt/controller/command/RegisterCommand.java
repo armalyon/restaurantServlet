@@ -18,8 +18,6 @@ import static ua.restaurant.srvlt.model.service.utility.EncodingUtility.getUTF8S
 public class RegisterCommand implements Command {
     private RegFormValidationService regFormValidationService = new RegFormValidationService();
     private UserRegistrationService userRegistrationService = new UserRegistrationService();
-    private static final Logger LOGGER = Logger.getLogger(RegisterCommand.class);
-
 
     @Override
     public String execute(HttpServletRequest request) {
