@@ -16,6 +16,7 @@ public interface TextConstants {
     String ORDERS_DTO_ATTRIBUTE = "ordersDTO";
     String PAGE_ATTRIBUTE = "page";
     String ID_ATTRIBUTE = "id";
+    String FUNDS_ATTRIBUTE = "funds";
 
 
     String REGISTRATION = "registration";

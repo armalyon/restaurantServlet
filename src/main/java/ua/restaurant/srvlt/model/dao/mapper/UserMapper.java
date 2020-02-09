@@ -5,9 +5,6 @@ import ua.restaurant.srvlt.model.entity.type.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Map;
 
 public class UserMapper implements ObjectMapper<User> {
@@ -21,9 +18,8 @@ public class UserMapper implements ObjectMapper<User> {
                 .name(rs.getString("name"))
                 .surname(rs.getString("surname"))
                 .role(Role.valueOf(rs.getString("role")))
-                .registrationDate(LocalDateTime.ofInstant(
-                        Instant.ofEpochMilli(
-                                rs.getTimestamp("registration_date").getTime()), ZoneId.systemDefault())
+                .registrationDate(
+                        rs.getTimestamp("registration_date").toLocalDateTime()
                 )
                 .funds(rs.getLong("funds"))
                 .build();

@@ -27,9 +27,7 @@ public class BillMapper implements ObjectMapper <Bill> {
         return new Bill.Builder()
                 .order(order)
                 .statement(BillStatement.valueOf(rs.getString("statement")))
-                .invoiceDateTime(LocalDateTime.ofInstant(
-                        Instant.ofEpochMilli(
-                                rs.getTimestamp("invoice_date_time").getTime()), systemDefault()))
+                .invoiceDateTime(rs.getTimestamp("invoice_date_time").toLocalDateTime())
                 .paymentDateTime(getPaymentDateTimeFromResultSet(rs))
                 .build();
     }
@@ -37,7 +35,7 @@ public class BillMapper implements ObjectMapper <Bill> {
     private LocalDateTime getPaymentDateTimeFromResultSet(ResultSet rs) throws SQLException {
        Timestamp ts = rs.getTimestamp("payment_date_time");
        if (ts != null) {
-           return LocalDateTime.ofInstant(Instant.ofEpochMilli(ts.getTime()), systemDefault());
+           return ts.toLocalDateTime();
        }
        else return null;
     }
