@@ -13,6 +13,5 @@ public class ClientsService {
 
     public List<User> getAllClients(){
             return  userDao.findAllByRole(Role.CLIENT);
-
     }
 }

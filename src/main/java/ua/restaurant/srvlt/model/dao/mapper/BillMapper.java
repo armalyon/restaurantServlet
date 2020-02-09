@@ -6,10 +6,13 @@ import ua.restaurant.srvlt.model.entity.type.BillStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Map;
+
+import static java.time.ZoneId.systemDefault;
 
 public class BillMapper implements ObjectMapper <Bill> {
     private OrderMapper orderMapper;
@@ -26,13 +29,17 @@ public class BillMapper implements ObjectMapper <Bill> {
                 .statement(BillStatement.valueOf(rs.getString("statement")))
                 .invoiceDateTime(LocalDateTime.ofInstant(
                         Instant.ofEpochMilli(
-                                rs.getTimestamp("invoice_date_time").getTime()), ZoneId.systemDefault())
-                )
-                .paymentDateTime(LocalDateTime.ofInstant(
-                        Instant.ofEpochMilli(
-                                rs.getTimestamp("payment_date_time").getTime()), ZoneId.systemDefault())
-                )
+                                rs.getTimestamp("invoice_date_time").getTime()), systemDefault()))
+                .paymentDateTime(getPaymentDateTimeFromResultSet(rs))
                 .build();
+    }
+
+    private LocalDateTime getPaymentDateTimeFromResultSet(ResultSet rs) throws SQLException {
+       Timestamp ts = rs.getTimestamp("payment_date_time");
+       if (ts != null) {
+           return LocalDateTime.ofInstant(Instant.ofEpochMilli(ts.getTime()), systemDefault());
+       }
+       else return null;
     }
 
     @Override

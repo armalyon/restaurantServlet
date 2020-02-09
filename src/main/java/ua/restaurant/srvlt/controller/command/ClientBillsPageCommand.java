@@ -1,0 +1,32 @@
+package ua.restaurant.srvlt.controller.command;
+
+import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
+import ua.restaurant.srvlt.model.entity.Bill;
+import ua.restaurant.srvlt.model.pagination.Page;
+import ua.restaurant.srvlt.model.service.ClientBillsService;
+
+import javax.servlet.http.HttpServletRequest;
+
+import static ua.restaurant.srvlt.constants.TextConstants.CLIENT_BILLS_PAGE;
+import static ua.restaurant.srvlt.constants.TextConstants.USERNAME_ATTRIBUTE;
+
+public class ClientBillsPageCommand implements Command {
+    private static final Logger LOGGER = Logger.getLogger(ClientBillsPageCommand.class);
+    private static final int PAGE_SIZE = 5;
+
+    private ClientBillsService clientBillsService = new ClientBillsService();
+
+    @Override
+    public String execute(HttpServletRequest request) {
+        String username = (String) request.getSession()
+                .getAttribute(USERNAME_ATTRIBUTE);
+        int pageNumber = CommandUtility.getPageNumber(request);
+
+        Page<Bill> page = clientBillsService.getBillsByUsername(username, pageNumber, PAGE_SIZE );
+
+        LOGGER.debug(page);
+
+        return CLIENT_BILLS_PAGE;
+    }
+}

@@ -26,7 +26,7 @@ public class AdminBillService {
                         INVOICED)) {
             LOGGER.error("Order statement mismatch. ID:" + orderId);
             return false;
-        }
+        } else
         billDao.create(createNewBill(order));
         return true;
     }

@@ -15,7 +15,7 @@ public class OrdersService {
 
     private OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
 
-   public Page<Order> getOrdersByName(String username, int currentPage, int pageSize) {
+   public Page<Order> getOrdersByUserame(String username, int currentPage, int pageSize) {
         return orderDao
                 .findAllByUsernamePagable(username, currentPage, pageSize);
     }

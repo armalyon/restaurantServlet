@@ -20,5 +20,7 @@ public interface DBConstants {
     String UPDATE_ORDER_STATEMENT_BY_ID = "query.update.order.statement.by.id";
     String DECREASE_ITEM_STORAGE_QUANTITY_BY_VALUE_ADN_ID = "query.decrease.menu.item.storage.quantity.by.value";
     String SAVE_NEW_BILL_INTO_TABLE = "query.insert.bill.into.bills.table";
+    String COUNT_BILLS_BY_USERNAME = "query.count.bills.by.username";
+    String FIND_BILLS_BY_USERNAME = "query.find.bills.by.username.pagable";
 
 }
