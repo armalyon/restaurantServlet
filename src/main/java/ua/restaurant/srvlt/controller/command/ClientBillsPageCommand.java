@@ -27,8 +27,6 @@ public class ClientBillsPageCommand implements Command {
         Page<Bill> page = clientBillsService.getBillsByUsername(username, pageNumber, PAGE_SIZE );
         long funds = userService.getFundsByUsername(username);
 
-        LOGGER.debug(page.getRecords().get(0).getPaymentDateTime());
-
         request.setAttribute(FUNDS_ATTRIBUTE, funds);
         request.setAttribute(PAGE_ATTRIBUTE, page);
 
