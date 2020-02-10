@@ -9,28 +9,28 @@
 
 Як встановити:
 
-Clone project
-Запустити schema.sql що знаходиться в папці resources/ 
-Запустити populate.sql що знаходиться в папці resources/ 
-Обновити логін і пароль в файлі resources/dbsettings.properties
-Запустити в терміналі команду mvn clean tomcat7:run або додати конфігурацію і запустити
-Перейти за посиланням localhost:8080/
+1. Clone project
+2. Запустити schema.sql що знаходиться в папці resources/ 
+3. Запустити populate.sql що знаходиться в папці resources/ 
+4. Обновити логін і пароль в файлі resources/dbsettings.properties
+5. Запустити в терміналі команду mvn clean tomcat7:run або додати конфігурацію і запустити
+6. Перейти за посиланням localhost:8080/
 
 Бізнес логіка:
 
-Користувач може залогінитися як клієнт або адміністратор. - LoginCommand
-Клієнт може зареєструватися на сайті. - RegistrationPageCommand (GET), RegisterCommand (POST)
-Клієнт може бачити сторінку з меню і замовленням в цей день. - ClientPageCommand (GET)
-Адміністратор може бачити сторінку з меню і кількістю доступних елементів меню AdminPageCommand (GET)
-Клієнт може зробити замовлення. - ClientOrderCommand (POST)
-Клієнт може перейти на сторінку своїх замовлень. - ClientOrdersCommand (GET)
-Адміністратор може перейти на сторінку всіх замовлень - AdminOrdersCommand (GET)
-Адміністратор може підтвердити замовлення - AdminConfirmOrderCommand (POST)
-Адміністратор може відмовити замовлення - AdminRejectOrderCommand (POST)
-Адміністратор може перейти на сторінку підтвердженних замовлень - AdminConfirmedOrdersPageCommand (GET)
-Адміністратор може Виставити рахунок по замовленню - AdminBillCommand (POST)
-Клієнт може перейти на сторінку своїх рахунків - ClientBillsPageCommand (GET)
-Клієнт може сплатити рахунок (перевести гроші на рахунок адміністратора) - ClientPayCommand (POST)
-Адміністратор може перейти на сторінку зі списком всіх клієнтів - AdminUsersCommand (GET) 
-Адміністратор може перейти на сторінку зі статистикою по клієнту - AdminUserStatsCommand (GET) 
-Користувач може розлогінитися. LogoutCommand (POST)
+1. Користувач може залогінитися як клієнт або адміністратор. - LoginCommand
+2. Клієнт може зареєструватися на сайті. - RegistrationPageCommand (GET), RegisterCommand (POST)
+3. Клієнт може бачити сторінку з меню і замовленням в цей день. - ClientPageCommand (GET)
+4. Адміністратор може бачити сторінку з меню і кількістю доступних елементів меню AdminPageCommand (GET)
+5. Клієнт може зробити замовлення. - ClientOrderCommand (POST)
+6. Клієнт може перейти на сторінку своїх замовлень. - ClientOrdersCommand (GET)
+7. Адміністратор може перейти на сторінку всіх замовлень - AdminOrdersCommand (GET)
+8. Адміністратор може підтвердити замовлення - AdminConfirmOrderCommand (POST)
+9. Адміністратор може відмовити замовлення - AdminRejectOrderCommand (POST)
+10. Адміністратор може перейти на сторінку підтвердженних замовлень - AdminConfirmedOrdersPageCommand (GET)
+11. Адміністратор може Виставити рахунок по замовленню - AdminBillCommand (POST)
+12. Клієнт може перейти на сторінку своїх рахунків - ClientBillsPageCommand (GET)
+13. Клієнт може сплатити рахунок (перевести гроші на рахунок адміністратора) - ClientPayCommand (POST)
+14. Адміністратор може перейти на сторінку зі списком всіх клієнтів - AdminUsersCommand (GET) 
+15. Адміністратор може перейти на сторінку зі статистикою по клієнту - AdminUserStatsCommand (GET) 
+16. Користувач може розлогінитися. LogoutCommand (POST)
