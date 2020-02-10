@@ -13,23 +13,24 @@ Clone project
 Запустити schema.sql що знаходиться в папці resources/ 
 Запустити populate.sql що знаходиться в папці resources/ 
 Обновити логін і пароль в файлі resources/dbsettings.properties
-Run in terminal command a. mvn clean tomcat7:run b. ? Add configuration / command
+Запустити в терміналі команду mvn clean tomcat7:run або додати конфігурацію і запустити
 Перейти за посиланням localhost:8080/
 
-Business logic:
+Бізнес логіка:
 
-User could login as lecturer or student. - LoginCommand
-Student could register on site. - RegisterCommand
-All could see courses page. - CoursesCommand (GET)
-All could see specific course page. - CoursesCommand (GET)
-Student could apply to course. - CoursesCommand (POST)
-Lecturer could add ratings - LecturerRatingCommand (POST)
-Lecturer could see all ratings for his courses - LecturerRatingCommand (GET)
-Admin could add Lecturer user - AdminCommand
-Admin could add Course - AdminCommand
-Admin could see Ratings - AdminRatingCommand
-Admin could change Ratings - AdminRatingCommand
-Student could see Ratings - StudentRatingCommand
-User on site could change language - LanguageCommand
-Admin could send notifications - NotificationCommand
-User could logout
+Користувач може залогінитися як клієнт або адміністратор. - LoginCommand
+Клієнт може зареєструватися на сайті. - RegistrationPageCommand (GET), RegisterCommand (POST)
+Клієнт може бачити сторінку з меню і замовленням в цей день. - ClientPageCommand (GET)
+Адміністратор може бачити сторінку з меню і кількістю доступних елементів меню AdminPageCommand (GET)
+Клієнт може зробити замовлення. - ClientOrderCommand (POST)
+Клієнт може перейти на сторінку своїх замовлень. - ClientOrdersCommand (GET)
+Адміністратор може перейти на сторінку всіх замовлень - AdminOrdersCommand (GET)
+Адміністратор може підтвердити замовлення - AdminConfirmOrderCommand (POST)
+Адміністратор може відмовити замовлення - AdminRejectOrderCommand (POST)
+Адміністратор може перейти на сторінку підтвердженних замовлень - AdminConfirmedOrdersPageCommand (GET)
+Адміністратор може Виставити рахунок по замовленню - AdminBillCommand (POST)
+Клієнт може перейти на сторінку своїх рахунків - ClientBillsPageCommand (GET)
+Клієнт може сплатити рахунок (перевести гроші на рахунок адміністратора) - ClientPayCommand (POST)
+Адміністратор може перейти на сторінку зі списком всіх клієнтів - AdminUsersCommand (GET) 
+Адміністратор може перейти на сторінку зі статистикою по клієнту - AdminUserStatsCommand (GET) 
+Користувач може розлогінитися. LogoutCommand (POST)
