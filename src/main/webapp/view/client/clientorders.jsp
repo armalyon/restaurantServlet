@@ -47,7 +47,7 @@
 
 
     <c:if test="${page.records.size() > 0}">
-        <span class="header" > <fmt:message key="string.user.your.orders"/> </span>
+        <span class="header"> <fmt:message key="string.user.your.orders"/> </span>
 
         <table class="table">
             <tr>
@@ -60,28 +60,28 @@
             </tr>
 
             <c:forEach items="${page.records}" var="order">
-            <tr>
-                <td>
-                <c:if test="${lang != 'ua'}">
-                    ${order.menuItem.name}
-                </c:if>
-                    <c:if test="${lang == 'ua'}">
-                        ${order.menuItem.nameUA}
-                    </c:if>
-                </td>
-                <td>${order.quantity}</td>
-                <td>${order.date}</td>
-                <td>${order.time}</td>
-                <td>${order.totalPrice}</td>
-                <td>
-                    <c:if test="${lang != 'ua'}">
-                        ${order.orderStatement.getMessage()}
-                    </c:if>
-                    <c:if test="${lang == 'ua'}">
-                        ${order.orderStatement.getMessageUA()}
-                    </c:if>
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        <c:if test="${lang != 'ua'}">
+                            ${order.menuItem.name}
+                        </c:if>
+                        <c:if test="${lang == 'ua'}">
+                            ${order.menuItem.nameUA}
+                        </c:if>
+                    </td>
+                    <td>${order.quantity}</td>
+                    <td>${order.date}</td>
+                    <td>${order.time}</td>
+                    <td>${order.totalPrice}</td>
+                    <td>
+                        <c:if test="${lang != 'ua'}">
+                            ${order.orderStatement.getMessage()}
+                        </c:if>
+                        <c:if test="${lang == 'ua'}">
+                            ${order.orderStatement.getMessageUA()}
+                        </c:if>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
     </c:if>
@@ -89,22 +89,22 @@
     <c:if test="${page.records.size() == 0}">
         <span class="header"> <fmt:message key="string.user.have.no.orders"/> </span>
     </c:if>
-
-    <c:forEach begin="1" end='${page.totalPages}' var="i">
-        <c:choose>
-            <c:when test="${page.currentPage + 1 eq i}">
-                <li class="page-item active"><a class="page-link">
-                        ${i} </span></a>
-                </li>
-            </c:when>
-            <c:otherwise>
-                <li class="page-item"><a class="page-link"
-                                         href="?page=${i}">${i}</a>
-                </li>
-            </c:otherwise>
-        </c:choose>
-    </c:forEach>
-
+    <c:if test="${page.totalPages > 1}">
+        <c:forEach begin="1" end='${page.totalPages}' var="i">
+            <c:choose>
+                <c:when test="${page.currentPage + 1 eq i}">
+                    <li class="page-item active"><a class="page-link">
+                            ${i} </span></a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="?page=${i}">${i}</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </c:if>
 
     <div>
 <span class="locale" style="float: left">
