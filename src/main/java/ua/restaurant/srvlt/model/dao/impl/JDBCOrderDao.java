@@ -5,14 +5,11 @@ import ua.restaurant.srvlt.model.dao.OrderDao;
 import ua.restaurant.srvlt.model.dao.mapper.OrderMapper;
 import ua.restaurant.srvlt.model.entity.Order;
 import ua.restaurant.srvlt.model.entity.type.OrderStatement;
-import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static ua.restaurant.srvlt.constants.DBConstants.*;
 
@@ -43,8 +40,42 @@ public class JDBCOrderDao implements OrderDao {
     }
 
     @Override
+    public int countOrdersByUsername(String username) {
+        int count = 0;
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement statement =
+                     connection.prepareStatement(bundle.getString(COUNT_ORDERS_BY_USERNAME))) {
+            statement.setString(1, username);
+            ResultSet rs = statement.executeQuery();
+            if (rs.first()) {
+                count = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+        return count;
+    }
+
+    @Override
+    public int countOrdersByStatement(OrderStatement statement) {
+        int count = 0;
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement preparedStatement =
+                     connection.prepareStatement(bundle.getString(COUNT_ORDERS_BY_STATEMENT))) {
+            preparedStatement.setString(1, statement.name());
+            ResultSet rs = preparedStatement.executeQuery();
+            if (rs.first()) {
+                count = rs.getInt("total");
+            }
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
+        }
+        return count;
+    }
+
+    @Override
     public List<Order> findAllByUsernameAndDate(String username, LocalDate date) {
-        Map<Long, Order> orderDTOs = new HashMap<>();
+        List<Order> orders = new ArrayList<>();
         try (Connection connection = ConnectionPoolHolder.getConnection();
              PreparedStatement st = connection.prepareStatement(
                      bundle.getString(FIND_ORDERS_BY_USERNAME_AND_DATE)
@@ -55,91 +86,62 @@ public class JDBCOrderDao implements OrderDao {
             OrderMapper mapper = new OrderMapper();
             while (rs.next()) {
                 Order order = mapper.extractFromResultSet(rs);
-                order = mapper.makeUnique(orderDTOs, order);
+                orders.add(order);
             }
-            return new ArrayList<>(orderDTOs.values());
         } catch (SQLException e) {
             //TODO handling
             LOGGER.warn(e.getMessage());
-            return null;
         }
-
+        return orders;
     }
 
-    public Page<Order> findAllByUsernamePagable(String username, int currentPage, int pageSize) {
-
-        int ordersByUser = 0;
-
-        int offset = pageSize * currentPage;
-        Map<Long, Order> orders = new HashMap<>();
+    public List<Order> findAllByUsernamePageable(String username, int offset, int pageSize) {
+        List<Order> orders = new ArrayList<>();
         try (Connection connection = ConnectionPoolHolder.getConnection();
-             PreparedStatement st1 = connection.prepareStatement(
-                     bundle.getString(COUNT_ORDERS_BY_USERNAME));
-             PreparedStatement st2 = connection.prepareStatement(
+             PreparedStatement st = connection.prepareStatement(
                      bundle.getString(FIND_ORDERS_BY_USERNAME_PAGEABLE))
         ) {
-            st1.setString(1, username);
-            ResultSet rs = st1.executeQuery();
-            if (rs.first()) {
-                ordersByUser = rs.getInt("total");
-            }
-
-            st2.setString(1, username);
-            st2.setInt(2, offset);
-            st2.setInt(3, pageSize);
-            rs = st2.executeQuery();
+            st.setString(1, username);
+            st.setInt(2, offset);
+            st.setInt(3, pageSize);
+            ResultSet rs = st.executeQuery();
             OrderMapper mapper = new OrderMapper();
             while (rs.next()) {
                 Order order = mapper.extractFromResultSet(rs);
-                order = mapper.makeUnique(orders, order);
+                orders.add(order);
             }
-            List<Order> ordersList = new ArrayList<>(orders.values());
-            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList);
         } catch (
                 SQLException e) {
             //TODO handling
             LOGGER.warn(e.getMessage());
-            return null;
         }
+        return orders;
     }
 
     @Override
-    public Page<Order> findAllByOrderStatementOrderByDate(OrderStatement statement,
-                                                          int currentPage,
-                                                          int pageSize) {
-        int ordersByUser = 0;
-        int offset = pageSize * currentPage;
-        Map<Long, Order> orders = new HashMap<>();
-
+    public List<Order> findAllByOrderStatementPageable(OrderStatement statement,
+                                                       int offset,
+                                                       int pageSize) {
+        List<Order> orders = new ArrayList<>();
         try (Connection connection = ConnectionPoolHolder.getConnection();
-             PreparedStatement st1 = connection.prepareStatement(
-                     bundle.getString(COUNT_ORDERS_BY_STATEMENT));
-             PreparedStatement st2 = connection.prepareStatement(
+             PreparedStatement st = connection.prepareStatement(
                      bundle.getString(FIND_ORDERS_BY_STATEMENT_PAGEABLE))
         ) {
-            st1.setString(1, statement.name());
-            ResultSet rs = st1.executeQuery();
-            if (rs.first()) {
-                ordersByUser = rs.getInt("total");
-            }
-
-            st2.setString(1, statement.name());
-            st2.setInt(2, offset);
-            st2.setInt(3, pageSize);
-            rs = st2.executeQuery();
+            st.setString(1, statement.name());
+            st.setInt(2, offset);
+            st.setInt(3, pageSize);
+            ResultSet rs = st.executeQuery();
             OrderMapper mapper = new OrderMapper();
             while (rs.next()) {
                 Order order = mapper.extractFromResultSet(rs);
-                order = mapper.makeUnique(orders, order);
+                orders.add(order);
             }
-            List<Order> ordersList = new ArrayList<>(orders.values());
-            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList);
         } catch (
                 SQLException e) {
             //TODO handling
             LOGGER.warn(e.getMessage());
-            return null;
         }
+        return orders;
     }
 
     @Override
@@ -161,12 +163,12 @@ public class JDBCOrderDao implements OrderDao {
                                                                 long menuItemId,
                                                                 long orderId,
                                                                 long requestedQuantity) {
-        try(Connection connection = ConnectionPoolHolder.getConnection()){
+        try (Connection connection = ConnectionPoolHolder.getConnection()) {
             connection.setAutoCommit(false);
-            try  (PreparedStatement decreaseItemsStatement =
-                    connection.prepareStatement(bundle.getString(DECREASE_ITEM_STORAGE_QUANTITY_BY_VALUE_ADN_ID));
-            PreparedStatement updateOrderStatement =
-                    connection.prepareStatement(bundle.getString(UPDATE_ORDER_STATEMENT_BY_ID))) {
+            try (PreparedStatement decreaseItemsStatement =
+                         connection.prepareStatement(bundle.getString(DECREASE_ITEM_STORAGE_QUANTITY_BY_VALUE_ADN_ID));
+                 PreparedStatement updateOrderStatement =
+                         connection.prepareStatement(bundle.getString(UPDATE_ORDER_STATEMENT_BY_ID))) {
 
                 decreaseItemsStatement.setLong(1, requestedQuantity);
                 decreaseItemsStatement.setLong(2, menuItemId);
@@ -183,7 +185,7 @@ public class JDBCOrderDao implements OrderDao {
                 connection.rollback();
                 connection.setAutoCommit(true);
                 LOGGER.error(e.getMessage());
-                }
+            }
 
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
@@ -194,9 +196,9 @@ public class JDBCOrderDao implements OrderDao {
     @Override
     public Order findById(long id) {
         Order order = null;
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-              PreparedStatement st = connection.prepareStatement(
-                      bundle.getString(FIND_ORDER_BY_ID))
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st = connection.prepareStatement(
+                     bundle.getString(FIND_ORDER_BY_ID))
         ) {
             st.setLong(1, id);
             ResultSet rs = st.executeQuery();

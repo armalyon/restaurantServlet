@@ -94,7 +94,20 @@
                     </tr>
                 </c:forEach>
             </table>
-
+            <c:forEach begin="1" end='${page.totalPages}' var="i">
+                <c:choose>
+                    <c:when test="${page.currentPage + 1 eq i}">
+                        <li class="page-item active"><a class="page-link">
+                                ${i} </span></a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="page-item"><a class="page-link"
+                                                 href="?page=${i}">${i}</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
         </c:if>
     </div>
 

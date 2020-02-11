@@ -16,8 +16,6 @@ import java.time.LocalTime;
 
 public class ClientOrderService {
 
-    private static final Logger LOGGER = Logger.getLogger(ClientOrderService.class);
-
     private OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
     private MenuItemDao menuItemDao = DaoFactory.getInstance().createMenuItemDao();
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
@@ -27,14 +25,12 @@ public class ClientOrderService {
         orderDao.create(order);
     }
 
-
     private Order createOrderEntity(long menuItemId, long quantity, String username) throws NotEnoughItemsException {
         MenuItem item = menuItemDao.findById(menuItemId);
         if (!isItemsEnough(quantity, item.getStorageQuantity())) {
             throw new NotEnoughItemsException("Not enough items");
         }
         User user = userDao.findUserByUsername(username);
-        LOGGER.debug("!!!!!" + user);
         long totalPrice = getTotalPrice(quantity, item.getPrice());
 
         return new Order.Builder()

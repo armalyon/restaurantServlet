@@ -14,8 +14,4 @@ public class ClientBillsService {
                         .getBillsByUserNameNewestFirst(username, currentPage, pageSize);
            }
 
-  /*  public Page<Bill> getBillsByUserIdNewestFirst(Long id, Pageable pageable) {
-        return billDao
-                        .findAllByOrder_User_IdOrderByOrder_DateDesc(id, pageable);
-    }*/
 }
