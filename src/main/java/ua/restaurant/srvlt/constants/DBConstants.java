@@ -5,8 +5,8 @@ public interface DBConstants {
     String DB_USERNAME = "db.username";
     String DB_PASSWORD = "db.password";
 
-    String FIND_USER_BY_USERNAME_PREPARED_STATEMENT = "query.find.user.by.username";
-    String FIND__ALL_USERS_BY_ROLE_PREPARED_STATEMENT = "query.find.all.users.by.role";
+    String FIND_USER_BY_USERNAME = "query.find.user.by.username";
+    String FIND__ALL_USERS_BY_ROLE_PAGABLE = "query.find.all.users.by.role";
     String SAVE_USER_INTO_TABLE = "query.insert.user.into.user.table";
     String FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN = "query.select.menuitems.st.quantity.greater.than";
     String FIND_MENU_ITEM_BY_ID = "query.find.menu.item.by.id";
@@ -22,5 +22,6 @@ public interface DBConstants {
     String SAVE_NEW_BILL_INTO_TABLE = "query.insert.bill.into.bills.table";
     String COUNT_BILLS_BY_USERNAME = "query.count.bills.by.username";
     String FIND_BILLS_BY_USERNAME = "query.find.bills.by.username.pagable";
+    String COUNT_USERS_BY_ROLE = "query.count.users.by.role";
 
 }

@@ -44,6 +44,7 @@ public interface TextConstants {
     String ADMIN_CONFIRMATION_PAGE = "/view/admin/adminconfirmation.jsp";
     String ADMIN_CONFIRMED_PAGE = "/view/admin/adminconfirmed.jsp";
     String CLIENT_BILLS_PAGE = "/view/client/clientbills.jsp";
+    String ADMIN_USERS_PAGE = "/view/admin/adminusers.jsp";
 
     //Redirects
 

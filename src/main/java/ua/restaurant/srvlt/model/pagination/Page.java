@@ -8,25 +8,22 @@ public class Page<E> {
     private int recordsPerPage;
     private List<E> records;
     private int totalPages;
-    private int pageSize;
-
 
     public Page() {
     }
 
-    public Page(int totalRecords, int currentPage, int recordsPerPage, List<E> records, int pageSize) {
+    public Page(int totalRecords, int currentPage, int recordsPerPage, List<E> records) {
         this.totalRecords = totalRecords;
         this.currentPage = currentPage;
         this.recordsPerPage = recordsPerPage;
         this.records = records;
-        this.pageSize = pageSize;
         totalPages = totalPages();
     }
 
     private int totalPages(){
         int total;
         if (totalRecords > 0) {
-            total = (int) Math.ceil((double)totalRecords/pageSize);
+            total = (int) Math.ceil((double)totalRecords/recordsPerPage);
         } else total =1;
         return total;
     }
@@ -37,14 +34,6 @@ public class Page<E> {
 
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
     }
 
     public int getTotalRecords() {
@@ -86,7 +75,6 @@ public class Page<E> {
                 ", currentPage=" + currentPage +
                 ", recordsPerPage=" + recordsPerPage +
                 ", totalPages=" + totalPages +
-                ", pageSize=" + pageSize +
                 ", records=" + records +
                 '}';
     }

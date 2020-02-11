@@ -94,7 +94,7 @@ public class JDBCOrderDao implements OrderDao {
                 order = mapper.makeUnique(orders, order);
             }
             List<Order> ordersList = new ArrayList<>(orders.values());
-            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList, pageSize);
+            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList);
         } catch (
                 SQLException e) {
             //TODO handling
@@ -133,7 +133,7 @@ public class JDBCOrderDao implements OrderDao {
                 order = mapper.makeUnique(orders, order);
             }
             List<Order> ordersList = new ArrayList<>(orders.values());
-            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList, pageSize);
+            return new Page<Order>(ordersByUser, currentPage, pageSize, ordersList);
         } catch (
                 SQLException e) {
             //TODO handling

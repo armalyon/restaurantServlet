@@ -103,7 +103,7 @@ public class JDBCBillDao implements BillDao {
                 bill = mapper.makeUnique(bills, bill);
             }
             List<Bill> ordersList = new ArrayList<>(bills.values());
-            return new Page<Bill>(billsByUser, currentPage, pageSize, ordersList, pageSize);
+            return new Page<Bill>(billsByUser, currentPage, pageSize, ordersList);
         } catch (
                 SQLException e) {
             //TODO handling
