@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
 import static ua.restaurant.srvlt.constants.Regex.*;
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class ValidationUtility {
     private static final Logger LOGGER = Logger.getLogger(ValidationUtility.class);

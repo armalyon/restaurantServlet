@@ -28,11 +28,10 @@ public class JDBCUserDao implements UserDao {
             if (rs.first()) {
                 UserMapper mapper = new UserMapper();
                 user = mapper.extractFromResultSet(rs);
-            }
+                            }
         } catch (SQLException e) {
             //TODO handling
             LOGGER.warn(e.getMessage());
-            return user;
         }
         return user;
     }

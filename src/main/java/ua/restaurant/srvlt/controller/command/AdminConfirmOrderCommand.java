@@ -7,7 +7,7 @@ import ua.restaurant.srvlt.model.service.AdminOrderConfirmationService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class AdminConfirmOrderCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(AdminConfirmOrderCommand.class);

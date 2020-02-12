@@ -61,7 +61,7 @@
                         <td>${client.registrationDate}</td>
                         <td>
                             <form action="${pageContext.request.contextPath}/admin_stats" method="get">
-                                <input type="hidden" name="id" value="${client.id}">
+                                <input type="hidden" name="username" value="${client.username}">
                                 <input type="submit" class="button"
                                        value='<fmt:message key="string.admin.stats.button.client"/> '>
                             </form>

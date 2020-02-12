@@ -1,13 +1,12 @@
 package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.controller.command.Command;
 import ua.restaurant.srvlt.model.dto.MenuDTO;
 import ua.restaurant.srvlt.model.service.MenuService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class AdminPageCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(AdminPageCommand.class);

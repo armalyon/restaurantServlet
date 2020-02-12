@@ -19,6 +19,7 @@ public enum Command {
     ADMIN_CONFIRMED(new AdminConfirmedOrdersPageCommand()),
     ADMIN_BILL(new AdminBillCommand()),
     ADMIN_USERS(new AdminUsersPageCommand()),
+    ADMIN_STATS(new AdminStatsCommand()),
     CLIENT_BILLS(new ClientBillsPageCommand());
 
     private ua.restaurant.srvlt.controller.command.Command command;

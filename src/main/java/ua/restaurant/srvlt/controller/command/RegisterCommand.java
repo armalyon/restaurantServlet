@@ -1,6 +1,5 @@
 package ua.restaurant.srvlt.controller.command;
 
-import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.model.dto.AccountDTO;
 import ua.restaurant.srvlt.model.service.RegFormValidationService;
 import ua.restaurant.srvlt.model.service.UserRegistrationService;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import java.nio.charset.StandardCharsets;
 
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 import static ua.restaurant.srvlt.model.service.utility.EncodingUtility.getUTF8String;
 
 public class RegisterCommand implements Command {

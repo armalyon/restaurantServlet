@@ -14,8 +14,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import static ua.restaurant.srvlt.constants.TextConstants.INDEX_PAGE;
-import static ua.restaurant.srvlt.constants.TextConstants.LOGGED_USERS_ATTRIBUTE;
+import static ua.restaurant.srvlt.constants.StringConstants.INDEX_PAGE;
+import static ua.restaurant.srvlt.constants.StringConstants.LOGGED_USERS_ATTRIBUTE;
 
 public class DispatcherServlet extends HttpServlet {
     private Map<String, ua.restaurant.srvlt.controller.command.Command> commands = new HashMap<>();

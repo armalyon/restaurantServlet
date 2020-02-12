@@ -7,8 +7,8 @@ import ua.restaurant.srvlt.model.service.ClientsService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.TextConstants.ADMIN_USERS_PAGE;
-import static ua.restaurant.srvlt.constants.TextConstants.PAGE_ATTRIBUTE;
+import static ua.restaurant.srvlt.constants.StringConstants.ADMIN_USERS_PAGE;
+import static ua.restaurant.srvlt.constants.StringConstants.PAGE_ATTRIBUTE;
 
 public class AdminUsersPageCommand implements Command {
 

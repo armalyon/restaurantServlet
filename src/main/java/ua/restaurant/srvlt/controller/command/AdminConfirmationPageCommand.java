@@ -8,8 +8,8 @@ import ua.restaurant.srvlt.model.service.AdminOrderService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.TextConstants.ADMIN_CONFIRMATION_PAGE;
-import static ua.restaurant.srvlt.constants.TextConstants.PAGE_ATTRIBUTE;
+import static ua.restaurant.srvlt.constants.StringConstants.ADMIN_CONFIRMATION_PAGE;
+import static ua.restaurant.srvlt.constants.StringConstants.PAGE_ATTRIBUTE;
 
 public class AdminConfirmationPageCommand implements Command {
     private static final int PAGE_SIZE = 5;

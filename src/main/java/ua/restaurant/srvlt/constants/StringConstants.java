@@ -1,6 +1,6 @@
 package ua.restaurant.srvlt.constants;
 
-public interface TextConstants {
+public interface StringConstants {
 
     //Attributes
     String ROLE_ATTRIBUTE = "role";
@@ -17,6 +17,7 @@ public interface TextConstants {
     String PAGE_ATTRIBUTE = "page";
     String ID_ATTRIBUTE = "id";
     String FUNDS_ATTRIBUTE = "funds";
+    String USER_INFO_DTO_ATTRIBUTE = "userInfoDTO";
 
 
     String REGISTRATION = "registration";
@@ -45,6 +46,7 @@ public interface TextConstants {
     String ADMIN_CONFIRMED_PAGE = "/view/admin/adminconfirmed.jsp";
     String CLIENT_BILLS_PAGE = "/view/client/clientbills.jsp";
     String ADMIN_USERS_PAGE = "/view/admin/adminusers.jsp";
+    String ADMIN_STATS_PAGE = "/view/admin/adminstats.jsp";
 
     //Redirects
 

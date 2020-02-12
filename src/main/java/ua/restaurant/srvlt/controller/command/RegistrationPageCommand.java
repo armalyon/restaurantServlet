@@ -1,10 +1,8 @@
 package ua.restaurant.srvlt.controller.command;
 
-import ua.restaurant.srvlt.constants.TextConstants;
-
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class RegistrationPageCommand implements Command {
     @Override

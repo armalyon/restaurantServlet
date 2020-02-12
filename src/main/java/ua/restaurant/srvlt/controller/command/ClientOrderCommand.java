@@ -7,7 +7,7 @@ import ua.restaurant.srvlt.model.service.ClientOrderService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class ClientOrderCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(ClientOrderCommand.class);

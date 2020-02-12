@@ -74,7 +74,7 @@
                     <td>${bill.order.totalPrice}</td>
                     <td>
                         <c:if test="${bill.paymentDateTime == null}">
-                            <form action="${pageContext.request.contextPath}/client_pay}" method="post">
+                            <form action="${pageContext.request.contextPath}/client_pay" method="post">
                                 <input type="hidden" name="id" value="${bill.id}">
                                 <input class="button" type="submit" value='<fmt:message key="string.user.bills.pay"/> '>
                             </form>
@@ -85,8 +85,24 @@
 
         </table>
     </c:if>
+    <c:if test="${page.totalPages > 1}">
+        <c:forEach begin="1" end='${page.totalPages}' var="i">
+            <c:choose>
+                <c:when test="${page.currentPage + 1 eq i}">
+                    <li class="page-item active"><a class="page-link">
+                            ${i} </span></a>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <li class="page-item"><a class="page-link"
+                                             href="?page=${i}">${i}</a>
+                    </li>
+                </c:otherwise>
+            </c:choose>
+        </c:forEach>
+    </c:if>
 </div>
-<c:if test="${bills.bills.size() == 0}">
+<c:if test="${page.records.size() == 0}">
     <span class="header"><fmt:message key="string.user.have.no.bills"/> </span>
 </c:if>
 <form action="${pageContext.request.contextPath}/logout" method="post" class="navigation">

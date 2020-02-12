@@ -6,7 +6,7 @@ import ua.restaurant.srvlt.model.service.OrderStatementService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class AdminRejectOrderCommand implements Command {
     OrderStatementService orderStatementService = new OrderStatementService();

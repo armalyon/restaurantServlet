@@ -6,7 +6,7 @@ import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 import ua.restaurant.srvlt.model.entity.type.Role;
 import ua.restaurant.srvlt.model.service.LoginService;
 import javax.servlet.http.HttpServletRequest;
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 import static ua.restaurant.srvlt.model.entity.type.Role.*;
 
 public class LoginCommand implements Command {

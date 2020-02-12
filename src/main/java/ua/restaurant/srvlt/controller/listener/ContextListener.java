@@ -1,8 +1,7 @@
 package ua.restaurant.srvlt.controller.listener;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.constants.TextConstants;
-import ua.restaurant.srvlt.controller.filter.AuthFilter;
+import ua.restaurant.srvlt.constants.StringConstants;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -20,7 +19,7 @@ public class ContextListener implements ServletContextListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         ServletContext context = sce.getServletContext();
-        Set<String> loggedUsers = (Set<String>) context.getAttribute(TextConstants.LOGGED_USERS_ATTRIBUTE);
+        Set<String> loggedUsers = (Set<String>) context.getAttribute(StringConstants.LOGGED_USERS_ATTRIBUTE);
         LOGGER.warn("Context destroyed. logged users=" + loggedUsers);
     }
 }

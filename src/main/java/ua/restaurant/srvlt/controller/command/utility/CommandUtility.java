@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import java.util.HashSet;
 import java.util.Set;
 
-import static ua.restaurant.srvlt.constants.TextConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class CommandUtility {
     public static void setUserAttributes(HttpServletRequest request,
