@@ -67,6 +67,11 @@ public class Bill {
             newBill = new Bill();
         }
 
+        public Builder id(long id){
+            newBill.id = id;
+            return this;
+        }
+
         public Builder order(Order order){
             newBill.order = order;
             return this;

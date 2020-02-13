@@ -9,6 +9,7 @@ import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +57,18 @@ public class JDBCBillDao implements BillDao {
 
     @Override
     public Bill findById(long id) {
-        return null;
+        Bill bill = null;
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement statement = connection.prepareStatement(bundle.getString(FIND_BILL_BY_ID))) {
+            statement.setLong(1, id);
+            ResultSet rs = statement.executeQuery();
+            if (rs.first()) {
+                bill = new BillMapper().extractFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            LOGGER.error("BILL NOT FOUND BY ID=" + id);
+        }
+        return bill;
     }
 
     @Override
@@ -109,6 +121,21 @@ public class JDBCBillDao implements BillDao {
             //TODO handling
             LOGGER.warn(e.getMessage());
             return null;
+        }
+    }
+
+    @Override
+    public void updatePaymentDateStatementById(BillStatement biillStatement, LocalDateTime localDateTime, long id) {
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement statement =
+                     connection.prepareStatement(bundle.getString(UPDATE_BILL_PAYMENT_DATE_STATEMENT_BY_ID))) {
+            statement.setTimestamp(1, Timestamp.valueOf(localDateTime));
+            statement.setString(2, biillStatement.name());
+            statement.setLong(3, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            //TODO handling
+            LOGGER.error(e.getMessage());
         }
     }
 }

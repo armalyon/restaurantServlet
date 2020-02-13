@@ -20,7 +20,9 @@ public enum Command {
     ADMIN_BILL(new AdminBillCommand()),
     ADMIN_USERS(new AdminUsersPageCommand()),
     ADMIN_STATS(new AdminStatsCommand()),
-    CLIENT_BILLS(new ClientBillsPageCommand());
+    CLIENT_BILLS(new ClientBillsPageCommand()),
+    CLIENT_PAY(new ClientPayCommand())
+    ;
 
     private ua.restaurant.srvlt.controller.command.Command command;
 

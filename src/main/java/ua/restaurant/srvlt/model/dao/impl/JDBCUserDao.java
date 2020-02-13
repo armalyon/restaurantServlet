@@ -6,6 +6,7 @@ import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.dao.mapper.UserMapper;
 import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.entity.type.Role;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,6 @@ import java.util.List;
 import static ua.restaurant.srvlt.constants.DBConstants.*;
 
 public class JDBCUserDao implements UserDao {
-
     private static final Logger LOGGER = Logger.getLogger(JDBCUserDao.class);
 
     public User findUserByUsername(String username) {
@@ -28,7 +28,7 @@ public class JDBCUserDao implements UserDao {
             if (rs.first()) {
                 UserMapper mapper = new UserMapper();
                 user = mapper.extractFromResultSet(rs);
-                            }
+            }
         } catch (SQLException e) {
             //TODO handling
             LOGGER.warn(e.getMessage());
@@ -56,6 +56,32 @@ public class JDBCUserDao implements UserDao {
             LOGGER.debug(e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void transferFunds(String payerUsername, String recieverUsername, long valueToTransfer) {
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+        ) {
+            connection.setAutoCommit(false);
+            try (PreparedStatement addStatement =
+                         connection.prepareStatement(bundle.getString(ADD_FUNDS_BY_USERNAME));
+                 PreparedStatement decreaseStatement =
+                         connection.prepareStatement(bundle.getString(DECREASE_FUNDS_BY_USERNAME))) {
+                decreaseStatement.setLong(1, valueToTransfer);
+                decreaseStatement.setString(2, payerUsername);
+                addStatement.setLong(1, valueToTransfer);
+                addStatement.setString(2, recieverUsername);
+                decreaseStatement.executeUpdate();
+                addStatement.executeUpdate();
+            } catch (SQLException e) {
+                connection.rollback();
+            }
+            connection.commit();
+            connection.setAutoCommit(true);
+        } catch (SQLException e) {
+
+        }
+
     }
 
 
@@ -88,7 +114,7 @@ public class JDBCUserDao implements UserDao {
             UserMapper mapper = new UserMapper();
             while (rs.next()) {
                 User user = mapper.extractFromResultSet(rs);
-                    users.add(user);
+                users.add(user);
             }
             return users;
         } catch (SQLException e) {
@@ -101,15 +127,15 @@ public class JDBCUserDao implements UserDao {
     @Override
     public int countUsersByRole(Role role) {
         int count = 0;
-        try(Connection connection = ConnectionPoolHolder.getConnection();
-        PreparedStatement statement =
-                connection.prepareStatement(bundle.getString(COUNT_USERS_BY_ROLE))){
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement statement =
+                     connection.prepareStatement(bundle.getString(COUNT_USERS_BY_ROLE))) {
             statement.setString(1, role.name());
             ResultSet rs = statement.executeQuery();
-            if (rs.first()){
+            if (rs.first()) {
                 count = rs.getInt("total");
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
         return count;

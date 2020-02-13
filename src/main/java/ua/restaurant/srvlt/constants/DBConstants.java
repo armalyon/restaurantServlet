@@ -23,5 +23,9 @@ public interface DBConstants {
     String COUNT_BILLS_BY_USERNAME = "query.count.bills.by.username";
     String FIND_BILLS_BY_USERNAME = "query.find.bills.by.username.pagable";
     String COUNT_USERS_BY_ROLE = "query.count.users.by.role";
+    String FIND_BILL_BY_ID = "query.find.bill.by.id";
+    String ADD_FUNDS_BY_USERNAME = "query.add.value.user.funds";
+    String DECREASE_FUNDS_BY_USERNAME = "query.decrease.value.user.funds";
+    String UPDATE_BILL_PAYMENT_DATE_STATEMENT_BY_ID = "query.update.bill.paymentDate.statement.by.id";
 
 }

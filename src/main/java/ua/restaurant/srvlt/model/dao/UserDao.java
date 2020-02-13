@@ -16,4 +16,6 @@ public interface UserDao extends GenericDao<User> {
     User findUserByUsername(String username);
 
     void createNewUser(User user) throws UserExistsException;
+
+    void transferFunds(String payerUsername, String recieverUsername, long valueToTransfer);
 }

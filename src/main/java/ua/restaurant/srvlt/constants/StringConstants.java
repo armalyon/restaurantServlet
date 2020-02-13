@@ -62,4 +62,5 @@ public interface StringConstants {
     //Params
     String CREDENTIALS_ERROR_PARAM = "?error=credentials";
 
+    String ADMIN_USERNAME = "admin";
 }

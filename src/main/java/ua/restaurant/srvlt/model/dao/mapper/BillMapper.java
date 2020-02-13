@@ -25,6 +25,7 @@ public class BillMapper implements ObjectMapper <Bill> {
     public Bill extractFromResultSet(ResultSet rs) throws SQLException {
         Order order = orderMapper.extractFromResultSet(rs);
         return new Bill.Builder()
+                .id(rs.getLong("id"))
                 .order(order)
                 .statement(BillStatement.valueOf(rs.getString("statement")))
                 .invoiceDateTime(rs.getTimestamp("invoice_date_time").toLocalDateTime())
