@@ -18,6 +18,7 @@ public interface StringConstants {
     String ID_ATTRIBUTE = "id";
     String FUNDS_ATTRIBUTE = "funds";
     String USER_INFO_DTO_ATTRIBUTE = "userInfoDTO";
+    String ADMIN_USERNAME = "admin";
 
 
     String REGISTRATION = "registration";
@@ -31,7 +32,6 @@ public interface StringConstants {
     String PASSWORD_FIELD = "password";
     String USERNAME_FIELD = "username";
     String NAME_FIELD = "name";
-    String SURNAME_FIELD = "surname";
 
 
     //Pages
@@ -58,9 +58,11 @@ public interface StringConstants {
     String ADMIN_CONFIRMATION_REDIRECT = "redirect:/admin_confirmation";
     String ADMIN_CONFIRMED_REDIRECT = "redirect:/admin_confirmed";
     String CLIENT_BILLS_REDIRECT = "redirect:/client_bills";
+    String CLIENT_BILLS_ERROR_FUNDS_REDIRECT = "redirect:/client_bills?error=funds";
+    String CLIENT_BILLS_ERROR_REDIRECT = "redirect:/client_bills?error=unknown";
+
 
     //Params
     String CREDENTIALS_ERROR_PARAM = "?error=credentials";
 
-    String ADMIN_USERNAME = "admin";
 }

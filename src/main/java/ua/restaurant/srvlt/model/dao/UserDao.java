@@ -1,9 +1,9 @@
 package ua.restaurant.srvlt.model.dao;
 
+import ua.restaurant.srvlt.exceptions.TransactionException;
 import ua.restaurant.srvlt.exceptions.UserExistsException;
 import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.entity.type.Role;
-import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.util.List;
 
@@ -17,5 +17,5 @@ public interface UserDao extends GenericDao<User> {
 
     void createNewUser(User user) throws UserExistsException;
 
-    void transferFunds(String payerUsername, String recieverUsername, long valueToTransfer);
+    void transferFunds(String payerUsername, String recieverUsername, long valueToTransfer) throws TransactionException;
 }

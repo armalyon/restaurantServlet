@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.constants.StringConstants;
 import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
 import ua.restaurant.srvlt.exceptions.NotEnoughFundsException;
+import ua.restaurant.srvlt.exceptions.TransactionException;
 import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.dao.BillDao;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
@@ -23,7 +24,7 @@ public class PayBillService {
     private BillDao billDao = DaoFactory.getInstance().createBillDao();
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
 
-    public boolean payBill(Long billId, String username) throws NotEnoughFundsException {
+    public boolean payBill(Long billId, String username) throws NotEnoughFundsException, TransactionException {
         Bill bill = getBillById(billId);
         String billUsername = bill.getOrder().getUser().getUsername();
         if (billUsername.equals(username)) {
@@ -35,7 +36,7 @@ public class PayBillService {
         return false;
     }
 
-    private boolean updateEntities(Long billId, String username, long transactionSum) {
+    private boolean updateEntities(Long billId, String username, long transactionSum) throws TransactionException {
         userDao.transferFunds(username, ADMIN_USERNAME, transactionSum);
         billDao.updatePaymentDateStatementById(PAYED, LocalDateTime.now(), billId);
         return true;

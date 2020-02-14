@@ -39,13 +39,18 @@
         </tr>
     </table>
 
-    <%-- <span class="error" th:if="${#httpServletRequest.getParameter('idnotfound') != null}"
-           th:text="#{string.id.not.found}"></span>
+    <c:if test="${param.error == 'funds'}">
+     <span class="error">
+         <fmt:message key="string.user.bills.not.enough.founds"/>
+     </span>
+    </c:if>
 
-     <div th:if="${bills.bills.size()} != 0">
-     <span class="error" th:if="${#httpServletRequest.getParameter('fnds') == 'error'}"
-           th:text="#{string.user.bills.not.enough.founds}"></span>
-           --%>
+    <c:if test="${param.error == 'unknown'}">
+     <span class="error">
+         <fmt:message key="string.user.error.unknown"/>
+     </span>
+    </c:if>
+
     <c:if test="${page.records.size() > 0}">
         <span class="header"> <fmt:message key="string.user.bills.your.founds"/> : ${funds}</span>
         <table class="table">

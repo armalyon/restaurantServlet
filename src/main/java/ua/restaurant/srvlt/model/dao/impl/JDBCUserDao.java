@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.model.dao.impl;
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.exceptions.TransactionException;
 import ua.restaurant.srvlt.exceptions.UserExistsException;
 import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.dao.mapper.UserMapper;
@@ -59,7 +60,7 @@ public class JDBCUserDao implements UserDao {
     }
 
     @Override
-    public void transferFunds(String payerUsername, String recieverUsername, long valueToTransfer) {
+    public void transferFunds(String payerUsername, String recieverUsername, long valueToTransfer) throws TransactionException {
         try (Connection connection = ConnectionPoolHolder.getConnection();
         ) {
             connection.setAutoCommit(false);
@@ -75,11 +76,13 @@ public class JDBCUserDao implements UserDao {
                 addStatement.executeUpdate();
             } catch (SQLException e) {
                 connection.rollback();
+                LOGGER.error(e.getMessage());
+                throw new TransactionException();
             }
             connection.commit();
             connection.setAutoCommit(true);
         } catch (SQLException e) {
-
+            LOGGER.error(e.getMessage());
         }
 
     }
