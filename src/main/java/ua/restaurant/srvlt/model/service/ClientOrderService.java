@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.model.service;
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.MenuItemDao;
 import ua.restaurant.srvlt.model.dao.OrderDao;
@@ -20,19 +21,26 @@ public class ClientOrderService {
     private MenuItemDao menuItemDao = DaoFactory.getInstance().createMenuItemDao();
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
 
-    public void saveNewOrder(String username, long menuItemId, long quantity) throws NotEnoughItemsException {
+    public void saveNewOrder(String username, long menuItemId, long quantity)
+            throws NotEnoughItemsException, UserNotFoundException {
         Order order = createOrderEntity(menuItemId, quantity, username);
         orderDao.create(order);
     }
 
-    private Order createOrderEntity(long menuItemId, long quantity, String username) throws NotEnoughItemsException {
+    private Order createOrderEntity(long menuItemId, long quantity, String username)
+            throws NotEnoughItemsException, UserNotFoundException {
         MenuItem item = menuItemDao.findById(menuItemId);
         if (!isItemsEnough(quantity, item.getStorageQuantity())) {
             throw new NotEnoughItemsException("Not enough items");
         }
-        User user = userDao.findUserByUsername(username);
+        User user = userDao
+                .findUserByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException("ORDERING ERROR, USER NOT FOUND ", username));
         long totalPrice = getTotalPrice(quantity, item.getPrice());
+        return buildOrder(menuItemId, quantity, user, totalPrice);
+    }
 
+    private Order buildOrder(long menuItemId, long quantity, User user, long totalPrice) {
         return new Order.Builder()
                 .menuItem(new MenuItem.Builder().id(menuItemId).build())
                 .quantity(quantity)

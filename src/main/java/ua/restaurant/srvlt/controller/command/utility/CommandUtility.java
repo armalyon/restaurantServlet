@@ -17,6 +17,14 @@ public class CommandUtility {
         session.setAttribute(USERNAME_ATTRIBUTE, username);
     }
 
+    public static void addUserToLoggedUsers(HttpServletRequest request, String userName) {
+        Set<String> loggedUsers = getLoggedUsersSet(request);
+        loggedUsers.add(userName);
+        request.getSession().getServletContext()
+                .setAttribute(LOGGED_USERS_ATTRIBUTE, loggedUsers);
+    }
+
+
     public static int getPageNumber(HttpServletRequest request) {
         String pageNumberString = request.getParameter(PAGE_ATTRIBUTE);
         int pageNumber;
@@ -25,12 +33,7 @@ public class CommandUtility {
         return pageNumber;
     }
 
-    public static void addUserToLoggedUsers(HttpServletRequest request, String userName) {
-        Set<String> loggedUsers = getLoggedUsersSet(request);
-        loggedUsers.add(userName);
-        request.getSession().getServletContext()
-                .setAttribute(LOGGED_USERS_ATTRIBUTE, loggedUsers);
-    }
+
 
     public static void removeUserFromSessionAndContext(HttpServletRequest request) {
         HttpSession session = request.getSession();

@@ -2,6 +2,7 @@ package ua.restaurant.srvlt.model.service;
 
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
+import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.entity.User;
@@ -12,16 +13,15 @@ public class LoginService {
 
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
 
-    public boolean isUserCanBeLoggedIn(String username, String password) {
-        User user = userDao.findUserByUsername(username);
-        if (user == null) return false;
-        else
-            return BCrypt.checkpw(password, user.getPassword());
+    public boolean isPasswordCorrect(String username, String password) throws UserNotFoundException {
+        User user = userDao.findUserByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(LoginService.class.getName(), username));
+        return BCrypt.checkpw(password, user.getPassword());
     }
 
-    public Role getUserRoleByUsername(String username) {
-        User user = userDao.findUserByUsername(username);
-        if (user == null) return null;
+    public Role getUserRoleByUsername(String username) throws UserNotFoundException {
+        User user = userDao.findUserByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(LoginService.class.getName(), username));
         return user.getRole();
     }
 

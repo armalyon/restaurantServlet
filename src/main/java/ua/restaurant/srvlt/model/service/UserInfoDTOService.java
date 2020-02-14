@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.model.service;
 
 
+import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.OrderDao;
 import ua.restaurant.srvlt.model.dao.UserDao;
@@ -13,10 +14,15 @@ public class UserInfoDTOService {
 
 
 
-    public UserInfoDTO getUserInfDTOByUSername(String username) {
+    public UserInfoDTO getUserInfDTOByUSername(String username) throws UserNotFoundException {
         User user = userDao
-                .findUserByUsername(username);
+                .findUserByUsername(username)
+                .orElseThrow(() -> new UserNotFoundException(UserInfoDTOService.class.getName(), username));
         int ordersByUser = orderDao.countOrdersByUsername(username);
+        return buildUserInfoDTO(user, ordersByUser);
+    }
+
+    private UserInfoDTO buildUserInfoDTO(User user, int ordersByUser) {
         return new UserInfoDTO.Builder()
                 .username(user.getUsername())
                 .name(user.getName())

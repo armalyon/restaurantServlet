@@ -3,6 +3,7 @@ package ua.restaurant.srvlt.controller.command;
 import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.exceptions.NotEnoughFundsException;
 import ua.restaurant.srvlt.exceptions.TransactionException;
+import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.service.PayBillService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,9 @@ public class ClientPayCommand implements Command {
            return CLIENT_BILLS_ERROR_FUNDS_REDIRECT;
         } catch (TransactionException e) {
             return CLIENT_BILLS_ERROR_REDIRECT;
+        } catch (UserNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            //TODO handling
         }
         return CLIENT_BILLS_REDIRECT;
     }

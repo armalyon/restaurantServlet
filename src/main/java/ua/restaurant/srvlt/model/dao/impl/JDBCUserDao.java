@@ -11,13 +11,14 @@ import ua.restaurant.srvlt.model.entity.type.Role;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static ua.restaurant.srvlt.constants.DBConstants.*;
 
 public class JDBCUserDao implements UserDao {
     private static final Logger LOGGER = Logger.getLogger(JDBCUserDao.class);
 
-    public User findUserByUsername(String username) {
+    public Optional<User> findUserByUsername(String username) {
         User user = null;
         try (Connection connection = ConnectionPoolHolder.getConnection();
              PreparedStatement st =
@@ -34,7 +35,7 @@ public class JDBCUserDao implements UserDao {
             //TODO handling
             LOGGER.warn(e.getMessage());
         }
-        return user;
+        return Optional.ofNullable(user);
     }
 
     @Override
@@ -55,7 +56,6 @@ public class JDBCUserDao implements UserDao {
             throw new UserExistsException("User already exists ", user.getUsername());
         } catch (SQLException e) {
             LOGGER.debug(e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -83,6 +83,8 @@ public class JDBCUserDao implements UserDao {
             connection.setAutoCommit(true);
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
+            throw new TransactionException();
+
         }
 
     }

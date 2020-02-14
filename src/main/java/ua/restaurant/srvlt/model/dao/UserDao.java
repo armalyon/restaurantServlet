@@ -6,6 +6,7 @@ import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.entity.type.Role;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserDao extends GenericDao<User> {
 
@@ -13,7 +14,7 @@ public interface UserDao extends GenericDao<User> {
 
     int countUsersByRole(Role role);
 
-    User findUserByUsername(String username);
+    Optional<User> findUserByUsername(String username);
 
     void createNewUser(User user) throws UserExistsException;
 
