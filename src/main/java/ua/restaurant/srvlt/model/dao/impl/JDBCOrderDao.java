@@ -10,6 +10,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static ua.restaurant.srvlt.constants.DBConstants.*;
 
@@ -194,7 +195,7 @@ public class JDBCOrderDao implements OrderDao {
 
 
     @Override
-    public Order findById(long id) {
+    public Optional<Order> findById(long id) {
         Order order = null;
         try (Connection connection = ConnectionPoolHolder.getConnection();
              PreparedStatement st = connection.prepareStatement(
@@ -208,7 +209,7 @@ public class JDBCOrderDao implements OrderDao {
         } catch (SQLException e) {
             LOGGER.error(e.getMessage());
         }
-        return order;
+        return Optional.ofNullable(order);
     }
 
     @Override

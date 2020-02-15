@@ -25,9 +25,13 @@
     </h3>
     <span class="header"> <fmt:message key="string.user.restaurant.menu"/> </span>
 
-<c:if test="${error=='quantity'}">
-       <span class="error" > <fmt:message key="string.item.not.found"/> </span>
-</c:if>
+    <c:if test="${param.error=='quantity'}">
+        <span class="error"> <fmt:message key="string.admin.error.quantity"/> </span>
+    </c:if>
+
+    <c:if test="${param.error == 'item'}">
+        <span class="error"><fmt:message key="string.item.not.found"/> </span>
+    </c:if>
 
     <table class="table">
         <tr>
@@ -68,7 +72,7 @@
             <td>
                 <form action="${pageContext.request.contextPath}/client_orders" method="get" class="navigation">
                     <input class="button" type="submit" value=
-                    '<fmt:message key="string.user.get.orders"/>'>
+                            '<fmt:message key="string.user.get.orders"/>'>
                 </form>
             </td>
         </tr>
@@ -117,7 +121,7 @@
     </c:if>
 
     <form action="${pageContext.request.contextPath}/logout" method="post">
-        <input class="button" type="submit" value='<fmt:message key="string.common.logout"/>' />
+        <input class="button" type="submit" value='<fmt:message key="string.common.logout"/>'/>
     </form>
 
     <div>

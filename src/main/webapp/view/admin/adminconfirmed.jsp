@@ -48,10 +48,9 @@
     </table>
 
     <div class="tableContainer">
-        <%--
-        <span class="error" th:if="${#httpServletRequest.getParameter('order') == 'notfound'}"
-              th:text="#{string.order.not.found}"></span>--%>
-
+        <c:if test="${param.error == 'order'}">
+            <span class="error"><fmt:message key="string.order.not.found"/> </span>
+        </c:if>
         <c:if test="${page.records.size()==0}">
             <span class="header" text='<fmt:message key="string.admin.orders.confirmed"/> '></span>
         </c:if>

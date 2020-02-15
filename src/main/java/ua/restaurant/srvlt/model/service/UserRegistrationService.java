@@ -15,7 +15,13 @@ public class UserRegistrationService {
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
 
     public boolean saveNewUser(AccountDTO accountDTO) throws UserExistsException {
-        User user = new User.Builder()
+        User user = buildUser(accountDTO);
+        userDao.createNewUser(user);
+        return true;
+    }
+
+    private User buildUser(AccountDTO accountDTO) {
+        return new User.Builder()
                 .username(accountDTO.getUsername())
                 .password(BCrypt.hashpw(accountDTO.getPassword(), BCrypt.gensalt()))
                 .name(accountDTO.getName())
@@ -24,7 +30,5 @@ public class UserRegistrationService {
                 .role(Role.CLIENT)
                 .registrationDate(LocalDateTime.now())
                 .build();
-        userDao.createNewUser(user);
-        return true;
     }
 }

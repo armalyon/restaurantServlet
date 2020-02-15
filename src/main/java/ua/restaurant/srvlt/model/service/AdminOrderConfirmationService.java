@@ -16,7 +16,10 @@ public class AdminOrderConfirmationService {
 
 
     public void confirmOrder(Long orderId, Long requestedQuantity) throws IdNotFoundExeption {
-        long menuItemId = orderDao.findById(orderId).getMenuItem().getId();
+        long menuItemId = orderDao.findById(orderId)
+                .orElseThrow(
+                        () -> new IdNotFoundExeption(
+                                AdminOrderConfirmationService.class.getName(), orderId)).getMenuItem().getId();
         orderDao.updateOrderStatementByIdDecreaseStorageQuantity(CONFIRMED, menuItemId, orderId, requestedQuantity);
 
     }
@@ -26,13 +29,14 @@ public class AdminOrderConfirmationService {
         if (order.getMenuItem()
                 .getStorageQuantity()
                 <= order.getQuantity()) throw new NotEnoughItemsException("Not enough goods");
-
         return !order.getOrderStatement().equals(CONFIRMED);
     }
 
-    private Order getOrederById(Long id) throws IdNotFoundExeption {
+    private Order getOrederById(Long orderId) throws IdNotFoundExeption {
         return orderDao
-                .findById(id);
+                .findById(orderId).orElseThrow(
+                        () -> new IdNotFoundExeption(
+                                AdminOrderConfirmationService.class.getName(), orderId));
     }
 
 }

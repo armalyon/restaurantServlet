@@ -10,10 +10,7 @@ import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ua.restaurant.srvlt.constants.DBConstants.*;
 
@@ -56,7 +53,7 @@ public class JDBCBillDao implements BillDao {
     }
 
     @Override
-    public Bill findById(long id) {
+    public Optional<Bill> findById(long id) {
         Bill bill = null;
         try (Connection connection = ConnectionPoolHolder.getConnection();
              PreparedStatement statement = connection.prepareStatement(bundle.getString(FIND_BILL_BY_ID))) {
@@ -68,7 +65,7 @@ public class JDBCBillDao implements BillDao {
         } catch (SQLException e) {
             LOGGER.error("BILL NOT FOUND BY ID=" + id);
         }
-        return bill;
+        return Optional.ofNullable(bill);
     }
 
     @Override

@@ -20,21 +20,15 @@ public class AdminConfirmOrderCommand implements Command {
         long orderId = Long.parseLong(request.getParameter(ID_ATTRIBUTE));
         long requestedQuantity = Long.parseLong(request.getParameter(QUANTITY_ATTRIBUTE));
         try {
-            confirmationService.isCanBeConfirmed(orderId);
-        } catch (IdNotFoundExeption idNotFoundExeption) {
-            LOGGER.error(idNotFoundExeption.getMessage());
+            if (confirmationService.isCanBeConfirmed(orderId)) {
+                confirmationService.confirmOrder(orderId, requestedQuantity);
+            }
+        } catch (IdNotFoundExeption e) {
+            LOGGER.error(e.getMessage());
+           return ADMIN_CONFIRMATION_ERROR_DB_REDIRECT;
         } catch (NotEnoughItemsException e) {
-            //TODO handling for FE
-            e.printStackTrace();
+           return ADMIN_CONFIRMATION_ERROR_ITEMS_REDIRECT;
         }
-
-        try {
-            confirmationService.confirmOrder(orderId, requestedQuantity);
-        } catch (IdNotFoundExeption idNotFoundExeption) {
-            LOGGER.error(idNotFoundExeption.getMessage());
-        }
-
-
         return ADMIN_CONFIRMATION_REDIRECT;
     }
 }

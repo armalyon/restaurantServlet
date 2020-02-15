@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
 import ua.restaurant.srvlt.exceptions.NotEnoughFundsException;
 import ua.restaurant.srvlt.exceptions.TransactionException;
 import ua.restaurant.srvlt.exceptions.UserNotFoundException;
@@ -29,6 +30,8 @@ public class ClientPayCommand implements Command {
         } catch (UserNotFoundException e) {
             LOGGER.error(e.getMessage());
             //TODO handling
+        } catch (IdNotFoundExeption idNotFoundExeption) {
+            idNotFoundExeption.printStackTrace();
         }
         return CLIENT_BILLS_REDIRECT;
     }

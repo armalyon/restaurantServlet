@@ -25,7 +25,10 @@ public class PayBillService {
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
 
     public boolean payBill(Long billId, String username)
-            throws NotEnoughFundsException, TransactionException, UserNotFoundException {
+            throws NotEnoughFundsException,
+            TransactionException,
+            UserNotFoundException,
+            IdNotFoundExeption {
         Bill bill = getBillById(billId);
         String billUsername = bill.getOrder().getUser().getUsername();
         if (billUsername.equals(username)) {
@@ -61,8 +64,10 @@ public class PayBillService {
         return !bill.getStatement().equals(PAYED);
     }
 
-    private Bill getBillById(long id) {
-        return billDao.findById(id);
+    private Bill getBillById(long id) throws IdNotFoundExeption {
+        return billDao.findById(id)
+                .orElseThrow(() -> new IdNotFoundExeption(
+                        PayBillService.class.getName(), id));
     }
 
 

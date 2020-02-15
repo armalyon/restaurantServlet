@@ -55,11 +55,16 @@ public interface StringConstants {
     String LOGIN_REDIRECT = "redirect:/login";
     String ADMIN_MAIN_REDIRECT = "redirect:/admin";
     String CLIENT_MAIN_REDIRECT = "redirect:/client";
+    String CLIENT_MAIN_ITEM_ERROR_REDIRECT = "redirect:/client?error=item";
+    String CLIENT_MAIN_QUANTITY_ERROR_REDIRECT = "redirect:/client?error=quantity";
     String ADMIN_CONFIRMATION_REDIRECT = "redirect:/admin_confirmation";
+    String ADMIN_CONFIRMATION_ERROR_ITEMS_REDIRECT = "redirect:/admin_confirmation?error=items";
+    String ADMIN_CONFIRMATION_ERROR_DB_REDIRECT = "redirect:/admin_confirmation?error=db";
     String ADMIN_CONFIRMED_REDIRECT = "redirect:/admin_confirmed";
     String CLIENT_BILLS_REDIRECT = "redirect:/client_bills";
     String CLIENT_BILLS_ERROR_FUNDS_REDIRECT = "redirect:/client_bills?error=funds";
     String CLIENT_BILLS_ERROR_REDIRECT = "redirect:/client_bills?error=unknown";
+    String ADMIN_CONFIRMED_REDIRECT_ERROR = "redirect:/admin_confirmed?error=order";
 
 
     //Params

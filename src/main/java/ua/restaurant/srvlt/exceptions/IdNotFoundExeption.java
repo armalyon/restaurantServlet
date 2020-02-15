@@ -2,6 +2,7 @@ package ua.restaurant.srvlt.exceptions;
 
 
 public class IdNotFoundExeption extends Exception {
+    private String tag;
     private String message;
     private long id;
 
@@ -10,9 +11,10 @@ public class IdNotFoundExeption extends Exception {
         this.message = id + " id not found in db";
     }
 
-    public IdNotFoundExeption(String message, long id) {
-        this.message = message;
+    public IdNotFoundExeption(String tag, long id) {
         this.id = id;
+        this.tag = tag;
+        this.message = tag + " id not found in db, id=" + id;
     }
 
     @Override

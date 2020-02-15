@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.model.service;
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
 import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.MenuItemDao;
@@ -22,14 +23,16 @@ public class ClientOrderService {
     private UserDao userDao = DaoFactory.getInstance().createUserDao();
 
     public void saveNewOrder(String username, long menuItemId, long quantity)
-            throws NotEnoughItemsException, UserNotFoundException {
+            throws NotEnoughItemsException, UserNotFoundException, IdNotFoundExeption {
         Order order = createOrderEntity(menuItemId, quantity, username);
         orderDao.create(order);
     }
 
     private Order createOrderEntity(long menuItemId, long quantity, String username)
-            throws NotEnoughItemsException, UserNotFoundException {
-        MenuItem item = menuItemDao.findById(menuItemId);
+            throws NotEnoughItemsException, UserNotFoundException, IdNotFoundExeption {
+        MenuItem item = menuItemDao
+                .findById(menuItemId).orElseThrow(
+                        () -> new IdNotFoundExeption(ClientOrderService.class.getName(), menuItemId));
         if (!isItemsEnough(quantity, item.getStorageQuantity())) {
             throw new NotEnoughItemsException("Not enough items");
         }

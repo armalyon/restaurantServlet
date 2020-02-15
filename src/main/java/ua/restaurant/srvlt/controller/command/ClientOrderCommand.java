@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
 import ua.restaurant.srvlt.exceptions.NotEnoughItemsException;
 import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.service.ClientOrderService;
@@ -22,13 +23,16 @@ public class ClientOrderCommand implements Command {
         long quantity = Long.parseLong(request.getParameter(QUANTITY_ATTRIBUTE));
         long menuItemId = Long.parseLong(request.getParameter(MENU_ITEM_ID_ATTRIBUTE));
 
-        request.setAttribute(ERROR, null);
         try {
             clientOrderService.saveNewOrder(username, menuItemId, quantity);
         } catch (NotEnoughItemsException e) {
-            request.setAttribute(ERROR, QUANTITY_ATTRIBUTE);
+            return CLIENT_MAIN_QUANTITY_ERROR_REDIRECT;
         } catch (UserNotFoundException e) {
             LOGGER.error(e.getMessage());
+            //TODO handling
+        } catch (IdNotFoundExeption e) {
+            LOGGER.error("menu item not found in DB" + e.getMessage());
+          return CLIENT_MAIN_ITEM_ERROR_REDIRECT;
         }
 
 

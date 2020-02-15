@@ -9,10 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ua.restaurant.srvlt.constants.DBConstants.FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN;
 import static ua.restaurant.srvlt.constants.DBConstants.FIND_MENU_ITEM_BY_ID;
@@ -26,7 +23,7 @@ public class JDBCMenuItemDao implements MenuItemDao {
     }
 
     @Override
-    public MenuItem findById(long id) {
+    public Optional<MenuItem> findById(long id) {
         MenuItem item = null;
         try ( Connection connection = ConnectionPoolHolder.getConnection();
                 PreparedStatement st = connection.prepareStatement(
@@ -40,7 +37,7 @@ public class JDBCMenuItemDao implements MenuItemDao {
         } catch (SQLException e) {
             LOGGER.warn(e.getMessage());
         }
-        return item;
+        return Optional.ofNullable(item);
     }
 
     @Override

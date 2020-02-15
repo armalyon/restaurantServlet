@@ -54,10 +54,13 @@
                     <div>
                         <span class="header"><fmt:message key="string.admin.orders.waiting"/> </span>
                     </div>
-                        <%-- <span class="error" th:if="${#httpServletRequest.getParameter('notenough') != null}"
-                               th:text="#{string.admin.error.quantity}"></span>
-                         <span class="error" th:if="${#httpServletRequest.getParameter('error') != null}"
-                               th:text="#{string.item.not.found}"></span>--%>
+                    <c:if test="${param.error=='items'}">
+                        <span class="error"><fmt:message key="string.admin.error.quantity"/> </span>
+                    </c:if>
+
+                    <c:if test="${param.error=='db'}">
+                        <span class="error"><fmt:message key="string.db.error"/> </span>
+                    </c:if>
 
                     <table class="table">
                         <tr>
