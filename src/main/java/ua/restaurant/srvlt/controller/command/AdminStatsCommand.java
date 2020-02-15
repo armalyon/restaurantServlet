@@ -30,6 +30,8 @@ public class AdminStatsCommand implements Command {
             LOGGER.error(e.getMessage());
         }
         Page<Bill> page = clientBillsService.getBillsByUsername(username, pageNumber, PAGE_SIZE);
+        LOGGER.debug(userInfoDTO);
+        LOGGER.debug(page);
         request.setAttribute(USER_INFO_DTO_ATTRIBUTE, userInfoDTO);
         request.setAttribute(PAGE_ATTRIBUTE, page);
         return ADMIN_STATS_PAGE;

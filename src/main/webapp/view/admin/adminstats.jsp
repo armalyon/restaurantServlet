@@ -45,7 +45,7 @@
     </table>
     <div>
         <span class="header"
-              inline="text"> <fmt:message key="string.admin.stats.user.username"/> : ${userInfoDTO.username} </span>
+              > <fmt:message key="string.admin.stats.user.username"/> : ${userInfoDTO.username} </span>
     </div>
     <div>
         <span class="header"> <fmt:message key="string.admin.stats.user.name"/> : ${userInfoDTO.name}</span>
@@ -91,6 +91,7 @@
             </tr>
             </c:forEach>
         </table>
+
         <c:if test="${page.totalPages > 1}">
             <c:forEach begin="1" end='${page.totalPages}' var="i">
                 <c:choose>
@@ -101,7 +102,7 @@
                     </c:when>
                     <c:otherwise>
                         <li class="page-item"><a class="page-link"
-                                                 href="?page=${i}">${i}</a>
+                                                 href="?username=${param.username}&page=${i}">${i}</a>
                         </li>
                     </c:otherwise>
                 </c:choose>

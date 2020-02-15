@@ -51,6 +51,17 @@ public class UserInfoDTO {
         this.ordersTotalNumber = ordersTotalNumber;
     }
 
+    @Override
+    public String toString() {
+        return "UserInfoDTO{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", registrationDate=" + registrationDate +
+                ", ordersTotalNumber=" + ordersTotalNumber +
+                '}';
+    }
+
     public static class Builder {
         private UserInfoDTO newDto;
 
