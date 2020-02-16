@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.controller.filter;
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 import ua.restaurant.srvlt.model.entity.type.Role;
 
 import javax.servlet.*;
@@ -10,11 +11,10 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.model.entity.type.Role.*;
 
 public class AuthFilter implements Filter {
-
-    private static final Logger LOGGER = Logger.getLogger(AuthFilter.class);
-
+    private static final String LOGOUT = "/logout";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -48,37 +48,32 @@ public class AuthFilter implements Filter {
         }
 
         if (isLoggedIn) {
-            LOGGER.debug("isLoggedIn");
             if (isRegistrationRequest || isLoginRequest) {
-                LOGGER.debug("isRegistrationRequest || isLoginRequest");
-                httpResponce.sendRedirect("/logout");
+                httpResponce.sendRedirect(LOGOUT);
             } else {
-                if (isPathCorrect(path, role) || isLogoutRequest ) {
-                    LOGGER.debug("isPathCorrect(path, role)");
+                if (isPathCorrespondsRole(path, role) || isLogoutRequest ) {
                     filterChain.doFilter(servletRequest, servletResponse);
 
                 } else {
-                    LOGGER.debug("!isPathCorrect(path, role)");
-                   // CommandUtility.removeUserFromSessionAndContext(httpRequest);
+                    CommandUtility.removeUserFromSessionAndContext(httpRequest);
                     throw new SecurityException();
                 }
             }
 
         } else {
-            LOGGER.debug("!isLoggedIn");
             if (isRegistrationRequest || isLoginRequest) {
-                LOGGER.debug("(isRegistrationRequest || isLoginRequest)");
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
-                LOGGER.debug("!isRegistrationRequest || !isLoginRequest");
                 httpResponce.sendRedirect("login");
             }
         }
 
     }
 
-    private boolean isPathCorrect(String path, Role role) {
-        return path.contains(role.name().toLowerCase()) || path.contains("favicon.ico");
+    private boolean isPathCorrespondsRole(String path, Role role) {
+        if (role.equals(CLIENT) && path.contains(ADMIN.name().toLowerCase())) return false;
+        if (role.equals(ADMIN) && path.contains(CLIENT.name().toLowerCase())) return false;
+        return true;
     }
 
     @Override

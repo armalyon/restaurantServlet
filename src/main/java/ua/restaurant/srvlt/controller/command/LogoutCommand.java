@@ -11,11 +11,8 @@ import static ua.restaurant.srvlt.constants.StringConstants.*;
 public class LogoutCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(LogoutCommand.class);
 
-
     @Override
     public String execute(HttpServletRequest request) {
-        LOGGER.warn("logout command");
-
         String username = (String) request.getSession().getAttribute(USERNAME_ATTRIBUTE);
         Role role = (Role) request.getSession().getAttribute(ROLE_ATTRIBUTE);
         CommandUtility.removeUserFromSessionAndContext(request);
