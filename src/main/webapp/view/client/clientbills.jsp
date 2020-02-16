@@ -90,6 +90,9 @@
 
         </table>
     </c:if>
+    <form action="${pageContext.request.contextPath}/logout" method="post" class="navigation">
+        <input class="button" type="submit" value='<fmt:message key="string.common.logout"/> '/>
+    </form>
     <c:if test="${page.totalPages > 1}">
         <c:forEach begin="1" end='${page.totalPages}' var="i">
             <c:choose>
@@ -110,9 +113,6 @@
 <c:if test="${page.records.size() == 0}">
     <span class="header"><fmt:message key="string.user.have.no.bills"/> </span>
 </c:if>
-<form action="${pageContext.request.contextPath}/logout" method="post" class="navigation">
-    <input class="button" type="submit" value='<fmt:message key="string.common.logout"/> '/>
-</form>
 
 <span class="locale" style="float: left">
     <a href="?lang=en">EN</a>
