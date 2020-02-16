@@ -84,41 +84,44 @@ public class JDBCBillDao implements BillDao {
     }
 
     @Override
-    public Page<Bill> getBillsByUserNameNewestFirst(String username, int currentPage, int pageSize) {
-        int billsByUser = 0;
-        int offset = pageSize * currentPage;
-        Map<Long, Bill> bills = new HashMap<>();
-
+    public List<Bill> getBillsByUserNameNewestFirst(String username, int currentPage, int pageSize, int offset) {
+        List<Bill> bills = new ArrayList<>();
         try (Connection connection = ConnectionPoolHolder.getConnection();
-             PreparedStatement countStatement = connection.prepareStatement(
-                     bundle.getString(COUNT_BILLS_BY_USERNAME));
              PreparedStatement findStatement = connection.prepareStatement(
                      bundle.getString(FIND_BILLS_BY_USERNAME))
         ) {
+            findStatement.setString(1, username);
+            findStatement.setInt(2, offset);
+            findStatement.setInt(3, pageSize);
+
+            ResultSet rs = findStatement.executeQuery();
+            BillMapper mapper = new BillMapper();
+            while (rs.next()) {
+                Bill bill = mapper.extractFromResultSet(rs);
+                bills.add(bill);
+            }
+        } catch (
+                SQLException e) {
+            LOGGER.warn(e.getMessage());
+        }
+        return bills;
+    }
+
+    @Override
+    public int countBillsByUsername(String username) {
+        int billsByUser = 0;
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement countStatement = connection.prepareStatement(
+                     bundle.getString(COUNT_BILLS_BY_USERNAME))) {
             countStatement.setString(1, username);
             ResultSet rs = countStatement.executeQuery();
             if (rs.first()) {
                 billsByUser = rs.getInt("total");
             }
-
-            findStatement.setString(1, username);
-            findStatement.setInt(2, offset);
-            findStatement.setInt(3, pageSize);
-
-            rs = findStatement.executeQuery();
-            BillMapper mapper = new BillMapper();
-            while (rs.next()) {
-                Bill bill = mapper.extractFromResultSet(rs);
-                bill = mapper.makeUnique(bills, bill);
-            }
-            List<Bill> ordersList = new ArrayList<>(bills.values());
-            return new Page<Bill>(billsByUser, currentPage, pageSize, ordersList);
-        } catch (
-                SQLException e) {
-            //TODO handling
-            LOGGER.warn(e.getMessage());
-            return null;
+        } catch (SQLException e) {
+            LOGGER.error(e.getMessage());
         }
+        return billsByUser;
     }
 
     @Override
@@ -135,4 +138,5 @@ public class JDBCBillDao implements BillDao {
             LOGGER.error(e.getMessage());
         }
     }
+
 }
