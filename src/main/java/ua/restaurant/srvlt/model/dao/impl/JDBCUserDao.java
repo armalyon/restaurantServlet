@@ -32,7 +32,6 @@ public class JDBCUserDao implements UserDao {
                 user = mapper.extractFromResultSet(rs);
             }
         } catch (SQLException e) {
-            //TODO handling
             LOGGER.warn(e.getMessage());
         }
         return Optional.ofNullable(user);
@@ -121,12 +120,11 @@ public class JDBCUserDao implements UserDao {
                 User user = mapper.extractFromResultSet(rs);
                 users.add(user);
             }
-            return users;
         } catch (SQLException e) {
-            //TODO handling
             LOGGER.warn(e.getMessage());
             return null;
         }
+        return users;
     }
 
     @Override

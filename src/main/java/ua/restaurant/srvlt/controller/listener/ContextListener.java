@@ -11,7 +11,6 @@ import java.util.Set;
 public class ContextListener implements ServletContextListener {
     private static final Logger LOGGER = Logger.getLogger(ServletContextListener.class);
 
-
     @Override
     public void contextInitialized(ServletContextEvent sce) {
     }

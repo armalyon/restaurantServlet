@@ -6,7 +6,6 @@ import ua.restaurant.srvlt.model.dao.mapper.BillMapper;
 import ua.restaurant.srvlt.model.entity.Bill;
 import ua.restaurant.srvlt.model.entity.type.BillStatement;
 import ua.restaurant.srvlt.model.entity.type.OrderStatement;
-import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.sql.*;
 import java.time.LocalDateTime;
@@ -16,7 +15,6 @@ import static ua.restaurant.srvlt.constants.DBConstants.*;
 
 public class JDBCBillDao implements BillDao {
     private static final Logger LOGGER = Logger.getLogger(JDBCBillDao.class);
-
 
     @Override
     public void create(Bill bill) {
@@ -134,7 +132,6 @@ public class JDBCBillDao implements BillDao {
             statement.setLong(3, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            //TODO handling
             LOGGER.error(e.getMessage());
         }
     }

@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.controller.filter;
 
 import org.apache.log4j.Logger;
+import ua.restaurant.srvlt.constants.StringConstants;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 import ua.restaurant.srvlt.model.entity.type.Role;
 
@@ -15,6 +16,7 @@ import static ua.restaurant.srvlt.model.entity.type.Role.*;
 
 public class AuthFilter implements Filter {
     private static final String LOGOUT = "/logout";
+    private static final String LOGIN = "login";
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -39,7 +41,7 @@ public class AuthFilter implements Filter {
 
         boolean isDenied = path.endsWith(DENIED);
         boolean isLogoutRequest = path.endsWith(LOGOUT);
-        boolean isLoginRequest = path.contains(LOGIN);
+        boolean isLoginRequest = path.contains(StringConstants.LOGIN);
         boolean isRegistrationRequest = path.contains(REGISTRATION) || path.contains(REGISTER);
 
         if (path.equals("/")) {
@@ -62,7 +64,7 @@ public class AuthFilter implements Filter {
             if (isRegistrationRequest || isLoginRequest) {
                 filterChain.doFilter(servletRequest, servletResponse);
             } else {
-                httpResponce.sendRedirect("login");
+                httpResponce.sendRedirect(LOGIN);
             }
         }
     }

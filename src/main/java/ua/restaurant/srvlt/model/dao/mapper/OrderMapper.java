@@ -11,6 +11,12 @@ import java.time.LocalTime;
 import java.util.Map;
 
 public class OrderMapper implements ObjectMapper<Order> {
+    private static final String ORDERS_ORDER_STATEMENT = "orders.order_statement";
+    private static final String ORDERS_QUANTITY = "orders.quantity";
+    private static final String ORDERS_TIME = "orders.time";
+    private static final String ORDERS_DATE = "orders.date";
+    private static final String ORDERS_ID = "orders.id";
+    private static final String ORDERS_TOTAL_PRICE = "orders.total_price";
     private MenuItemMapper menuItemMapper;
     private UserMapper userMapper;
 
@@ -26,18 +32,13 @@ public class OrderMapper implements ObjectMapper<Order> {
          return new Order.Builder()
                 .menuItem(menuItem)
                 .user(user)
-                .orderStatement(OrderStatement.valueOf(rs.getString("orders.order_statement")))
-                .quantity(rs.getLong("orders.quantity"))
-                .time(LocalTime.parse(rs.getString("orders.time")))
-                .date(rs.getDate("orders.date").toLocalDate())
-                .id(rs.getLong("orders.id"))
-                .totalPrice(rs.getLong("orders.total_price"))
+                .orderStatement(OrderStatement.valueOf(rs.getString(ORDERS_ORDER_STATEMENT)))
+                .quantity(rs.getLong(ORDERS_QUANTITY))
+                .time(LocalTime.parse(rs.getString(ORDERS_TIME)))
+                .date(rs.getDate(ORDERS_DATE).toLocalDate())
+                .id(rs.getLong(ORDERS_ID))
+                .totalPrice(rs.getLong(ORDERS_TOTAL_PRICE))
                 .build();
     }
 
-    @Override
-    public Order makeUnique(Map<Long, Order> cache, Order object) {
-        cache.putIfAbsent(object.getId(), object);
-        return cache.get(object.getId());
-    }
 }

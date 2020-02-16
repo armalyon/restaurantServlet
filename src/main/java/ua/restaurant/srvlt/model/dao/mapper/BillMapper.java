@@ -15,6 +15,10 @@ import java.util.Map;
 import static java.time.ZoneId.systemDefault;
 
 public class BillMapper implements ObjectMapper <Bill> {
+    private static final String ID = "id";
+    private static final String STATEMENT = "statement";
+    private static final String INVOICE_DATE_TIME = "invoice_date_time";
+    private static final String PAYMENT_DATE_TIME = "payment_date_time";
     private OrderMapper orderMapper;
 
     public BillMapper() {
@@ -25,25 +29,20 @@ public class BillMapper implements ObjectMapper <Bill> {
     public Bill extractFromResultSet(ResultSet rs) throws SQLException {
         Order order = orderMapper.extractFromResultSet(rs);
         return new Bill.Builder()
-                .id(rs.getLong("id"))
+                .id(rs.getLong(ID))
                 .order(order)
-                .statement(BillStatement.valueOf(rs.getString("statement")))
-                .invoiceDateTime(rs.getTimestamp("invoice_date_time").toLocalDateTime())
+                .statement(BillStatement.valueOf(rs.getString(STATEMENT)))
+                .invoiceDateTime(rs.getTimestamp(INVOICE_DATE_TIME).toLocalDateTime())
                 .paymentDateTime(getPaymentDateTimeFromResultSet(rs))
                 .build();
     }
 
     private LocalDateTime getPaymentDateTimeFromResultSet(ResultSet rs) throws SQLException {
-       Timestamp ts = rs.getTimestamp("payment_date_time");
+       Timestamp ts = rs.getTimestamp(PAYMENT_DATE_TIME);
        if (ts != null) {
            return ts.toLocalDateTime();
        }
        else return null;
     }
 
-    @Override
-    public Bill makeUnique(Map<Long, Bill> cache, Bill bill) {
-        cache.putIfAbsent(bill.getId(), bill);
-        return cache.get(bill.getId());
-    }
 }

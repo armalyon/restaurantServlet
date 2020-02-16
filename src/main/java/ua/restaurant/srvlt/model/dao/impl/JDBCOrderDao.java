@@ -90,7 +90,6 @@ public class JDBCOrderDao implements OrderDao {
                 orders.add(order);
             }
         } catch (SQLException e) {
-            //TODO handling
             LOGGER.warn(e.getMessage());
         }
         return orders;
@@ -113,7 +112,6 @@ public class JDBCOrderDao implements OrderDao {
             }
         } catch (
                 SQLException e) {
-            //TODO handling
             LOGGER.warn(e.getMessage());
         }
         return orders;
@@ -139,7 +137,6 @@ public class JDBCOrderDao implements OrderDao {
             }
         } catch (
                 SQLException e) {
-            //TODO handling
             LOGGER.warn(e.getMessage());
         }
         return orders;

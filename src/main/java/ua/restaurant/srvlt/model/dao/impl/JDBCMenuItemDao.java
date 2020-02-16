@@ -25,9 +25,9 @@ public class JDBCMenuItemDao implements MenuItemDao {
     @Override
     public Optional<MenuItem> findById(long id) {
         MenuItem item = null;
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-                PreparedStatement st = connection.prepareStatement(
-                bundle.getString(FIND_MENU_ITEM_BY_ID))
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st = connection.prepareStatement(
+                     bundle.getString(FIND_MENU_ITEM_BY_ID))
         ) {
             st.setLong(1, id);
             ResultSet rs = st.executeQuery();
@@ -58,24 +58,22 @@ public class JDBCMenuItemDao implements MenuItemDao {
 
     @Override
     public List<MenuItem> findAllByStorageQuantityGreaterThan(long quantity) {
-        Map<Long, MenuItem> items = new HashMap<>();
-        try ( Connection connection = ConnectionPoolHolder.getConnection();
-                PreparedStatement st = connection.prepareStatement(
-                bundle.getString(FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN)
-        )) {
+        List<MenuItem> items = new ArrayList<>();
+        try (Connection connection = ConnectionPoolHolder.getConnection();
+             PreparedStatement st = connection.prepareStatement(
+                     bundle.getString(FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN)
+             )) {
             st.setLong(1, quantity);
             ResultSet rs = st.executeQuery();
             MenuItemMapper mapper = new MenuItemMapper();
             while (rs.next()) {
                 MenuItem item = mapper.extractFromResultSet(rs);
-                item = mapper.makeUnique(items, item);
+                items.add(item);
             }
-            return new ArrayList<>(items.values());
         } catch (SQLException e) {
-            //TODO handling
             LOGGER.warn(e.getMessage());
-            return null;
         }
+        return items;
     }
 
 }

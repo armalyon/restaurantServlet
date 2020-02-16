@@ -31,7 +31,7 @@
             </td>
             <form action="${pageContext.request.contextPath}/admin" method="get">
                 <input class="button" type="submit"
-                       th:value='<fmt:message key="string.admin.confirmation.button.main"/> '>
+                       value='<fmt:message key="string.admin.confirmation.button.main"/> '>
             </form>
             <td>
                 <form action="${pageContext.request.contextPath}/admin_stats" method="get">

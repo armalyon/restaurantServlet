@@ -9,26 +9,29 @@ import java.util.Map;
 
 public class UserMapper implements ObjectMapper<User> {
 
+    private static final String ID = "id";
+    private static final String USERNAME = "username";
+    private static final String PASSWORD = "password";
+    private static final String NAME = "name";
+    private static final String SURNAME = "surname";
+    private static final String ROLE = "role";
+    private static final String REGISTRATION_DATE = "registration_date";
+    private static final String FUNDS = "funds";
+
     @Override
     public User extractFromResultSet(ResultSet rs) throws SQLException {
         return new User.Builder()
-                .id(rs.getLong("id"))
-                .username(rs.getString("username"))
-                .password(rs.getString("password"))
-                .name(rs.getString("name"))
-                .surname(rs.getString("surname"))
-                .role(Role.valueOf(rs.getString("role")))
+                .id(rs.getLong(ID))
+                .username(rs.getString(USERNAME))
+                .password(rs.getString(PASSWORD))
+                .name(rs.getString(NAME))
+                .surname(rs.getString(SURNAME))
+                .role(Role.valueOf(rs.getString(ROLE)))
                 .registrationDate(
-                        rs.getTimestamp("registration_date").toLocalDateTime()
+                        rs.getTimestamp(REGISTRATION_DATE).toLocalDateTime()
                 )
-                .funds(rs.getLong("funds"))
+                .funds(rs.getLong(FUNDS))
                 .build();
     }
 
-
-    @Override
-    public User makeUnique(Map<Long, User> cache, User user) {
-        cache.putIfAbsent(user.getId(), user);
-        return cache.get(user.getId());
-    }
 }
