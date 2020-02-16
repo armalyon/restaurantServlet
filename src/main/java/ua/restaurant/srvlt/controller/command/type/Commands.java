@@ -2,7 +2,7 @@ package ua.restaurant.srvlt.controller.command.type;
 
 import ua.restaurant.srvlt.controller.command.*;
 
-public enum Command {
+public enum Commands {
     ADMIN(new AdminPageCommand()),
     CLIENT( new ClientPageCommand()),
     DENIED(new DeniedCommand()),
@@ -26,7 +26,7 @@ public enum Command {
 
     private ua.restaurant.srvlt.controller.command.Command command;
 
-    Command(ua.restaurant.srvlt.controller.command.Command command) {
+    Commands(ua.restaurant.srvlt.controller.command.Command command) {
         this.command = command;
     }
 

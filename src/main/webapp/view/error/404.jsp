@@ -6,14 +6,14 @@
 <fmt:requestEncoding value="UTF-8"/>
 <fmt:setLocale value="${param.lang}"/>
 <fmt:setBundle basename="strings"/>
-
 <html>
 <head>
-    <title><fmt:message key="string.access.denied"/></title>
+    <title><fmt:message key="string.error.not.found"/></title>
 </head>
 <body>
 <div margin-left="50">
-    <h1><fmt:message key="string.access.denied"/></h1>
+    <h1>404</h1>
+    <h1><fmt:message key="string.error.not.found"/></h1>
 </div>
 </body>
 </html>

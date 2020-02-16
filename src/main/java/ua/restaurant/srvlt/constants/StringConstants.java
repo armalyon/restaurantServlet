@@ -40,6 +40,7 @@ public interface StringConstants {
     String CLIENT_MAIN_PAGE = "/view/client/clientpage.jsp";
     String CLIENT_ORDERS_PAGE = "/view/client/clientorders.jsp";
     String DENIED_PAGE = "/view/error/denied.jsp";
+    String NOT_FOUND_PAGE = "/view/error/404.jsp";
     String INDEX_PAGE = "/view/index.jsp";
     String REGISTRATION_PAGE = "/view/registration.jsp";
     String ADMIN_CONFIRMATION_PAGE = "/view/admin/adminconfirmation.jsp";

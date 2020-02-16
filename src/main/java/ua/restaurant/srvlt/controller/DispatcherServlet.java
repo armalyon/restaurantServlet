@@ -1,7 +1,8 @@
 package ua.restaurant.srvlt.controller;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.controller.command.type.Command;
+import ua.restaurant.srvlt.controller.command.Command;
+import ua.restaurant.srvlt.controller.command.type.Commands;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -14,18 +15,18 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import static ua.restaurant.srvlt.constants.StringConstants.INDEX_PAGE;
-import static ua.restaurant.srvlt.constants.StringConstants.LOGGED_USERS_ATTRIBUTE;
+import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class DispatcherServlet extends HttpServlet {
-    private Map<String, ua.restaurant.srvlt.controller.command.Command> commands = new HashMap<>();
+    private static final String REDIRECT = "redirect:";
+    private Map<String, Command> commands = new HashMap<>();
     private static final Logger LOGGER = Logger.getLogger(DispatcherServlet.class);
 
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()
                 .setAttribute(LOGGED_USERS_ATTRIBUTE, new HashSet<String>());
 
-        Arrays.stream(Command.values())
+        Arrays.stream(Commands.values())
                 .forEach(
                         c -> commands.put(
                                 c.name().toLowerCase(), c.getCommand())
@@ -49,11 +50,11 @@ public class DispatcherServlet extends HttpServlet {
         String path = request.getRequestURI();
         path = path.replaceAll(".*/", "");
         LOGGER.debug(path);
-        ua.restaurant.srvlt.controller.command.Command command = commands.getOrDefault(path,
-                (req) -> INDEX_PAGE);
+        Command command = commands.getOrDefault(path,
+                (req) -> NOT_FOUND_PAGE);
         String page = command.execute(request);
-        if (page.contains("redirect:")){
-            page = page.replace("redirect:", "");
+        if (page.contains(REDIRECT)){
+            page = page.replace(REDIRECT, "");
             response.sendRedirect(page);
         } else
         request.getRequestDispatcher(page).forward(request, response);

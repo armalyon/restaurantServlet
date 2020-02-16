@@ -53,13 +53,11 @@ public class AuthFilter implements Filter {
             } else {
                 if (isPathCorrespondsRole(path, role) || isLogoutRequest ) {
                     filterChain.doFilter(servletRequest, servletResponse);
-
                 } else {
                     CommandUtility.removeUserFromSessionAndContext(httpRequest);
                     throw new SecurityException();
                 }
             }
-
         } else {
             if (isRegistrationRequest || isLoginRequest) {
                 filterChain.doFilter(servletRequest, servletResponse);
@@ -67,7 +65,6 @@ public class AuthFilter implements Filter {
                 httpResponce.sendRedirect("login");
             }
         }
-
     }
 
     private boolean isPathCorrespondsRole(String path, Role role) {
