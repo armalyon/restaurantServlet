@@ -59,39 +59,39 @@ public class Bill {
                 '}';
     }
 
-    public static class  Builder {
+    public static class Builder {
         private Bill newBill;
 
-        public Builder(){
+        public Builder() {
             newBill = new Bill();
         }
 
-        public Builder id(long id){
+        public Builder id(long id) {
             newBill.id = id;
             return this;
         }
 
-        public Builder order(Order order){
+        public Builder order(Order order) {
             newBill.order = order;
             return this;
         }
 
-        public Builder statement(BillStatement statement){
+        public Builder statement(BillStatement statement) {
             newBill.statement = statement;
             return this;
         }
 
-        public Builder invoiceDateTime(LocalDateTime invoiceDateTime){
+        public Builder invoiceDateTime(LocalDateTime invoiceDateTime) {
             newBill.invoiceDateTime = invoiceDateTime;
             return this;
         }
 
-        public Builder paymentDateTime(LocalDateTime paymantDateTime){
+        public Builder paymentDateTime(LocalDateTime paymantDateTime) {
             newBill.paymentDateTime = paymantDateTime;
             return this;
         }
 
-        public Bill build(){
+        public Bill build() {
             return newBill;
         }
 

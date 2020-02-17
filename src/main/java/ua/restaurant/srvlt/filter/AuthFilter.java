@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.controller.filter;
+package ua.restaurant.srvlt.filter;
 
 import ua.restaurant.srvlt.constants.StringConstants;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
@@ -53,7 +53,7 @@ public class AuthFilter implements Filter {
             if (isRegistrationRequest || isLoginRequest) {
                 httpResponce.sendRedirect(LOGOUT);
             } else {
-                if (isPathCorrespondsRole(path, role) || isLogoutRequest ) {
+                if (isPathCorrespondsRole(path, role) || isLogoutRequest) {
                     filterChain.doFilter(servletRequest, servletResponse);
                 } else {
                     CommandUtility.removeUserFromSessionAndContext(httpRequest);

@@ -54,11 +54,11 @@ public class DispatcherServlet extends HttpServlet {
         Command command = commands.getOrDefault(path,
                 (req) -> NOT_FOUND_PAGE);
         String page = command.execute(request);
-        if (page.contains(REDIRECT)){
+        if (page.contains(REDIRECT)) {
             page = page.replace(REDIRECT, "");
             response.sendRedirect(page);
         } else
-        request.getRequestDispatcher(page).forward(request, response);
+            request.getRequestDispatcher(page).forward(request, response);
     }
 
 

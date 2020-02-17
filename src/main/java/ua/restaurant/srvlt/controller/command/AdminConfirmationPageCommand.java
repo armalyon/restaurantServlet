@@ -17,7 +17,7 @@ public class AdminConfirmationPageCommand implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-       int pageNumber = CommandUtility.getPageNumber(request);
+        int pageNumber = CommandUtility.getPageNumber(request);
         Page<Order> page =
                 adminOrderService.getOrdersByStatement(
                         OrderStatement.WAITING, pageNumber, PAGE_SIZE);

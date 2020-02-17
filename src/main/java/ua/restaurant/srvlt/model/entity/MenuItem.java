@@ -73,37 +73,37 @@ public class MenuItem {
             newItem = new MenuItem();
         }
 
-        public Builder id(long id){
+        public Builder id(long id) {
             newItem.id = id;
             return this;
         }
 
-        public Builder name(String name){
+        public Builder name(String name) {
             newItem.name = name;
             return this;
         }
 
-        public Builder nameUa(String nameUa){
+        public Builder nameUa(String nameUa) {
             newItem.nameUA = nameUa;
             return this;
         }
 
-        public Builder weight(long weight){
+        public Builder weight(long weight) {
             newItem.weight = weight;
             return this;
         }
 
-        public Builder price(long price){
+        public Builder price(long price) {
             newItem.price = price;
             return this;
         }
 
-        public Builder storageQuantity(long quantity){
+        public Builder storageQuantity(long quantity) {
             newItem.storageQuantity = quantity;
             return this;
         }
 
-        public MenuItem build(){
+        public MenuItem build() {
             return newItem;
         }
 

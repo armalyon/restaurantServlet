@@ -25,7 +25,7 @@ public class ClientBillsPageCommand implements Command {
                 .getAttribute(USERNAME_ATTRIBUTE);
         int pageNumber = CommandUtility.getPageNumber(request);
 
-        Page<Bill> page = clientBillsService.getBillsByUsername(username, pageNumber, PAGE_SIZE );
+        Page<Bill> page = clientBillsService.getBillsByUsername(username, pageNumber, PAGE_SIZE);
         long funds = 0;
         try {
             funds = userFundsService.getFundsByUsername(username);

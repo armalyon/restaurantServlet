@@ -28,7 +28,7 @@ public class OrderMapper implements ObjectMapper<Order> {
     public Order extractFromResultSet(ResultSet rs) throws SQLException {
         User user = userMapper.extractFromResultSet(rs);
         MenuItem menuItem = menuItemMapper.extractFromResultSet(rs);
-         return new Order.Builder()
+        return new Order.Builder()
                 .menuItem(menuItem)
                 .user(user)
                 .orderStatement(OrderStatement.valueOf(rs.getString(ORDERS_ORDER_STATEMENT)))

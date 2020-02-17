@@ -25,7 +25,7 @@ public class ClientPayCommand implements Command {
         try {
             payBillService.payBill(billId, username);
         } catch (NotEnoughFundsException e) {
-           return CLIENT_BILLS_ERROR_FUNDS_REDIRECT;
+            return CLIENT_BILLS_ERROR_FUNDS_REDIRECT;
         } catch (TransactionException e) {
             return CLIENT_BILLS_ERROR_REDIRECT;
         } catch (UserNotFoundException e) {

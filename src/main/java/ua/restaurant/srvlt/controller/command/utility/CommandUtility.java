@@ -34,7 +34,6 @@ public class CommandUtility {
     }
 
 
-
     public static void removeUserFromSessionAndContext(HttpServletRequest request) {
         HttpSession session = request.getSession();
         Set<String> loggedUsers = CommandUtility.getLoggedUsersSet(request);

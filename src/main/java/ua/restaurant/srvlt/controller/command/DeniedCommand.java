@@ -9,7 +9,7 @@ import static ua.restaurant.srvlt.constants.StringConstants.DENIED_PAGE;
 public class DeniedCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-       CommandUtility.removeUserFromSessionAndContext(request);
+        CommandUtility.removeUserFromSessionAndContext(request);
         return DENIED_PAGE;
     }
 }

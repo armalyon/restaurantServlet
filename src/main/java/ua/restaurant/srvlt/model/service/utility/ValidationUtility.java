@@ -15,13 +15,13 @@ import static ua.restaurant.srvlt.constants.StringConstants.*;
 public class ValidationUtility {
     private static final Logger LOGGER = Logger.getLogger(ValidationUtility.class);
 
-     private ResourceBundle bundle = ResourceBundle.getBundle("regexes");
+    private ResourceBundle bundle = ResourceBundle.getBundle("regexes");
 
 
-    public  boolean isPasswordCanBeUsed(String password,
+    public boolean isPasswordCanBeUsed(String password,
                                        String confirmation
     ) throws ConfirmationDoesNotMatchException, RegexMismatchException {
-            if (!password.equals(confirmation))
+        if (!password.equals(confirmation))
             throw new ConfirmationDoesNotMatchException("Password and confirmation do not match");
 
         if (!getPattern(PASSWORD_REGEX).matcher(password).matches()) {
@@ -30,7 +30,7 @@ public class ValidationUtility {
         return true;
     }
 
-    public  boolean isUsernameValid(String username) throws RegexMismatchException {
+    public boolean isUsernameValid(String username) throws RegexMismatchException {
         if (!getPattern(USERNAME_REGEX).matcher(username).matches()) {
             throw new RegexMismatchException("RegEx mismatch", USERNAME_FIELD);
         }
@@ -41,7 +41,7 @@ public class ValidationUtility {
         Pattern pattern = getPattern(NAME_REGEX);
         if (!pattern.matcher(name).matches() ||
                 !pattern.matcher(surname).matches()) throw new RegexMismatchException("RegEx mismatch", NAME_FIELD);
-            return true;
+        return true;
     }
 
     private Pattern getPattern(String regexContainer) {

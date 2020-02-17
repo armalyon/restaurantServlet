@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.controller.filter;
+package ua.restaurant.srvlt.filter;
 
 
 import javax.servlet.*;

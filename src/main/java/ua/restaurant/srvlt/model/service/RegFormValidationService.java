@@ -14,7 +14,7 @@ public class RegFormValidationService {
 
 
     public boolean isRegFormValid(AccountDTO accountDTO)
-                    throws ConfirmationDoesNotMatchException, RegexMismatchException {
+            throws ConfirmationDoesNotMatchException, RegexMismatchException {
         LOGGER.debug(accountDTO);
         return validationUtility
                 .isPasswordCanBeUsed(accountDTO.getPassword(), accountDTO.getPasswordConfirmation())

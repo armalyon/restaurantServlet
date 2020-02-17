@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class BillMapper implements ObjectMapper <Bill> {
+public class BillMapper implements ObjectMapper<Bill> {
     private static final String ID = "id";
     private static final String STATEMENT = "statement";
     private static final String INVOICE_DATE_TIME = "invoice_date_time";
@@ -33,11 +33,10 @@ public class BillMapper implements ObjectMapper <Bill> {
     }
 
     private LocalDateTime getPaymentDateTimeFromResultSet(ResultSet rs) throws SQLException {
-       Timestamp ts = rs.getTimestamp(PAYMENT_DATE_TIME);
-       if (ts != null) {
-           return ts.toLocalDateTime();
-       }
-       else return null;
+        Timestamp ts = rs.getTimestamp(PAYMENT_DATE_TIME);
+        if (ts != null) {
+            return ts.toLocalDateTime();
+        } else return null;
     }
 
 }

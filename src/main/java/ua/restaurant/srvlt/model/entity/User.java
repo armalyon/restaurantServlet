@@ -109,51 +109,51 @@ public class User {
     public static class Builder {
         private User newUser;
 
-        public Builder(){
+        public Builder() {
             newUser = new User();
         }
 
-        public Builder id(Long id){
+        public Builder id(Long id) {
             newUser.id = id;
             return this;
         }
 
-        public Builder username(String username){
+        public Builder username(String username) {
             newUser.username = username;
             return this;
         }
 
-        public Builder password(String password){
+        public Builder password(String password) {
             newUser.password = password;
             return this;
         }
 
-        public Builder name(String name){
+        public Builder name(String name) {
             newUser.name = name;
             return this;
         }
 
-        public Builder surname(String surname){
+        public Builder surname(String surname) {
             newUser.surname = surname;
             return this;
         }
 
-        public Builder role(Role role){
+        public Builder role(Role role) {
             newUser.role = role;
             return this;
         }
 
-        public Builder registrationDate(LocalDateTime date){
+        public Builder registrationDate(LocalDateTime date) {
             newUser.registrationDate = date;
             return this;
         }
 
-        public Builder funds(long funds){
+        public Builder funds(long funds) {
             newUser.funds = funds;
             return this;
         }
 
-        public User build(){
+        public User build() {
             return newUser;
         }
 

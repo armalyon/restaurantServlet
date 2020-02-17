@@ -27,7 +27,7 @@ public class RegisterCommand implements Command {
             userRegistrationService.saveNewUser(accountDTO);
         } catch (ConfirmationDoesNotMatchException e) {
             request.setAttribute(ERROR, PASSWORD_CONFIRMATION_ATTRIBUTE);
-            return REGISTRATION_PAGE ;
+            return REGISTRATION_PAGE;
         } catch (RegexMismatchException e) {
             request.setAttribute(ERROR, e.getField());
             return REGISTRATION_PAGE;

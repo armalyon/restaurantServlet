@@ -69,32 +69,32 @@ public class UserInfoDTO {
             newDto = new UserInfoDTO();
         }
 
-        public Builder username(String username){
-         newDto.username = username;
-         return this;
+        public Builder username(String username) {
+            newDto.username = username;
+            return this;
         }
 
-        public  Builder name(String name){
+        public Builder name(String name) {
             newDto.name = name;
             return this;
         }
 
-        public Builder surname( String surname){
+        public Builder surname(String surname) {
             newDto.surname = surname;
             return this;
         }
 
-        public Builder registrationDate(LocalDateTime registrationDate){
+        public Builder registrationDate(LocalDateTime registrationDate) {
             newDto.registrationDate = registrationDate;
             return this;
         }
 
-        public Builder totalOrders(int totalOrders){
+        public Builder totalOrders(int totalOrders) {
             newDto.ordersTotalNumber = totalOrders;
             return this;
         }
 
-        public UserInfoDTO build(){
+        public UserInfoDTO build() {
             return newDto;
         }
     }

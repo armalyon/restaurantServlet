@@ -49,32 +49,32 @@ public class AccountDTO {
             newAccountDTO = new AccountDTO();
         }
 
-        public Builder username(String username){
+        public Builder username(String username) {
             newAccountDTO.username = username;
             return this;
         }
 
-        public Builder name(String name){
+        public Builder name(String name) {
             newAccountDTO.name = name;
             return this;
         }
 
-        public Builder surname(String surname){
+        public Builder surname(String surname) {
             newAccountDTO.surname = surname;
             return this;
         }
 
-        public Builder password(String password){
+        public Builder password(String password) {
             newAccountDTO.password = password;
             return this;
         }
 
-        public Builder passwordConfirmation(String passwordConfirmation){
+        public Builder passwordConfirmation(String passwordConfirmation) {
             newAccountDTO.passwordConfirmation = passwordConfirmation;
             return this;
         }
 
-        public AccountDTO build(){
+        public AccountDTO build() {
             return newAccountDTO;
         }
 

@@ -25,9 +25,9 @@ public class AdminConfirmOrderCommand implements Command {
             }
         } catch (IdNotFoundExeption e) {
             LOGGER.error(e.getMessage());
-           return ADMIN_CONFIRMATION_ERROR_DB_REDIRECT;
+            return ADMIN_CONFIRMATION_ERROR_DB_REDIRECT;
         } catch (NotEnoughItemsException e) {
-           return ADMIN_CONFIRMATION_ERROR_ITEMS_REDIRECT;
+            return ADMIN_CONFIRMATION_ERROR_ITEMS_REDIRECT;
         }
         return ADMIN_CONFIRMATION_REDIRECT;
     }

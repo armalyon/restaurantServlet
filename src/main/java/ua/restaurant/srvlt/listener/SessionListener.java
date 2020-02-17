@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.controller.listener;
+package ua.restaurant.srvlt.listener;
 
 import org.apache.log4j.Logger;
 

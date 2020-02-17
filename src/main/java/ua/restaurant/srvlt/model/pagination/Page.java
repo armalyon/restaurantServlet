@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Page<E> {
     private int totalRecords;
-    private  int currentPage;
+    private int currentPage;
     private int recordsPerPage;
     private List<E> records;
     private int totalPages;
@@ -20,11 +20,11 @@ public class Page<E> {
         totalPages = totalPages();
     }
 
-    private int totalPages(){
+    private int totalPages() {
         int total;
         if (totalRecords > 0) {
-            total = (int) Math.ceil((double)totalRecords/recordsPerPage);
-        } else total =1;
+            total = (int) Math.ceil((double) totalRecords / recordsPerPage);
+        } else total = 1;
         return total;
     }
 

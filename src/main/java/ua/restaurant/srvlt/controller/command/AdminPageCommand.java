@@ -18,7 +18,7 @@ public class AdminPageCommand implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         MenuDTO menuDTO = menuService.getMenu();
-       request.setAttribute(MENU_DTO_ATTRIBUTE, menuDTO);
+        request.setAttribute(MENU_DTO_ATTRIBUTE, menuDTO);
         return ADMIN_MAIN_PAGE;
     }
 }

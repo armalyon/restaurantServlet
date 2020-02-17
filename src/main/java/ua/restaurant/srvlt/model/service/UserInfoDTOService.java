@@ -13,7 +13,6 @@ public class UserInfoDTOService {
     private OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
 
 
-
     public UserInfoDTO getUserInfDTOByUSername(String username) throws UserNotFoundException {
         User user = userDao
                 .findUserByUsername(username)
