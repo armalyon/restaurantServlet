@@ -3,6 +3,7 @@ package ua.restaurant.srvlt.constants;
 public interface StringConstants {
 
     //Attributes
+    public static final String LANG_ATTRIBUTE = "lang";
     String ROLE_ATTRIBUTE = "role";
     String USERNAME_ATTRIBUTE = "username";
     String NAME_ATTRIBUTE = "name";

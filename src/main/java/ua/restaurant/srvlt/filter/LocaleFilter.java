@@ -6,7 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static ua.restaurant.srvlt.constants.StringConstants.LANG_ATTRIBUTE;
+
 public class LocaleFilter implements Filter {
+
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -19,9 +23,9 @@ public class LocaleFilter implements Filter {
         HttpServletRequest httpReq = (HttpServletRequest) servletRequest;
         HttpServletResponse httpResp = (HttpServletResponse) servletResponse;
 
-        String localeName = servletRequest.getParameter("lang");
+        String localeName = servletRequest.getParameter(LANG_ATTRIBUTE);
         if (localeName != null) {
-            httpReq.getSession().setAttribute("lang", localeName);
+            httpReq.getSession().setAttribute(LANG_ATTRIBUTE, localeName);
         }
         filterChain.doFilter(httpReq, httpResp);
     }
