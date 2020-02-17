@@ -7,12 +7,7 @@ import ua.restaurant.srvlt.model.entity.type.BillStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Map;
-
-import static java.time.ZoneId.systemDefault;
 
 public class BillMapper implements ObjectMapper <Bill> {
     private static final String ID = "id";

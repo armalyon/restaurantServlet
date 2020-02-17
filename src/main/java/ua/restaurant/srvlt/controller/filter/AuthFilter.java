@@ -1,6 +1,5 @@
 package ua.restaurant.srvlt.controller.filter;
 
-import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.constants.StringConstants;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 import ua.restaurant.srvlt.model.entity.type.Role;
@@ -12,7 +11,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 import static ua.restaurant.srvlt.constants.StringConstants.*;
-import static ua.restaurant.srvlt.model.entity.type.Role.*;
+import static ua.restaurant.srvlt.model.entity.type.Role.ADMIN;
+import static ua.restaurant.srvlt.model.entity.type.Role.CLIENT;
 
 public class AuthFilter implements Filter {
     private static final String LOGOUT = "/logout";

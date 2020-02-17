@@ -5,7 +5,6 @@ import ua.restaurant.srvlt.model.entity.type.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class UserMapper implements ObjectMapper<User> {
 

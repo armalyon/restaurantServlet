@@ -2,7 +2,6 @@ package ua.restaurant.srvlt.model.entity;
 
 import ua.restaurant.srvlt.model.entity.type.BillStatement;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 

@@ -2,12 +2,12 @@ package ua.restaurant.srvlt.model.service;
 
 
 import org.mindrot.jbcrypt.BCrypt;
+import ua.restaurant.srvlt.exceptions.UserExistsException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.UserDao;
-import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.dto.AccountDTO;
+import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.entity.type.Role;
-import ua.restaurant.srvlt.exceptions.UserExistsException;
 
 import java.time.LocalDateTime;
 

@@ -15,7 +15,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.LOGGED_USERS_ATTRIBUTE;
+import static ua.restaurant.srvlt.constants.StringConstants.NOT_FOUND_PAGE;
 
 public class DispatcherServlet extends HttpServlet {
     private static final String REDIRECT = "redirect:";

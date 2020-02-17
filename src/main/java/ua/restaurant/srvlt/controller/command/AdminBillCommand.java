@@ -7,7 +7,6 @@ import ua.restaurant.srvlt.model.service.AdminBillService;
 import javax.servlet.http.HttpServletRequest;
 
 import static ua.restaurant.srvlt.constants.StringConstants.*;
-import static ua.restaurant.srvlt.constants.StringConstants.ADMIN_CONFIRMED_REDIRECT;
 
 public class AdminBillCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(AdminBillCommand.class);

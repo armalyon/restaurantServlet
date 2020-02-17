@@ -8,7 +8,6 @@ import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalTime;
-import java.util.Map;
 
 public class OrderMapper implements ObjectMapper<Order> {
     private static final String ORDERS_ORDER_STATEMENT = "orders.order_statement";

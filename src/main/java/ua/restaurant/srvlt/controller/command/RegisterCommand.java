@@ -1,14 +1,13 @@
 package ua.restaurant.srvlt.controller.command;
 
-import ua.restaurant.srvlt.model.dto.AccountDTO;
-import ua.restaurant.srvlt.model.service.RegFormValidationService;
-import ua.restaurant.srvlt.model.service.UserRegistrationService;
 import ua.restaurant.srvlt.exceptions.ConfirmationDoesNotMatchException;
 import ua.restaurant.srvlt.exceptions.RegexMismatchException;
 import ua.restaurant.srvlt.exceptions.UserExistsException;
+import ua.restaurant.srvlt.model.dto.AccountDTO;
+import ua.restaurant.srvlt.model.service.RegFormValidationService;
+import ua.restaurant.srvlt.model.service.UserRegistrationService;
 
 import javax.servlet.http.HttpServletRequest;
-
 import java.nio.charset.StandardCharsets;
 
 import static ua.restaurant.srvlt.constants.StringConstants.*;

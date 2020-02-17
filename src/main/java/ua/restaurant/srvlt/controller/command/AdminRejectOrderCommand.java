@@ -6,7 +6,8 @@ import ua.restaurant.srvlt.model.service.OrderStatementService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.ADMIN_CONFIRMATION_REDIRECT;
+import static ua.restaurant.srvlt.constants.StringConstants.ID_ATTRIBUTE;
 
 public class AdminRejectOrderCommand implements Command {
     OrderStatementService orderStatementService = new OrderStatementService();

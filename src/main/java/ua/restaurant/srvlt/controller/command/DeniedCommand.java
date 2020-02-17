@@ -3,7 +3,8 @@ package ua.restaurant.srvlt.controller.command;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 
 import javax.servlet.http.HttpServletRequest;
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+
+import static ua.restaurant.srvlt.constants.StringConstants.DENIED_PAGE;
 
 public class DeniedCommand implements Command {
     @Override

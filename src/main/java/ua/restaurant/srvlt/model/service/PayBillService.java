@@ -2,7 +2,6 @@ package ua.restaurant.srvlt.model.service;
 
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.constants.StringConstants;
 import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
 import ua.restaurant.srvlt.exceptions.NotEnoughFundsException;
 import ua.restaurant.srvlt.exceptions.TransactionException;
@@ -11,11 +10,10 @@ import ua.restaurant.srvlt.model.dao.BillDao;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.UserDao;
 import ua.restaurant.srvlt.model.entity.Bill;
-import ua.restaurant.srvlt.model.entity.User;
 
 import java.time.LocalDateTime;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.ADMIN_USERNAME;
 import static ua.restaurant.srvlt.model.entity.type.BillStatement.PAYED;
 
 public class PayBillService {

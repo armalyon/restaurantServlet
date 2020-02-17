@@ -1,7 +1,6 @@
 package ua.restaurant.srvlt.model.service;
 
 
-import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.OrderDao;
 import ua.restaurant.srvlt.model.dto.OrdersDTO;

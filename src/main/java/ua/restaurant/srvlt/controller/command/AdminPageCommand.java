@@ -6,7 +6,8 @@ import ua.restaurant.srvlt.model.service.MenuService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constants.StringConstants.ADMIN_MAIN_PAGE;
+import static ua.restaurant.srvlt.constants.StringConstants.MENU_DTO_ATTRIBUTE;
 
 public class AdminPageCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(AdminPageCommand.class);

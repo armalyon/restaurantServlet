@@ -1,7 +1,7 @@
 package ua.restaurant.srvlt.model.service;
 
-import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
+import ua.restaurant.srvlt.exceptions.NotEnoughItemsException;
 import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.MenuItemDao;
@@ -11,7 +11,6 @@ import ua.restaurant.srvlt.model.entity.MenuItem;
 import ua.restaurant.srvlt.model.entity.Order;
 import ua.restaurant.srvlt.model.entity.User;
 import ua.restaurant.srvlt.model.entity.type.OrderStatement;
-import ua.restaurant.srvlt.exceptions.NotEnoughItemsException;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
