@@ -1,9 +1,9 @@
 package ua.restaurant.srvlt.controller.command;
 
+import ua.restaurant.srvlt.dto.AccountDTO;
 import ua.restaurant.srvlt.exceptions.ConfirmationDoesNotMatchException;
 import ua.restaurant.srvlt.exceptions.RegexMismatchException;
 import ua.restaurant.srvlt.exceptions.UserExistsException;
-import ua.restaurant.srvlt.model.dto.AccountDTO;
 import ua.restaurant.srvlt.model.service.RegFormValidationService;
 import ua.restaurant.srvlt.model.service.UserRegistrationService;
 

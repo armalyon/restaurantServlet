@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.model.pagination;
+package ua.restaurant.srvlt.dto.pagination;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.model.dto.MenuDTO;
-import ua.restaurant.srvlt.model.dto.OrdersDTO;
+import ua.restaurant.srvlt.dto.MenuDTO;
+import ua.restaurant.srvlt.dto.OrdersDTO;
 import ua.restaurant.srvlt.model.service.MenuService;
 import ua.restaurant.srvlt.model.service.OrdersService;
 

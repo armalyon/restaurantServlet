@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.model.dto;
+package ua.restaurant.srvlt.dto;
 
 
 import ua.restaurant.srvlt.model.entity.Order;

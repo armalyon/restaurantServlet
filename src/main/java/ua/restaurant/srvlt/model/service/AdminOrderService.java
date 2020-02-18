@@ -1,10 +1,10 @@
 package ua.restaurant.srvlt.model.service;
 
+import ua.restaurant.srvlt.dto.pagination.Page;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.OrderDao;
 import ua.restaurant.srvlt.model.entity.Order;
 import ua.restaurant.srvlt.model.entity.type.OrderStatement;
-import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.util.List;
 

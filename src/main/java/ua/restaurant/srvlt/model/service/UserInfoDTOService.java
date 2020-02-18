@@ -1,11 +1,11 @@
 package ua.restaurant.srvlt.model.service;
 
 
+import ua.restaurant.srvlt.dto.UserInfoDTO;
 import ua.restaurant.srvlt.exceptions.UserNotFoundException;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.dao.OrderDao;
 import ua.restaurant.srvlt.model.dao.UserDao;
-import ua.restaurant.srvlt.model.dto.UserInfoDTO;
 import ua.restaurant.srvlt.model.entity.User;
 
 public class UserInfoDTOService {

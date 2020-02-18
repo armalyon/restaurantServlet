@@ -1,9 +1,9 @@
 package ua.restaurant.srvlt.model.service;
 
+import ua.restaurant.srvlt.dto.pagination.Page;
 import ua.restaurant.srvlt.model.dao.BillDao;
 import ua.restaurant.srvlt.model.dao.DaoFactory;
 import ua.restaurant.srvlt.model.entity.Bill;
-import ua.restaurant.srvlt.model.pagination.Page;
 
 import java.util.List;
 
