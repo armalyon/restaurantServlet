@@ -6,7 +6,9 @@ import ua.restaurant.srvlt.exceptions.UserExistsException;
 import ua.restaurant.srvlt.model.dto.AccountDTO;
 import ua.restaurant.srvlt.model.service.RegFormValidationService;
 import ua.restaurant.srvlt.model.service.UserRegistrationService;
+
 import javax.servlet.http.HttpServletRequest;
+
 import static ua.restaurant.srvlt.constants.StringConstants.*;
 
 public class RegisterCommand implements Command {
@@ -19,8 +21,8 @@ public class RegisterCommand implements Command {
         AccountDTO accountDTO = getAccountDTO(request);
 
         try {
-            regFormValidationService.isRegFormValid(accountDTO);
-            userRegistrationService.saveNewUser(accountDTO);
+            if (regFormValidationService.isRegFormValid(accountDTO))
+                userRegistrationService.saveNewUser(accountDTO);
         } catch (ConfirmationDoesNotMatchException e) {
             request.setAttribute(ERROR, PASSWORD_CONFIRMATION_ATTRIBUTE);
             return REGISTRATION_PAGE;
@@ -39,7 +41,7 @@ public class RegisterCommand implements Command {
         return new AccountDTO.Builder()
                 .username(request.getParameter(USERNAME_ATTRIBUTE))
                 .name(request.getParameter(NAME_ATTRIBUTE))
-                .surname( request.getParameter(SURNAME_ATTRIBUTE))
+                .surname(request.getParameter(SURNAME_ATTRIBUTE))
                 .password(request.getParameter(PASSWORD_ATTRIBUTE))
                 .passwordConfirmation(request.getParameter(PASSWORD_CONFIRMATION_ATTRIBUTE))
                 .build();
