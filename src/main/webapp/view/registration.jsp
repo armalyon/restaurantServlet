@@ -85,7 +85,7 @@
         </form>
         <form action="${pageContext.request.contextPath}/login_page" method="get">
             <div class>
-                <input type="submit" value='<fmt:message key="string.login.button.login"/>' class="button_center"/>
+                <input type="submit" value='<fmt:message key="string.login.button.login"/>' class="button"/>
             </div>
         </form>
 
