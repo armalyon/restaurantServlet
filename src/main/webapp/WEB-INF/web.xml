@@ -15,15 +15,6 @@
     </servlet-mapping>
 
     <filter>
-        <filter-name>LocaleFilter</filter-name>
-        <filter-class>ua.restaurant.srvlt.filter.LocaleFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>LocaleFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
-
-    <filter>
         <filter-name>EncodingFilter</filter-name>
         <filter-class>ua.restaurant.srvlt.filter.EncodingFilter</filter-class>
         <init-param>
@@ -33,6 +24,15 @@
     </filter>
     <filter-mapping>
         <filter-name>EncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>LocaleFilter</filter-name>
+        <filter-class>ua.restaurant.srvlt.filter.LocaleFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>LocaleFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
@@ -60,8 +60,18 @@
     <error-page>
         <exception-type>
             java.lang.SecurityException
-        </exception-type >
+        </exception-type>
         <location>/denied</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/view/error/500.jsp</location>
+    </error-page>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/view/error/404.jsp</location>
     </error-page>
 
     <welcome-file-list>
