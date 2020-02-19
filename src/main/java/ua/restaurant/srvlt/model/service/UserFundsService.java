@@ -10,7 +10,7 @@ public class UserFundsService {
     public Long getFundsByUsername(String username) throws UserNotFoundException {
         return userDao
                 .findUserByUsername(username)
-                .orElseThrow(() -> new UserNotFoundException("ERROR USERNNOT FOUND ", username))
+                .orElseThrow(() -> new UserNotFoundException("ERROR USERNOT FOUND ", username))
                 .getFunds();
     }
 }

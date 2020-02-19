@@ -1,6 +1,5 @@
 package ua.restaurant.srvlt.model.service;
 
-import javafx.util.Builder;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
