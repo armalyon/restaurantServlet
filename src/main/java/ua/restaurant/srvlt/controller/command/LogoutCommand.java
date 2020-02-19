@@ -6,7 +6,7 @@ import ua.restaurant.srvlt.model.entity.type.Role;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constant.StringConstants.*;
 
 public class LogoutCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(LogoutCommand.class);

@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.constants;
+package ua.restaurant.srvlt.constant;
 
 public interface StringConstants {
 
@@ -36,20 +36,20 @@ public interface StringConstants {
 
 
     //Pages
-    String LOGIN_PAGE = "/view/login.jsp";
-    String ADMIN_MAIN_PAGE = "/view/admin/adminpage.jsp";
-    String CLIENT_MAIN_PAGE = "/view/client/clientpage.jsp";
-    String CLIENT_ORDERS_PAGE = "/view/client/clientorders.jsp";
-    String DENIED_PAGE = "/view/error/denied.jsp";
-    String NOT_FOUND_PAGE = "/view/error/404.jsp";
-    String INTERNAL_ERROR_PAGE = "/view/error/500.jsp";
-    String INDEX_PAGE = "/view/index.jsp";
-    String REGISTRATION_PAGE = "/view/registration.jsp";
-    String ADMIN_CONFIRMATION_PAGE = "/view/admin/adminconfirmation.jsp";
-    String ADMIN_CONFIRMED_PAGE = "/view/admin/adminconfirmed.jsp";
-    String CLIENT_BILLS_PAGE = "/view/client/clientbills.jsp";
-    String ADMIN_USERS_PAGE = "/view/admin/adminusers.jsp";
-    String ADMIN_STATS_PAGE = "/view/admin/adminstats.jsp";
+    String LOGIN_PAGE = "/WEB-INF/view/login.jsp";
+    String ADMIN_MAIN_PAGE = "/WEB-INF/view/admin/adminpage.jsp";
+    String CLIENT_MAIN_PAGE = "/WEB-INF/view/client/clientpage.jsp";
+    String CLIENT_ORDERS_PAGE = "/WEB-INF/view/client/clientorders.jsp";
+    String DENIED_PAGE = "/WEB-INF/view/error/denied.jsp";
+    String NOT_FOUND_PAGE = "/WEB-INF/view/error/404.jsp";
+    String INTERNAL_ERROR_PAGE = "/WEB-INF/view/error/500.jsp";
+    String INDEX_PAGE = "/WEB-INF/view/index.jsp";
+    String REGISTRATION_PAGE = "/WEB-INF/view/registration.jsp";
+    String ADMIN_CONFIRMATION_PAGE = "/WEB-INF/view/admin/adminconfirmation.jsp";
+    String ADMIN_CONFIRMED_PAGE = "/WEB-INF/view/admin/adminconfirmed.jsp";
+    String CLIENT_BILLS_PAGE = "/WEB-INF/view/client/clientbills.jsp";
+    String ADMIN_USERS_PAGE = "/WEB-INF/view/admin/adminusers.jsp";
+    String ADMIN_STATS_PAGE = "/WEB-INF/view/admin/adminstats.jsp";
 
     //Redirects
 

@@ -13,8 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static ua.restaurant.srvlt.constants.DBConstants.FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN;
-import static ua.restaurant.srvlt.constants.DBConstants.FIND_MENU_ITEM_BY_ID;
+import static ua.restaurant.srvlt.constant.DBConstants.FIND_MENU_ITEMS_BY_STORAGE_QUANTITY_GREATER_THAN;
+import static ua.restaurant.srvlt.constant.DBConstants.FIND_MENU_ITEM_BY_ID;
 
 public class JDBCMenuItemDao implements MenuItemDao {
     private static final Logger LOGGER = Logger.getLogger(JDBCMenuItemDao.class);

@@ -1,6 +1,6 @@
 package ua.restaurant.srvlt.filter;
 
-import ua.restaurant.srvlt.constants.StringConstants;
+import ua.restaurant.srvlt.constant.StringConstants;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 import ua.restaurant.srvlt.model.entity.type.Role;
 
@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constant.StringConstants.*;
 import static ua.restaurant.srvlt.model.entity.type.Role.ADMIN;
 import static ua.restaurant.srvlt.model.entity.type.Role.CLIENT;
 

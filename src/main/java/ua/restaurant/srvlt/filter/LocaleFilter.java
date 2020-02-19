@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static ua.restaurant.srvlt.constants.StringConstants.LANG_ATTRIBUTE;
+import static ua.restaurant.srvlt.constant.StringConstants.LANG_ATTRIBUTE;
 
 public class LocaleFilter implements Filter {
 

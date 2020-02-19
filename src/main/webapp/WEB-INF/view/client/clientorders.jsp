@@ -13,7 +13,7 @@
 <fmt:setLocale value="${lang}"/>
 <fmt:setBundle basename="strings"/>
 <style>
-    <%@ include file="/view/css/userpanel.css" %>
+    <%@ include file="/WEB-INF/view/css/userpanel.css" %>
 </style>
 
 <html>

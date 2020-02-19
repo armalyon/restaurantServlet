@@ -10,7 +10,7 @@ import ua.restaurant.srvlt.model.service.UserFundsService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constant.StringConstants.*;
 
 public class ClientBillsPageCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(ClientBillsPageCommand.class);

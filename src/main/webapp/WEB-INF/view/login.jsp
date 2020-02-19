@@ -9,7 +9,7 @@
 <fmt:setBundle basename="strings"/>
 
 <style>
-    <%@ include file="/view/css/form.css" %>
+    <%@ include file="/WEB-INF/view/css/form.css" %>
 </style>
 <html>
 <head>

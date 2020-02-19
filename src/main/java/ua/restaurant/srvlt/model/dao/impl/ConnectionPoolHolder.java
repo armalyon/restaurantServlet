@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static ua.restaurant.srvlt.constants.DBConstants.*;
+import static ua.restaurant.srvlt.constant.DBConstants.*;
 
 public class ConnectionPoolHolder {
     private static ResourceBundle bundle = ResourceBundle.getBundle("dbsettings");

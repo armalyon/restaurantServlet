@@ -7,7 +7,7 @@ import ua.restaurant.srvlt.model.service.OrdersService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constant.StringConstants.*;
 
 public class ClientOrdersPageCommand implements Command {
     private static final int PAGE_SIZE = 5;

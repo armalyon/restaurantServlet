@@ -9,7 +9,7 @@ import ua.restaurant.srvlt.model.service.UserRegistrationService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constant.StringConstants.*;
 
 public class RegisterCommand implements Command {
     private RegFormValidationService regFormValidationService = new RegFormValidationService();

@@ -9,7 +9,7 @@ import ua.restaurant.srvlt.model.service.LoginService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static ua.restaurant.srvlt.constants.StringConstants.*;
+import static ua.restaurant.srvlt.constant.StringConstants.*;
 import static ua.restaurant.srvlt.model.entity.type.Role.*;
 
 public class LoginCommand implements Command {

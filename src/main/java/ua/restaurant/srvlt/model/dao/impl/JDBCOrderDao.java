@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static ua.restaurant.srvlt.constants.DBConstants.*;
+import static ua.restaurant.srvlt.constant.DBConstants.*;
 
 public class JDBCOrderDao implements OrderDao {
     private static final Logger LOGGER = Logger.getLogger(JDBCOrderDao.class);

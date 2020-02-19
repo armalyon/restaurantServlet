@@ -1,7 +1,7 @@
 package ua.restaurant.srvlt.listener;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.constants.StringConstants;
+import ua.restaurant.srvlt.constant.StringConstants;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;

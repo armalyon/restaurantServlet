@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSessionListener;
 import java.util.HashSet;
 import java.util.Set;
 
-import static ua.restaurant.srvlt.constants.StringConstants.LOGGED_USERS_ATTRIBUTE;
-import static ua.restaurant.srvlt.constants.StringConstants.USERNAME_ATTRIBUTE;
+import static ua.restaurant.srvlt.constant.StringConstants.LOGGED_USERS_ATTRIBUTE;
+import static ua.restaurant.srvlt.constant.StringConstants.USERNAME_ATTRIBUTE;
 
 public class SessionListener implements HttpSessionListener {
     private static final Logger LOGGER = Logger.getLogger(SessionListener.class);

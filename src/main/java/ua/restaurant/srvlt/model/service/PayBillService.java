@@ -13,7 +13,7 @@ import ua.restaurant.srvlt.model.entity.Bill;
 
 import java.time.LocalDateTime;
 
-import static ua.restaurant.srvlt.constants.StringConstants.ADMIN_USERNAME;
+import static ua.restaurant.srvlt.constant.StringConstants.ADMIN_USERNAME;
 import static ua.restaurant.srvlt.model.entity.type.BillStatement.PAYED;
 
 public class PayBillService {

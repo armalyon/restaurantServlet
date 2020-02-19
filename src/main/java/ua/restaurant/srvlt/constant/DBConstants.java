@@ -1,4 +1,4 @@
-package ua.restaurant.srvlt.constants;
+package ua.restaurant.srvlt.constant;
 
 public interface DBConstants {
     String DB_SET_URL = "db.set.url";

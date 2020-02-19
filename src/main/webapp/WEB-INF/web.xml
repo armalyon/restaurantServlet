@@ -66,16 +66,16 @@
 
     <error-page>
         <error-code>500</error-code>
-        <location>/view/error/500.jsp</location>
+        <location>/WEB-INF/view/error/500.jsp</location>
     </error-page>
 
     <error-page>
         <error-code>404</error-code>
-        <location>/view/error/404.jsp</location>
+        <location>/WEB-INF/view/error/404.jsp</location>
     </error-page>
 
     <welcome-file-list>
-        <welcome-file>/view/index.jsp</welcome-file>
+        <welcome-file>/WEB-INF/view/index.jsp</welcome-file>
     </welcome-file-list>
 
 </web-app>
