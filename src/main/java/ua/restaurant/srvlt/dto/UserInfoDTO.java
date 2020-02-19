@@ -2,6 +2,7 @@ package ua.restaurant.srvlt.dto;
 
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class UserInfoDTO {
     private String username;
@@ -60,6 +61,22 @@ public class UserInfoDTO {
                 ", registrationDate=" + registrationDate +
                 ", ordersTotalNumber=" + ordersTotalNumber +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof UserInfoDTO)) return false;
+        UserInfoDTO that = (UserInfoDTO) o;
+        return ordersTotalNumber == that.ordersTotalNumber &&
+                username.equals(that.username) &&
+                name.equals(that.name) &&
+                surname.equals(that.surname) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, name, surname, ordersTotalNumber);
     }
 
     public static class Builder {
