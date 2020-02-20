@@ -12,6 +12,7 @@ import ua.restaurant.srvlt.model.entity.type.BillStatement;
 import java.time.LocalDateTime;
 
 import static ua.restaurant.srvlt.model.entity.type.OrderStatement.INVOICED;
+import static ua.restaurant.srvlt.model.entity.type.OrderStatement.REJECTED;
 
 public class AdminBillService {
     private static final Logger LOGGER = Logger.getLogger(AdminBillService.class);
@@ -22,9 +23,7 @@ public class AdminBillService {
         Order order = orderDao
                 .findById(orderId).orElseThrow(() -> new IdNotFoundExeption(AdminBillService.class.getName(), orderId));
         if (order.getOrderStatement()
-                .equals(
-                        INVOICED)) {
-            LOGGER.error("Order statement mismatch. ID:" + orderId);
+                .equals(INVOICED ) || order.getOrderStatement().equals(REJECTED)) {
             return false;
         } else
             billDao.create(createNewBill(order));

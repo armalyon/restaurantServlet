@@ -17,11 +17,15 @@ public class AdminBillCommand implements Command {
 
         long billId = Long.parseLong(request.getParameter(ID_ATTRIBUTE));
         try {
-            adminBillService.saveNewBill(billId);
+            if (adminBillService.saveNewBill(billId))
+                return ADMIN_CONFIRMED_REDIRECT;
+            else {
+                LOGGER.warn("Order statement mismatch when tried to create new bill");
+                return ADMIN_CONFIRMED_REDIRECT;
+            }
         } catch (IdNotFoundExeption e) {
             LOGGER.error(e.getMessage());
             return ADMIN_CONFIRMED_REDIRECT_ERROR;
         }
-        return ADMIN_CONFIRMED_REDIRECT;
     }
 }
