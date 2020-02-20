@@ -42,7 +42,7 @@ public class AdminOrderServiceTest {
             .build();
 
     private static final Order ORDER_2 = new Order.Builder()
-            .id(1L)
+            .id(2L)
             .menuItem(MENU_ITEM)
             .orderStatement(WAITING)
             .date(LocalDate.now())
