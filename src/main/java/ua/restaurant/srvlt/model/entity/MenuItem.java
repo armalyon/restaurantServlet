@@ -1,6 +1,8 @@
 package ua.restaurant.srvlt.model.entity;
 
 
+import java.util.Objects;
+
 public class MenuItem {
 
     private long id;
@@ -64,6 +66,24 @@ public class MenuItem {
                 ", price=" + price +
                 ", storageQuantity=" + storageQuantity +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MenuItem)) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return id == menuItem.id &&
+                weight == menuItem.weight &&
+                price == menuItem.price &&
+                storageQuantity == menuItem.storageQuantity &&
+                name.equals(menuItem.name) &&
+                nameUA.equals(menuItem.nameUA);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, nameUA, weight, price, storageQuantity);
     }
 
     public static class Builder {

@@ -4,6 +4,7 @@ import ua.restaurant.srvlt.model.entity.type.OrderStatement;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 public class Order {
     private long id;
@@ -88,6 +89,24 @@ public class Order {
                 ", orderStatement=" + orderStatement +
                 ", user=" + user +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return id == order.id &&
+                quantity == order.quantity &&
+                totalPrice == order.totalPrice &&
+                menuItem.equals(order.menuItem) &&
+                orderStatement == order.orderStatement &&
+                user.equals(order.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, menuItem, quantity, totalPrice, orderStatement, user);
     }
 
     public static class Builder {

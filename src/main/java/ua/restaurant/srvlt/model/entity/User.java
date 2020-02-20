@@ -3,6 +3,7 @@ package ua.restaurant.srvlt.model.entity;
 import ua.restaurant.srvlt.model.entity.type.Role;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class User {
     private long id;
@@ -104,6 +105,26 @@ public class User {
                 ", registrationDate=" + registrationDate +
                 ", funds=" + funds +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return id == user.id &&
+                funds == user.funds &&
+                username.equals(user.username) &&
+                password.equals(user.password) &&
+                name.equals(user.name) &&
+                surname.equals(user.surname) &&
+                role == user.role &&
+                registrationDate.equals(user.registrationDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, username, password, name, surname, role, registrationDate, funds);
     }
 
     public static class Builder {

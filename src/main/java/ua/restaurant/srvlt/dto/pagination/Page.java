@@ -1,6 +1,7 @@
 package ua.restaurant.srvlt.dto.pagination;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Page<E> {
     private int totalRecords;
@@ -77,5 +78,22 @@ public class Page<E> {
                 ", totalPages=" + totalPages +
                 ", records=" + records +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Page)) return false;
+        Page<?> page = (Page<?>) o;
+        return totalRecords == page.totalRecords &&
+                currentPage == page.currentPage &&
+                recordsPerPage == page.recordsPerPage &&
+                totalPages == page.totalPages &&
+                records.equals(page.records);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(totalRecords, currentPage, recordsPerPage, records, totalPages);
     }
 }
