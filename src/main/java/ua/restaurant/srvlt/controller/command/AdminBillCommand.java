@@ -1,8 +1,8 @@
 package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
-import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
-import ua.restaurant.srvlt.model.service.AdminBillService;
+import ua.restaurant.srvlt.exception.IdNotFoundExeption;
+import ua.restaurant.srvlt.service.AdminBillService;
 
 import javax.servlet.http.HttpServletRequest;
 

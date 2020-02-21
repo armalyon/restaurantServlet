@@ -77,8 +77,7 @@
     </table>
 
 
-
-<span class="locale">
+    <span class="locale">
     <a href="?lang=en">EN</a>
     |
     <a href="?lang=ua">UA</a>

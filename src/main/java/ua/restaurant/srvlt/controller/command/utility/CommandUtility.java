@@ -1,6 +1,6 @@
 package ua.restaurant.srvlt.controller.command.utility;
 
-import ua.restaurant.srvlt.model.entity.type.Role;
+import ua.restaurant.srvlt.entity.type.Role;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;

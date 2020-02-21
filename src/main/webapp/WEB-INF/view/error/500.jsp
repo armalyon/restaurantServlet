@@ -9,12 +9,12 @@
 
 <html>
 <head>
-    <title><fmt:message key="string.error.internal"/> </title>
+    <title><fmt:message key="string.error.internal"/></title>
 </head>
-<body >
+<body>
 <div margin-left="50">
-<h1>500</h1>
-<h1><fmt:message key="string.error.internal"/></h1>
+    <h1>500</h1>
+    <h1><fmt:message key="string.error.internal"/></h1>
 </div>
 </body>
 </html>

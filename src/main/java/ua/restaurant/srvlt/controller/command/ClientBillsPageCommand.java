@@ -3,10 +3,10 @@ package ua.restaurant.srvlt.controller.command;
 import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 import ua.restaurant.srvlt.dto.pagination.Page;
-import ua.restaurant.srvlt.exceptions.UserNotFoundException;
-import ua.restaurant.srvlt.model.entity.Bill;
-import ua.restaurant.srvlt.model.service.ClientBillsService;
-import ua.restaurant.srvlt.model.service.UserFundsService;
+import ua.restaurant.srvlt.entity.Bill;
+import ua.restaurant.srvlt.exception.UserNotFoundException;
+import ua.restaurant.srvlt.service.ClientBillsService;
+import ua.restaurant.srvlt.service.UserFundsService;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -2,11 +2,11 @@ package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
-import ua.restaurant.srvlt.exceptions.IdNotFoundExeption;
-import ua.restaurant.srvlt.exceptions.NotEnoughFundsException;
-import ua.restaurant.srvlt.exceptions.TransactionException;
-import ua.restaurant.srvlt.exceptions.UserNotFoundException;
-import ua.restaurant.srvlt.model.service.PayBillService;
+import ua.restaurant.srvlt.exception.IdNotFoundExeption;
+import ua.restaurant.srvlt.exception.NotEnoughFundsException;
+import ua.restaurant.srvlt.exception.TransactionException;
+import ua.restaurant.srvlt.exception.UserNotFoundException;
+import ua.restaurant.srvlt.service.PayBillService;
 
 import javax.servlet.http.HttpServletRequest;
 

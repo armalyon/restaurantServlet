@@ -1,7 +1,7 @@
 package ua.restaurant.srvlt.dto;
 
 
-import ua.restaurant.srvlt.model.entity.Order;
+import ua.restaurant.srvlt.entity.Order;
 
 import java.util.List;
 

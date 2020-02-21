@@ -1,6 +1,6 @@
 package ua.restaurant.srvlt.dto;
 
-import ua.restaurant.srvlt.model.entity.MenuItem;
+import ua.restaurant.srvlt.entity.MenuItem;
 
 import java.util.List;
 

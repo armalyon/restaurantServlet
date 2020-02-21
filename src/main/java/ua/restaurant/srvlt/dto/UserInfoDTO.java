@@ -71,7 +71,7 @@ public class UserInfoDTO {
         return ordersTotalNumber == that.ordersTotalNumber &&
                 username.equals(that.username) &&
                 name.equals(that.name) &&
-                surname.equals(that.surname) ;
+                surname.equals(that.surname);
     }
 
     @Override

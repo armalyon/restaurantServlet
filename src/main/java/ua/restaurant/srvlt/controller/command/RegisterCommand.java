@@ -1,11 +1,11 @@
 package ua.restaurant.srvlt.controller.command;
 
 import ua.restaurant.srvlt.dto.AccountDTO;
-import ua.restaurant.srvlt.exceptions.ConfirmationDoesNotMatchException;
-import ua.restaurant.srvlt.exceptions.RegexMismatchException;
-import ua.restaurant.srvlt.exceptions.UserExistsException;
-import ua.restaurant.srvlt.model.service.RegFormValidationService;
-import ua.restaurant.srvlt.model.service.UserRegistrationService;
+import ua.restaurant.srvlt.exception.ConfirmationDoesNotMatchException;
+import ua.restaurant.srvlt.exception.RegexMismatchException;
+import ua.restaurant.srvlt.exception.UserExistsException;
+import ua.restaurant.srvlt.service.RegFormValidationService;
+import ua.restaurant.srvlt.service.UserRegistrationService;
 
 import javax.servlet.http.HttpServletRequest;
 

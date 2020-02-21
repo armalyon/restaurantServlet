@@ -2,8 +2,8 @@ package ua.restaurant.srvlt.controller.command;
 
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
 import ua.restaurant.srvlt.dto.pagination.Page;
-import ua.restaurant.srvlt.model.entity.Order;
-import ua.restaurant.srvlt.model.service.OrdersService;
+import ua.restaurant.srvlt.entity.Order;
+import ua.restaurant.srvlt.service.OrdersService;
 
 import javax.servlet.http.HttpServletRequest;
 

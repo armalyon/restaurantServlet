@@ -2,7 +2,7 @@ package ua.restaurant.srvlt.controller.command;
 
 import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.controller.command.utility.CommandUtility;
-import ua.restaurant.srvlt.model.entity.type.Role;
+import ua.restaurant.srvlt.entity.type.Role;
 
 import javax.servlet.http.HttpServletRequest;
 

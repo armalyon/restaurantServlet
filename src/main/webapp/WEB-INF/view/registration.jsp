@@ -17,25 +17,25 @@
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
     <meta http-equiv="pragma" content="no-cache">
-    <title> <fmt:message key="string.reg.title.registration"/> </title>
+    <title><fmt:message key="string.reg.title.registration"/></title>
 </head>
 <body>
 <div class="container">
     <div class>
-        <h3 class="panel-title" ><fmt:message key="string.reg.registration.form"/> </h3>
+        <h3 class="panel-title"><fmt:message key="string.reg.registration.form"/></h3>
     </div>
     <div class>
-        <form action="${pageContext.request.contextPath}/register" method="post" >
+        <form action="${pageContext.request.contextPath}/register" method="post">
             <div class="field">
                 <label>
                     <fmt:message key="string.reg.login"/>
                 </label>
                 <input type="text" name="username" class="input"
-                       required placeholder= '<fmt:message key="string.reg.username.placeholder" /> ' />
+                       required placeholder='<fmt:message key="string.reg.username.placeholder" /> '/>
             </div>
             <div class="field">
                 <label>
-                    <fmt:message key="string.reg.password" />
+                    <fmt:message key="string.reg.password"/>
                 </label>
                 <input type="password" name="password" class="input" required
                        placeholder='<fmt:message key="string.reg.password.placeholder"/> '/>
@@ -49,21 +49,21 @@
             </div>
             <div class="field">
                 <label>
-                    <fmt:message key="string.reg.name" />
+                    <fmt:message key="string.reg.name"/>
                 </label>
                 <input type="text" name="name" class="input"
                        required placeholder='<fmt:message key="string.reg.name.placeholder"/> '/>
             </div>
             <div class="field">
                 <label>
-                    <fmt:message key="string.reg.surname" />
+                    <fmt:message key="string.reg.surname"/>
                 </label>
                 <input type="text" name="surname" class="input"
                        required placeholder='<fmt:message key="string.reg.surname.placeholder" />'/>
             </div>
 
             <c:if test="${error=='passwordConfirmation'}">
-            <span class="error"><fmt:message key="string.reg.confirmation.error"/></span>
+                <span class="error"><fmt:message key="string.reg.confirmation.error"/></span>
             </c:if>
 
             <c:if test="${error=='password'}">

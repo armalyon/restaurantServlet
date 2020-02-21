@@ -45,7 +45,7 @@
     </table>
     <div>
         <span class="header"
-              > <fmt:message key="string.admin.stats.user.username"/> : ${userInfoDTO.username} </span>
+        > <fmt:message key="string.admin.stats.user.username"/> : ${userInfoDTO.username} </span>
     </div>
     <div>
         <span class="header"> <fmt:message key="string.admin.stats.user.name"/> : ${userInfoDTO.name}</span>
@@ -74,21 +74,21 @@
                 <th><fmt:message key="string.admin.stats.user.order.paymaent.date"/></th>
             </tr>
             <c:forEach items="${page.records}" var="bill">
-            <tr>
-                <td>${bill.order.date}</td>
-                <td>${bill.order.time}</td>
-                <td>
-                    <c:if test="${lang != 'ua'}">
-                        ${bill.order.menuItem.name}
-                    </c:if>
-                    <c:if test="${lang == 'ua'}">
-                        ${bill.order.menuItem.nameUA}
-                    </c:if>
-                </td>
-                <td>${bill.order.quantity}</td>
-                <td th:text="${bill.order.totalPrice}"></td>
-                <td th:text="${bill.paymentDateTime}"></td>
-            </tr>
+                <tr>
+                    <td>${bill.order.date}</td>
+                    <td>${bill.order.time}</td>
+                    <td>
+                        <c:if test="${lang != 'ua'}">
+                            ${bill.order.menuItem.name}
+                        </c:if>
+                        <c:if test="${lang == 'ua'}">
+                            ${bill.order.menuItem.nameUA}
+                        </c:if>
+                    </td>
+                    <td>${bill.order.quantity}</td>
+                    <td th:text="${bill.order.totalPrice}"></td>
+                    <td th:text="${bill.paymentDateTime}"></td>
+                </tr>
             </c:forEach>
         </table>
 
