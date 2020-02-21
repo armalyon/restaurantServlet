@@ -9,7 +9,6 @@ public class RegFormValidationService {
 
     private ValidationUtility validationUtility = new ValidationUtility();
 
-
     public boolean isRegFormValid(AccountDTO accountDTO)
             throws ConfirmationDoesNotMatchException, RegexMismatchException {
         return validationUtility
@@ -17,6 +16,6 @@ public class RegFormValidationService {
                 && validationUtility
                 .isUsernameValid(accountDTO.getUsername())
                 && validationUtility
-                .areNameAndSurnameValid(accountDTO.getName(), accountDTO.getSurname());
+                .validateNameAndSurname(accountDTO.getName(), accountDTO.getSurname());
     }
 }

@@ -7,7 +7,7 @@ import ua.restaurant.srvlt.entity.type.OrderStatement;
 
 public class OrderStatementService {
 
-    OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
+    private OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
 
     public boolean updateOrderStatement(OrderStatement statement, Long orderId) {
         orderDao.updateOrderStatementById(statement, orderId);

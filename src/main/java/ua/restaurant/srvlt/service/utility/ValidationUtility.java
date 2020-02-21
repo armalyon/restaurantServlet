@@ -9,14 +9,14 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
-import static ua.restaurant.srvlt.constant.Regex.*;
 import static ua.restaurant.srvlt.constant.StringConstants.*;
 
 public class ValidationUtility {
-    private static final Logger LOGGER = Logger.getLogger(ValidationUtility.class);
+    private final static String USERNAME_REGEX = "regex.validation.username";
+    private final static String NAME_REGEX = "regex.validation.name";
+    private final static String PASSWORD_REGEX = "regex.validation.password";
 
     private ResourceBundle bundle = ResourceBundle.getBundle("regexes");
-
 
     public boolean isPasswordCanBeUsed(String password,
                                        String confirmation
@@ -37,7 +37,7 @@ public class ValidationUtility {
         return true;
     }
 
-    public boolean areNameAndSurnameValid(String name, String surname) throws RegexMismatchException {
+    public boolean validateNameAndSurname(String name, String surname) throws RegexMismatchException {
         Pattern pattern = getPattern(NAME_REGEX);
         if (!pattern.matcher(name).matches() ||
                 !pattern.matcher(surname).matches()) throw new RegexMismatchException("RegEx mismatch", NAME_FIELD);
