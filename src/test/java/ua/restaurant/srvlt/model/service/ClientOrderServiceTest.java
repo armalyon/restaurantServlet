@@ -24,8 +24,7 @@ import java.time.LocalTime;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static ua.restaurant.srvlt.model.entity.type.OrderStatement.WAITING;
 import static ua.restaurant.srvlt.model.entity.type.Role.*;
 
@@ -33,11 +32,14 @@ import static ua.restaurant.srvlt.model.entity.type.Role.*;
 public class ClientOrderServiceTest {
     private static final String USERNAME = "username";
     private static final int MENU_ITEM_ID = 11;
-    private static final int QUANTITY_ENOUGH = 4;
+    private static final int MENU_ITEM_ID_NOT_FOUND = 111;
+    private static final int QUANTITY_ENOUGH = 5;
+    private static final int QUANTITY_NOT_ENOUGH = 6;
     private static final String NAME = "NAME";
     private static final String SURNAME = "SURNAME";
     private static final String PASSWORD = "PASSWORD";
     private static final String NAME_UA = "NAME_UA";
+    private static final String USERNAME_NOT_FOUND = "USERNAME_NOT_FOUND";
 
     private static final User USER = new User.Builder()
             .id(21L)
@@ -51,7 +53,7 @@ public class ClientOrderServiceTest {
             .build();
 
     private static final MenuItem MENU_ITEM = new MenuItem.Builder()
-            .id(11L)
+            .id(MENU_ITEM_ID)
             .storageQuantity(5)
             .name(NAME)
             .nameUa(NAME_UA)
@@ -69,9 +71,6 @@ public class ClientOrderServiceTest {
             .totalPrice(10)
             .build();
 
-
-
-
     @InjectMocks
     private ClientOrderService instance;
 
@@ -88,7 +87,8 @@ public class ClientOrderServiceTest {
     public void setUp(){
         when(menuItemDao.findById(MENU_ITEM_ID)).thenReturn(Optional.of(MENU_ITEM));
         when(userDao.findUserByUsername(USERNAME)).thenReturn(Optional.of(USER));
-
+        doThrow(UserNotFoundException.class).when(userDao).findUserByUsername(USERNAME_NOT_FOUND);
+        doThrow(IdNotFoundExeption.class).when(menuItemDao).findById(MENU_ITEM_ID_NOT_FOUND);
     }
 
     @Test(expected = Test.None.class )
@@ -98,4 +98,20 @@ public class ClientOrderServiceTest {
         verify(orderDao).create(Mockito.any());
     }
 
+    @Test(expected = UserNotFoundException.class)
+    public void shouldThrowUserNotFoundExceptionWhenUsernameNotFound()
+            throws UserNotFoundException, NotEnoughItemsException, IdNotFoundExeption {
+        instance.saveNewOrder(USERNAME_NOT_FOUND, MENU_ITEM_ID, QUANTITY_ENOUGH);
+    }
+
+    @Test(expected = IdNotFoundExeption.class)
+    public void shouldThrowIdNotFoundExceptionWhenMenuItemIdNotFound()
+            throws UserNotFoundException, NotEnoughItemsException, IdNotFoundExeption {
+        instance.saveNewOrder(USERNAME, MENU_ITEM_ID_NOT_FOUND, QUANTITY_ENOUGH);
+    }
+
+    @Test(expected = NotEnoughItemsException.class)
+    public void shouldThrwNotEnoughItemsExceptionWhenStorageQuantityNotEnough() throws UserNotFoundException, NotEnoughItemsException, IdNotFoundExeption {
+        instance.saveNewOrder(USERNAME, MENU_ITEM_ID, QUANTITY_NOT_ENOUGH);
+    }
 }
