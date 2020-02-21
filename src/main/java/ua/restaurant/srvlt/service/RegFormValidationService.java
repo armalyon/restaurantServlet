@@ -3,19 +3,19 @@ package ua.restaurant.srvlt.service;
 import ua.restaurant.srvlt.dto.AccountDTO;
 import ua.restaurant.srvlt.exception.ConfirmationDoesNotMatchException;
 import ua.restaurant.srvlt.exception.RegexMismatchException;
-import ua.restaurant.srvlt.service.utility.ValidationUtility;
+import ua.restaurant.srvlt.service.utility.ValidationUtilityService;
 
 public class RegFormValidationService {
 
-    private ValidationUtility validationUtility = new ValidationUtility();
+    private ValidationUtilityService validationUtilityService = new ValidationUtilityService();
 
     public boolean isRegFormValid(AccountDTO accountDTO)
             throws ConfirmationDoesNotMatchException, RegexMismatchException {
-        return validationUtility
+        return validationUtilityService
                 .isPasswordCanBeUsed(accountDTO.getPassword(), accountDTO.getPasswordConfirmation())
-                && validationUtility
+                && validationUtilityService
                 .isUsernameValid(accountDTO.getUsername())
-                && validationUtility
+                && validationUtilityService
                 .validateNameAndSurname(accountDTO.getName(), accountDTO.getSurname());
     }
 }

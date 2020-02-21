@@ -11,7 +11,7 @@ import ua.restaurant.srvlt.exception.RegexMismatchException;
 
 
 @RunWith( MockitoJUnitRunner.class )
-public class ValidationUtilityTest {
+public class ValidationUtilityServiceTest {
 
     private static final String PASSWORD_GOOD = "password1234";
     private static final String PASSWORD_GOOD_2 = "password12345";
@@ -24,7 +24,7 @@ public class ValidationUtilityTest {
     private static final String SURNAME_INVALID = "surname";
 
     @InjectMocks
-    private ValidationUtility instance;
+    private ValidationUtilityService instance;
 
     @Before
     public void setUp() {

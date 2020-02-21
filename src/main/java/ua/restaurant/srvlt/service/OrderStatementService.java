@@ -9,9 +9,8 @@ public class OrderStatementService {
 
     private OrderDao orderDao = DaoFactory.getInstance().createOrderDao();
 
-    public boolean updateOrderStatement(OrderStatement statement, Long orderId) {
+    public void updateOrderStatement(OrderStatement statement, Long orderId) {
         orderDao.updateOrderStatementById(statement, orderId);
-        return true;
     }
 
 }

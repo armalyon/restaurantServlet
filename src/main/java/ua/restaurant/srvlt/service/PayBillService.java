@@ -27,6 +27,7 @@ public class PayBillService {
             TransactionException,
             UserNotFoundException,
             IdNotFoundExeption {
+
         Bill bill = getBillById(billId);
         String billUsername = bill.getOrder().getUser().getUsername();
         if (billUsername.equals(username)) {

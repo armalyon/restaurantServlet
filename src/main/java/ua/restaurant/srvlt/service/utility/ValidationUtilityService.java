@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 import static ua.restaurant.srvlt.constant.StringConstants.*;
 
-public class ValidationUtility {
+public class ValidationUtilityService {
     private final static String USERNAME_REGEX = "regex.validation.username";
     private final static String NAME_REGEX = "regex.validation.name";
     private final static String PASSWORD_REGEX = "regex.validation.password";

@@ -10,9 +10,8 @@ import org.mockito.runners.MockitoJUnitRunner;
 import ua.restaurant.srvlt.dto.AccountDTO;
 import ua.restaurant.srvlt.exception.ConfirmationDoesNotMatchException;
 import ua.restaurant.srvlt.exception.RegexMismatchException;
-import ua.restaurant.srvlt.service.utility.ValidationUtility;
+import ua.restaurant.srvlt.service.utility.ValidationUtilityService;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith( MockitoJUnitRunner.class )
@@ -35,16 +34,16 @@ public class RegFormValidationServiceTest {
     private RegFormValidationService instance;
 
     @Mock
-    private ValidationUtility validationUtility;
+    private ValidationUtilityService validationUtilityService;
 
     @Before
     public void setUp() throws ConfirmationDoesNotMatchException, RegexMismatchException {
-        when(validationUtility
+        when(validationUtilityService
                 .isPasswordCanBeUsed(ACCOUNT_DTO_ENG.getPassword(),
                         ACCOUNT_DTO_ENG.getPasswordConfirmation())).thenReturn(true);
-        when(validationUtility
+        when(validationUtilityService
                 .isUsernameValid(ACCOUNT_DTO_ENG.getUsername())).thenReturn(true);
-        when(validationUtility
+        when(validationUtilityService
                 .validateNameAndSurname(ACCOUNT_DTO_ENG.getName(),
                         ACCOUNT_DTO_ENG.getSurname())).thenReturn(true);
     }

@@ -47,7 +47,6 @@ public class UserRegistrationServiceTest {
     private UserDao userDao;
     @Mock
     private User user;
-    ;
 
     @Before
     public void setUp() throws UserExistsException {
