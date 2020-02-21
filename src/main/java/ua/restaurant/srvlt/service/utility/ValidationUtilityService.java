@@ -1,7 +1,6 @@
 package ua.restaurant.srvlt.service.utility;
 
 
-import org.apache.log4j.Logger;
 import ua.restaurant.srvlt.exception.ConfirmationDoesNotMatchException;
 import ua.restaurant.srvlt.exception.RegexMismatchException;
 

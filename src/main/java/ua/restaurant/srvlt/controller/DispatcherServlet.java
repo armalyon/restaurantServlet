@@ -20,8 +20,8 @@ import static ua.restaurant.srvlt.constant.StringConstants.NOT_FOUND_PAGE;
 
 public class DispatcherServlet extends HttpServlet {
     private static final String REDIRECT = "redirect:";
-    private Map<String, Command> commands = new HashMap<>();
     private static final Logger LOGGER = Logger.getLogger(DispatcherServlet.class);
+    private Map<String, Command> commands = new HashMap<>();
 
     public void init(ServletConfig servletConfig) {
         servletConfig.getServletContext()

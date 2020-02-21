@@ -31,8 +31,6 @@ public class UserInfoDTOServiceTest {
     private static final String PASSWORD = "pwd";
     private static final long ID = 1L;
     private static final long FUNDS = 25L;
-    private static LocalDateTime LOCAL_DATE_TIME = LocalDateTime.now();
-
     private static final User user = new User.Builder()
             .username(USERNAME)
             .name(NAME)
@@ -43,7 +41,7 @@ public class UserInfoDTOServiceTest {
             .id(ID)
             .funds(FUNDS)
             .build();
-
+    private static LocalDateTime LOCAL_DATE_TIME = LocalDateTime.now();
     private static final UserInfoDTO userInfo = new UserInfoDTO.Builder()
             .name(NAME)
             .surname(SURNAME)

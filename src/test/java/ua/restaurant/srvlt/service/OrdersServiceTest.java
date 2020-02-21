@@ -16,7 +16,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 import static ua.restaurant.srvlt.entity.type.OrderStatement.WAITING;
 

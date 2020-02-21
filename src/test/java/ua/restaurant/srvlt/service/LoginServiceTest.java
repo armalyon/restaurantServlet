@@ -16,7 +16,6 @@ import ua.restaurant.srvlt.exception.UserNotFoundException;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static ua.restaurant.srvlt.entity.type.Role.CLIENT;
@@ -49,7 +48,7 @@ public class LoginServiceTest {
     private UserDao userDao;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         when(userDao.findUserByUsername(USERNAME)).thenReturn(Optional.of(USER));
         doThrow(UserNotFoundException.class).when(userDao).findUserByUsername(USERNAME_NOT_FOUND);
     }
@@ -60,7 +59,7 @@ public class LoginServiceTest {
         Assert.assertEquals(CLIENT_ROLE, result);
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test( expected = UserNotFoundException.class )
     public void shouldThrowExceptionIfUserNotFoundWhenGettingRole() throws UserNotFoundException {
         instance.getUserRoleByUsername(USERNAME_NOT_FOUND);
     }
@@ -77,7 +76,7 @@ public class LoginServiceTest {
         Assert.assertFalse(result);
     }
 
-    @Test(expected = UserNotFoundException.class)
+    @Test( expected = UserNotFoundException.class )
     public void shouldThrowExceptionIfUserNotFoundWhenValidatingPwd() throws UserNotFoundException {
         instance.isPasswordCorrect(USERNAME_NOT_FOUND, PASSWORD);
     }

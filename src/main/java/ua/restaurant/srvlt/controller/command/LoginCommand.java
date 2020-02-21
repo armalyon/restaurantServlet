@@ -14,9 +14,8 @@ import static ua.restaurant.srvlt.entity.type.Role.*;
 
 public class LoginCommand implements Command {
 
-    private LoginService loginService = new LoginService();
-
     private static final Logger LOGGER = Logger.getLogger(LoginCommand.class);
+    private LoginService loginService = new LoginService();
 
     @Override
     public String execute(HttpServletRequest request) {

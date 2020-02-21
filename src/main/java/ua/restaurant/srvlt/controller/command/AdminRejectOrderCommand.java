@@ -10,8 +10,8 @@ import static ua.restaurant.srvlt.constant.StringConstants.ADMIN_CONFIRMATION_RE
 import static ua.restaurant.srvlt.constant.StringConstants.ID_ATTRIBUTE;
 
 public class AdminRejectOrderCommand implements Command {
-    OrderStatementService orderStatementService = new OrderStatementService();
     private static final Logger LOGGER = Logger.getLogger(AdminRejectOrderCommand.class);
+    OrderStatementService orderStatementService = new OrderStatementService();
 
     @Override
     public String execute(HttpServletRequest request) {

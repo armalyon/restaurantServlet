@@ -14,7 +14,6 @@ import ua.restaurant.srvlt.entity.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 @RunWith( MockitoJUnitRunner.class )
@@ -48,7 +47,7 @@ public class MenuServiceTest {
     private MenuItemDao menuItemDao;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         items.add(MENU_ITEM_1);
         items.add(MENU_ITEM_2);
         menuDTO = new MenuDTO(items);
@@ -56,7 +55,7 @@ public class MenuServiceTest {
     }
 
     @Test
-    public void shouldReturnMenuDTO(){
+    public void shouldReturnMenuDTO() {
         MenuDTO result = instance.getMenu();
         Assert.assertEquals(menuDTO, result);
     }

@@ -11,19 +11,15 @@ import ua.restaurant.srvlt.dao.MenuItemDao;
 import ua.restaurant.srvlt.dao.OrderDao;
 import ua.restaurant.srvlt.dao.UserDao;
 import ua.restaurant.srvlt.entity.MenuItem;
-import ua.restaurant.srvlt.entity.Order;
 import ua.restaurant.srvlt.entity.User;
 import ua.restaurant.srvlt.exception.IdNotFoundExeption;
 import ua.restaurant.srvlt.exception.NotEnoughItemsException;
 import ua.restaurant.srvlt.exception.UserNotFoundException;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
-import static ua.restaurant.srvlt.entity.type.OrderStatement.WAITING;
 import static ua.restaurant.srvlt.entity.type.Role.CLIENT;
 
 @RunWith( MockitoJUnitRunner.class )

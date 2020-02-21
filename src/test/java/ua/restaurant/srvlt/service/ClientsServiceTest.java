@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 import ua.restaurant.srvlt.dao.UserDao;
 import ua.restaurant.srvlt.dto.pagination.Page;
@@ -17,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
-import static ua.restaurant.srvlt.entity.type.Role.*;
+import static ua.restaurant.srvlt.entity.type.Role.CLIENT;
 
 @RunWith( MockitoJUnitRunner.class )
 public class ClientsServiceTest {
@@ -25,7 +24,6 @@ public class ClientsServiceTest {
     private static final int CLIENTS_COUNT = 7;
     private static final int CURRENT_PAGE = 2;
     private static final int PAGE_SIZE = 5;
-    private List<User> clients = new ArrayList<>();
     private static final User USER_1 = new User.Builder()
             .id(11L)
             .funds(25)
@@ -36,7 +34,6 @@ public class ClientsServiceTest {
             .username("username 1")
             .role(CLIENT)
             .build();
-
     private static final User USER_2 = new User.Builder()
             .id(12L)
             .funds(25)
@@ -47,7 +44,7 @@ public class ClientsServiceTest {
             .username("username 2")
             .role(CLIENT)
             .build();
-
+    private List<User> clients = new ArrayList<>();
     private Page<User> page;
 
 
@@ -63,7 +60,7 @@ public class ClientsServiceTest {
         clients.add(USER_2);
         page = new Page<>(CLIENTS_COUNT, CURRENT_PAGE, PAGE_SIZE, clients);
         when(userDao.countUsersByRole(CLIENT)).thenReturn(CLIENTS_COUNT);
-        when(userDao.findAllPageByRole(CLIENT, PAGE_SIZE*CURRENT_PAGE , PAGE_SIZE)).thenReturn(clients);
+        when(userDao.findAllPageByRole(CLIENT, PAGE_SIZE * CURRENT_PAGE, PAGE_SIZE)).thenReturn(clients);
     }
 
     @Test

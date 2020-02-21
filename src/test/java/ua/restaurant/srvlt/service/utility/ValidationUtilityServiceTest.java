@@ -43,7 +43,7 @@ public class ValidationUtilityServiceTest {
         instance.isPasswordCanBeUsed(PASSWORD_SHORT, PASSWORD_SHORT);
     }
 
-    @Test(expected = ConfirmationDoesNotMatchException.class)
+    @Test( expected = ConfirmationDoesNotMatchException.class )
     public void shouldThrowConfirmationDoesNotMatchExceptionWhenPasswordAndCOnfirmationDoNotMatch()
             throws ConfirmationDoesNotMatchException, RegexMismatchException {
         instance.isPasswordCanBeUsed(PASSWORD_GOOD, PASSWORD_GOOD_2);
@@ -56,7 +56,7 @@ public class ValidationUtilityServiceTest {
     }
 
 
-    @Test(expected = RegexMismatchException.class)
+    @Test( expected = RegexMismatchException.class )
     public void shouldThrowExceptionWhenUsernameDoesNotMatchRegex() throws RegexMismatchException {
         instance.isUsernameValid(USERNAME_INVALID_SYMBOLS);
     }
@@ -67,7 +67,7 @@ public class ValidationUtilityServiceTest {
         Assert.assertTrue(result);
     }
 
-    @Test(expected = RegexMismatchException.class)
+    @Test( expected = RegexMismatchException.class )
     public void shouldThrowRegexMismatchExceptionWhenNameAndSurnameInvalid() throws RegexMismatchException {
         instance.validateNameAndSurname(NAME_INVALID, SURNAME_INVALID);
     }

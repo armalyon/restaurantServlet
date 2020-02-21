@@ -23,7 +23,7 @@ import java.util.Optional;
 
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
-import static ua.restaurant.srvlt.entity.type.OrderStatement.*;
+import static ua.restaurant.srvlt.entity.type.OrderStatement.INVOICED;
 
 @RunWith( MockitoJUnitRunner.class )
 public class PayBillServiceTest {

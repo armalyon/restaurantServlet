@@ -29,14 +29,6 @@ public class UserFundsServiceTest {
     private static final long ID = 1L;
     private static final long FUNDS = 25L;
     private static LocalDateTime LOCAL_DATE_TIME = LocalDateTime.now();
-
-
-    @InjectMocks
-    private UserFundsService instance;
-
-    @Mock
-    private UserDao userDao;
-
     private static final User user = new User.Builder()
             .username(USERNAME)
             .name(NAME)
@@ -47,6 +39,10 @@ public class UserFundsServiceTest {
             .id(ID)
             .funds(FUNDS)
             .build();
+    @InjectMocks
+    private UserFundsService instance;
+    @Mock
+    private UserDao userDao;
 
     @Before
     public void setUp() {
