@@ -8,6 +8,7 @@ public enum OrderStatement {
 
     private String message;
     private String messageUA;
+
     OrderStatement(String message, String messageUA) {
         this.message = message;
         this.messageUA = messageUA;

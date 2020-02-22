@@ -19,7 +19,7 @@ public class UserRegistrationService {
         userDao.createNewUser(user);
     }
 
-    public User buildUser(AccountDTO accountDTO) {
+    private User buildUser(AccountDTO accountDTO) {
         return new User.Builder()
                 .username(accountDTO.getUsername())
                 .password(BCrypt.hashpw(accountDTO.getPassword(), BCrypt.gensalt()))

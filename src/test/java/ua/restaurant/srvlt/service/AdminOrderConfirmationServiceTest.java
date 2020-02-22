@@ -105,7 +105,7 @@ public class AdminOrderConfirmationServiceTest {
     }
 
     @Test( expected = Test.None.class )
-    public void shouldNotThrowExeptionWhenTyingToConfirmOrderIfOrderIsCorrect() throws IdNotFoundExeption {
+    public void shouldNotThrowExceptionWhenTyingToConfirmOrderIfOrderIsCorrect() throws IdNotFoundExeption {
         instance.confirmOrder(WAITING_ORDER.getId(), WAITING_ORDER.getQuantity());
     }
 

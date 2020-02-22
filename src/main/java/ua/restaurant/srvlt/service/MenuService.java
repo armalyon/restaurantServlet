@@ -11,5 +11,4 @@ public class MenuService {
         return new MenuDTO(menuItemDao
                 .findAllByStorageQuantityGreaterThan(0L));
     }
-
 }

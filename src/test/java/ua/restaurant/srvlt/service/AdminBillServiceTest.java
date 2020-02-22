@@ -23,7 +23,7 @@ import static ua.restaurant.srvlt.entity.type.OrderStatement.*;
 @RunWith( MockitoJUnitRunner.class )
 public class AdminBillServiceTest {
 
-    private static Order CONFIRMED_ORDER = new Order.Builder()
+    private static final Order CONFIRMED_ORDER = new Order.Builder()
             .id(1L)
             .orderStatement(CONFIRMED)
             .date(LocalDate.now())
@@ -32,7 +32,7 @@ public class AdminBillServiceTest {
             .totalPrice(10)
             .build();
 
-    private static Order REJECTED_ORDER = new Order.Builder()
+    private static final Order REJECTED_ORDER = new Order.Builder()
             .id(2L)
             .orderStatement(REJECTED)
             .date(LocalDate.now())
@@ -41,7 +41,7 @@ public class AdminBillServiceTest {
             .totalPrice(10)
             .build();
 
-    private static Order INVOICED_ORDER = new Order.Builder()
+    private static final Order INVOICED_ORDER = new Order.Builder()
             .id(3L)
             .orderStatement(INVOICED)
             .date(LocalDate.now())
@@ -50,7 +50,7 @@ public class AdminBillServiceTest {
             .totalPrice(10)
             .build();
 
-    private static long ID_NOT_FOUND = 5;
+    private static final long ID_NOT_FOUND = 5;
 
     @InjectMocks
     private static AdminBillService instance;
