@@ -22,8 +22,7 @@
 </head>
 <body>
 <div class="container">
-
-
+    <h3><fmt:message key="string.user.your.orders"/></h3>
     <table>
         <tr>
             <td>

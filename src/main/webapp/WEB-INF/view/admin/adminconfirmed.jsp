@@ -34,7 +34,7 @@
                        value='<fmt:message key="string.admin.confirmation.button.main"/> '>
             </form>
             <td>
-                <form action="${pageContext.request.contextPath}/admin_stats" method="get">
+                <form action="${pageContext.request.contextPath}/admin_users" method="get">
                     <input type="submit" class="button" value='<fmt:message key="string.admin.button.stats"/> '>
                 </form>
             </td>
