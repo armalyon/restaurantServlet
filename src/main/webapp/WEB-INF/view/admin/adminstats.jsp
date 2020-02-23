@@ -110,12 +110,12 @@
         </c:if>
 
     </c:if>
-    <!-- <span class="locale">
-      <a th:href="@{''(lang='en')}">EN</a>
+     <span class="locale">
+      <a href="?username=${param.username}&page=${page.currentPage +1}&lang=en">EN</a>
       |
-      <a th:href="@{''(lang='en')}">UA</a>
+      <a href="?username=${param.username}&page=${page.currentPage +1}&lang=ua">UA</a>
       </span>
- -->
+
 </div>
 
 </body>
